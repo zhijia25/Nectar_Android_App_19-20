@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.NetworkDetailFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/NetworkDetail1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Network Name"
+                android:id="@+id/NetworkNameID1"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/NetworkNameID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail1"
+            android:id="@+id/NetworkDetail2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="ID"
+                android:id="@+id/NetworkID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail2"
+            android:id="@+id/NetworkDetail3"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="ProjectID"
+                android:id="@+id/NetworkProjectID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkProjectID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail3"
+            android:id="@+id/NetworkDetail4"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Status"
+                android:id="@+id/NetworkStatusID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkStatusID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail4"
+            android:id="@+id/NetworkDetail5"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Admin State"
+                android:id="@+id/NetworkAdminStateID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkAdminStateID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail5"
+            android:id="@+id/NetworkDetail6"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Shared"
+                android:id="@+id/NetworkSharedID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkSharedID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail6"
+            android:id="@+id/NetworkDetail7"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="External Network"
+                android:id="@+id/NetworkExternalID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkExternalID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/NetworkDetail7"
+            android:id="@+id/NetworkDetail8"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="MTU"
+                android:id="@+id/NetworkMTUID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/NetworkMTUID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/createaDatabaseBackupButton"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.jianqingc.nectar.fragment.CreateAlarmFragment">
+
+            <TextView
+                android:id="@+id/newDatabaseBackupName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="Name*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/newDatabaseBackupName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/newDatabaseBackupName1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:hint="network address"
+                android:singleLine="true"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/DatabaseBackupDescription1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/newDatabaseBackupName"
+                android:layout_alignStart="@+id/newDatabaseBackuppName"
+                android:layout_below="@+id/newDatabaseBackupName"
+                android:layout_marginTop="25sp"
+                android:text="Description"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/DatabaseBackupDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/DatabaseBackupDescription1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:hint="Description"
+                android:singleLine="true"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/DatabaseBackupInstance1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/DatabaseBackupDescription"
+                android:layout_alignStart="@+id/DatabaseBackupDescription"
+                android:layout_below="@+id/DatabaseBackupDescription"
+                android:layout_marginTop="25sp"
+                android:text="Database Instance*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/DatabaseBackupInstance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/DatabaseBackupInstance1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <requestFocus />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/DatabaseBackupbuttonbuttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/createDatabaseBackupButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="60sp"
+            android:layout_weight="0.99"
+            android:background="#ffcc00"
+            android:text="Create Database Backup"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

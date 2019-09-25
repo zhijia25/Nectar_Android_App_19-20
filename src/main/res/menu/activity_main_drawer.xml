@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Compute">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_overview"
+                    android:title="Overview" />
+                <item
+                    android:id="@+id/nav_instances"
+                    android:title="Instances" />
+                <item
+                    android:id="@+id/nav_images"
+                    android:title="Images" />
+                <item
+                    android:id="@+id/nav_accessAndSecurity"
+                    android:title="Access and Security" />
+
+
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Volumes">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_volumes"
+                    android:title="Volumes" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Network">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_floatingIP"
+                    android:title="Floating IP" />
+                <item
+                    android:id="@+id/nav_networks"
+                    android:title="Networks" />
+                <item
+                    android:id="@+id/nav_router"
+                    android:title="Router" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Orchestration">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_stack"
+                    android:title="Stacks" />
+                <item
+                    android:id="@+id/nav_resourceTypes"
+                    android:title="Resource Types" />
+                <item
+                    android:id="@+id/nav_templateVersions"
+                    android:title="Template Versions" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Database">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_database_instance"
+                    android:title="Database Instances" />
+                <item
+                    android:id="@+id/nav_configuration_group"
+                    android:title="Configuration Group" />
+                <item
+                    android:id="@+id/nav_database_backup"
+                    android:title="Database Backup" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Object Processing">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_container"
+                    android:title="Container" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Account">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_about"
+                    android:title="About" />
+                <item
+                    android:id="@+id/nav_signout"
+                    android:title="Sign out" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

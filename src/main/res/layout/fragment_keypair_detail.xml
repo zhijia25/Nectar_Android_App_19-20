@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.KeyPairDetailFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/kpDL1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Name"
+                android:id="@+id/kpNameDKP1"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/kpNameDKP"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/kpDL1"
+            android:id="@+id/kpDL2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Fingerprint"
+                android:id="@+id/kpFingerprintDLP1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/kpFingerprintDLP"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/kpDL2"
+            android:id="@+id/kpDL3"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Create Time"
+                android:id="@+id/kpCreateTDKP1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/kpCreateTDKP"
+                android:layout_marginTop="20sp"
+                android:layout_width="0dp"
+                android:textIsSelectable="true"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kpDL3"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Public Key"
+            android:id="@+id/kpPublicKDKP1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="20sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kpPublicKDKP1"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="---"
+            android:id="@+id/kpPublicKDKP"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="30sp"
+            android:textIsSelectable="true"
+            android:layout_width="match_parent"/>
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

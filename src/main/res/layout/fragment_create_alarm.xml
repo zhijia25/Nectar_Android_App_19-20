@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.jianqingc.nectar.fragment.CreateAlarmFragment">
+
+            <TextView
+                android:id="@+id/newAlarmName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="Alarm Name*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/newAlarmName"
+                android:layout_below="@+id/newAlarmName1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint="Alarm Name"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:singleLine="true" />
+            <requestFocus />
+
+            <TextView
+                android:id="@+id/descriptionAlarm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/newAlarmName"
+                android:layout_alignStart="@+id/newAlarmName"
+                android:layout_below="@+id/newAlarmName"
+                android:layout_marginTop="25sp"
+                android:text="Description"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descriptionAlarm"
+                android:layout_below="@+id/descriptionAlarm1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint="Description"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/alarmType1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/descriptionAlarm"
+                android:layout_marginTop="25sp"
+                android:text="Type"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarmType"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/alarmType1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/alarmMetric1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/alarmType"
+                android:layout_marginTop="25sp"
+                android:text="Metric"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarmMetric"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/alarmMetric1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/thresholdValue1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/alarmMetric"
+                android:layout_marginTop="25sp"
+                android:text="threshold value"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/thresholdValue"
+                android:layout_below="@+id/thresholdValue1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint="Enter value here"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/aggreMethod1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/thresholdValue"
+                android:layout_marginTop="25sp"
+                android:text="Choose aggregation method"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/aggreMethod"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/aggreMethod1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/operator1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/aggreMethod"
+                android:layout_marginTop="25sp"
+                android:text="Choose comparison operator"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/operator"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/operator1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/granularity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/operator"
+                android:layout_marginTop="25sp"
+                android:text="granularity value"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/granularity"
+                android:layout_below="@+id/granularity1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint="Enter value here"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/alarmState1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/granularity"
+                android:layout_marginTop="25sp"
+                android:text="alarm state"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarmState"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/alarmState1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+
+            <TextView
+                android:id="@+id/severity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/descriptionAlarm"
+                android:layout_alignStart="@+id/descriptionAlarm"
+                android:layout_below="@+id/alarmState"
+                android:layout_marginTop="25sp"
+                android:text="Severity"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/severity"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/severity1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="100sp"
+                android:textSize="14sp"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmbuttonbuttom"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        >
+
+        <Button
+            android:id="@+id/createalarm"
+            android:layout_width="0dp"
+            android:layout_weight="0.99"
+            android:layout_height="wrap_content"
+            android:text="Create Alarm"
+            android:layout_marginLeft="60sp"
+            android:layout_gravity="bottom|end"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    </LinearLayout>
+</RelativeLayout>

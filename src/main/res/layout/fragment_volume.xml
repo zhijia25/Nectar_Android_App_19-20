@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollViewLKP"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.VolumeFragment">
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewVolume"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:footerDividersEnabled="true" />
+
+</RelativeLayout>
+
+</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
+
+        <Button
+            android:text="Volumes"
+            android:layout_width="0dp"
+            android:layout_weight="0.41"
+            android:layout_height="wrap_content"
+            android:id="@+id/volume_button1"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <Button
+            android:text="Volume Snapshots"
+            android:layout_width="0dp"
+            android:layout_weight="0.41"
+            android:layout_height="wrap_content"
+            android:id="@+id/volumeSnapshot_button1"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

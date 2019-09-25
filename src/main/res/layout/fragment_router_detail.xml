@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.routerDetailFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/routerDetail1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Name"
+                android:id="@+id/routerNameID1"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/routerNameID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail1"
+            android:id="@+id/routerDetail2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="ID"
+                android:id="@+id/routerID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail2"
+            android:id="@+id/routerDetail3"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Project ID"
+                android:id="@+id/routerprojectID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerProjectID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail3"
+            android:id="@+id/routerDetail4"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Status"
+                android:id="@+id/routerStatusID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerStautsID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail4"
+            android:id="@+id/routerDetail5"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Admin State"
+                android:id="@+id/routerAdminStateID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerAdminStateID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail5"
+            android:id="@+id/routerDetail6"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Network Name"
+                android:id="@+id/routerNetworkNameID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routernetworkNamedID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail6"
+            android:id="@+id/routerDetail7"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Network ID"
+                android:id="@+id/routerNetworkID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerNetworkID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail7"
+            android:id="@+id/routerDetail8"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Subnet ID"
+                android:id="@+id/routerSubnetID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerSubnetID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail8"
+            android:id="@+id/routerDetail9"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="IP Address"
+                android:id="@+id/routerIPAdressID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerIPAddressID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/routerDetail9"
+            android:id="@+id/routerDetail10"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="SNAT"
+                android:id="@+id/routerSnatID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/routerSnatID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

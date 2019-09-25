@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.ImageDetailFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/imageDetail1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Image Name"
+                android:id="@+id/imageNameID1"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/imageNameID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail1"
+            android:id="@+id/imageDetail2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Type"
+                android:id="@+id/imageTypeID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imageTypeID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/imageDetail2"
+        android:id="@+id/imageDetail3"
+        android:layout_centerHorizontal="true"
+
+        android:weightSum="1">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Status"
+            android:id="@+id/imageStatusID1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="20sp"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_weight="0.3"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Medium Text"
+            android:id="@+id/imageStatusID"
+            android:layout_marginTop="20sp"
+            android:textIsSelectable="true"
+            android:layout_width="0dp"
+            android:layout_weight="0.7" />
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail3"
+            android:id="@+id/imageDetail4"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Public"
+                android:id="@+id/imagePublicID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imagePublicID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail4"
+            android:id="@+id/imageDetail5"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Protected"
+                android:id="@+id/imageProtectedID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imageProtectedID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail5"
+            android:id="@+id/imageDetail6"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Format"
+                android:id="@+id/imageFormatID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imageFormatID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail6"
+            android:id="@+id/imageDetail7"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Size"
+                android:id="@+id/imageSizeID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imageSizeID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/imageDetail7"
+            android:id="@+id/imageDetail8"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Create Time"
+                android:id="@+id/imageCTID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/imageCTID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

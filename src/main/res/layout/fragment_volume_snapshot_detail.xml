@@ -1,0 +1,361 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.VolumeSnapshotDetailFragment">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/nameSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="15sp"
+                android:text="Volume Snapshot Name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nameSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textIsSelectable="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD2"
+            android:layout_below="@+id/vVD1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/idSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="ID"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/idSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textIsSelectable="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD3"
+            android:layout_below="@+id/vVD2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/statusSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Status"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD4"
+            android:layout_below="@+id/vVD3"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/sizeSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Size"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sizeSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD5"
+            android:layout_below="@+id/vVD4"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/descriptionSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Description"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descriptionSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD6"
+            android:layout_below="@+id/vVD5"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/volumeNameSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Volume Name"
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/volumeNameSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD7"
+            android:layout_below="@+id/vVD6"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/zoneSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Volume Zone"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/zoneSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vVD10"
+            android:layout_below="@+id/vVD7"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/createSD1"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Create time"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/createSD"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="100sp"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

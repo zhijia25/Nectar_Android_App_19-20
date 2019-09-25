@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.jianqingc.nectar.fragment.SubnetDetailFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/SubnetDetail1"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Subnet Name"
+                android:id="@+id/SubnetNameID1"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/SubnetNameID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/SubnetDetail1"
+            android:id="@+id/SubnetDetail2"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="ID"
+                android:id="@+id/SubnetID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/SubnetID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/SubnetDetail2"
+            android:id="@+id/SubnetDetail3"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="NetworkID"
+                android:id="@+id/SubnetNetworkID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/SubnetNetworkID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/SubnetDetail3"
+            android:id="@+id/SubnetDetail4"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="IP Version"
+                android:id="@+id/SubnetIPVersionID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/SubnetIPVersionID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/SubnetDetail4"
+            android:id="@+id/SubnetDetail5"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="CIDR"
+                android:id="@+id/SubnetCIDR"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/SubnetCIDRID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/SubnetDetail5"
+            android:id="@+id/SubnetDetail6"
+            android:layout_centerHorizontal="true"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="IP Pool"
+                android:id="@+id/SubnetIPPoolID1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Medium Text"
+                android:id="@+id/SubnetIPPoolID"
+                android:layout_marginTop="20sp"
+                android:textIsSelectable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.7" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.jianqingc.nectar.fragment.CreateAlarmFragment">
+
+
+
+            <TextView
+                android:id="@+id/destinationContainer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="Destination container*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/destinationContainer"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/destinationContainer1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/copyPath1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/destinationContainer"
+                android:layout_alignStart="@+id/destinationContainer"
+                android:layout_below="@+id/destinationContainer"
+                android:layout_marginTop="25sp"
+                android:text="Path"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/copyPath"
+                android:layout_below="@+id/copyPath1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint=""
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/destinationContainerName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/destinationContainer"
+                android:layout_alignStart="@+id/destinationContainer"
+                android:layout_below="@+id/copyPath"
+                android:layout_marginTop="25sp"
+                android:text="Destination object name*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/destinationContainerName"
+                android:layout_below="@+id/destinationContainerName1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:hint=""
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:singleLine="true" />
+            <requestFocus />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/copyObjectbuttonbuttom"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        >
+
+        <Button
+            android:id="@+id/copyObjectButton"
+            android:layout_width="0dp"
+            android:layout_weight="0.99"
+            android:layout_height="wrap_content"
+            android:text="Copy Object"
+            android:layout_marginLeft="60sp"
+            android:layout_gravity="bottom|end"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    </LinearLayout>
+
+</RelativeLayout>

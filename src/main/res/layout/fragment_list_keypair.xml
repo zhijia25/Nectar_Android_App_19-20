@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollViewLKP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.KeyPairFragment">
+
+            <!-- TODO: Update blank fragment layout -->
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:footerDividersEnabled="true"
+                android:id="@+id/listViewKeyPair"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
+
+        <Button
+            android:text="Security Groups"
+            android:layout_width="0dp"
+            android:layout_weight="0.41"
+            android:layout_height="wrap_content"
+            android:id="@+id/security_groups2"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <Button
+            android:text="Key  Pairs"
+            android:layout_width="0dp"
+            android:layout_weight="0.41"
+            android:layout_height="wrap_content"
+            android:id="@+id/key_pairs2"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

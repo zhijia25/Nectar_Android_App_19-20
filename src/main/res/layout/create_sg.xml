@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/createSGName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:textStyle="bold"
+        android:text="Name*" />
+
+    <EditText
+        android:id="@+id/createSGName"
+        android:layout_width="match_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_height="wrap_content" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/createSGDescription1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Description" />
+
+    <EditText
+        android:id="@+id/createSGDescription"
+        android:layout_width="match_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
