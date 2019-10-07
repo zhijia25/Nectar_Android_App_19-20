@@ -5909,6 +5909,49 @@ public class HttpRequestController {
 
     }
 
+    /*
+    Contariner Service
+     **/
+    public void listCluster(final VolleyCallback callback, final Context context, final String clusterID) {
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String ContainerInfraURL = sharedPreferences.getString("ContainerInfraURL", "Error Getting Compute URL");
+        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
+        String fullURL = ContainerInfraURL + "v1/clusters";
+
+        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONArray resultArray;
+                resultArray = ResponseParser.getInstance(mApplicationContext).listCluster(response, clusterID);
+                System.out.println("clusterID: " + clusterID);
+                String result = resultArray.toString();
+                callback.onSuccess(result);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse.statusCode == 401) {
+                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
+                    context.startActivity(i);
+                } else {
+                    Toast.makeText(mApplicationContext, "Getting Clusters List  Failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("X-Auth-Token", token);
+                return headers;
+            }
+        };
+        NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
+    }
 
 
 
