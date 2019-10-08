@@ -1147,7 +1147,45 @@ public class ResponseParser {
         return resultObject;
     }
 
+    /*
+    List Clusters
+    **/
 
+    public JSONArray listCluster(String response, String clusterID){
+        JSONArray resultArray = new JSONArray();
+
+        try {
+            JSONObject responseJSON = null;
+            responseJSON = new JSONObject(response);
+            JSONArray clustersArray = responseJSON.getJSONArray("clusters");
+            int count = 0;
+            for (int i = 0; i < clustersArray.length(); i++) {
+                JSONObject clusterObject = clustersArray.getJSONObject(i);
+                JSONObject resultObject = new JSONObject();
+                String cluster_id = clusterObject.getString("cluster_id");
+                if (cluster_id.equals(clusterID)) {
+
+                    resultObject.put("clusterName", clusterObject.getString("name"));
+                    resultObject.put("clusterID", clusterObject.getString("id"));
+                    resultObject.put("status", clusterObject.getString("status"));
+                    resultObject.put("master_count", clusterObject.getString("master_count"));
+                    resultObject.put("node_count", clusterObject.getString("node_count"));
+                    resultObject.put("keyPair", clusterObject.getString("keyPair"));
+                    resultArray.put(count,resultObject);
+                    count++;
+                }
+            }
+
+
+            return resultArray;
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return resultArray;
+    }
 
 
 

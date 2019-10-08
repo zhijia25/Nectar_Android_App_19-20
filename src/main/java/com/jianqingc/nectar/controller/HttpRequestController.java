@@ -5150,13 +5150,6 @@ public class HttpRequestController {
     }
 
 
-
-
-
-
-
-
-
     /*
     * list configuration group and action
     * */
@@ -5914,9 +5907,9 @@ public class HttpRequestController {
      **/
     public void listCluster(final VolleyCallback callback, final Context context, final String clusterID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String ContainerInfraURL = sharedPreferences.getString("ContainerInfraURL", "Error Getting Compute URL");
+        String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = ContainerInfraURL + "v1/clusters";
+        String fullURL = containerInfraURL + "v1/clusters";
 
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
@@ -5951,6 +5944,69 @@ public class HttpRequestController {
             }
         };
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
+    }
+
+    /*
+    Create a new Container Cluster.
+    **/
+    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String flavorID, String masterFlavorID, final int masterCount, final int nodeCount, final int createTimeout) {
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
+        String fullURL = containerInfraURL + "v1/clusters";
+        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
+        JSONObject json1 = new JSONObject();
+        JSONObject json2 = new JSONObject();
+        try {
+            json1.put("name", clusterName);
+            json1.put("discovery_url", disUrl);
+            json1.put("master_count", masterCount);
+            json1.put("cluster_template_id", clusterTemplateID);
+            json1.put("node_count", nodeCount);
+            json1.put("create_timeout", createTimeout);
+            json1.put("keypair", kytPair);
+            json1.put("master_flavor_id", masterFlavorID);
+            json1.put("labels", json2);
+//            json2.put(labels);
+            json1.put("flavor_id", flavorID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess("success");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse == null) {
+                    Toast.makeText(mApplicationContext, "Create instance successfully", Toast.LENGTH_SHORT).show();
+                    callback.onSuccess("success");
+                } else {
+                    if (error.networkResponse.statusCode == 401) {
+                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
+                        mApplicationContext.startActivity(i);
+                    } else {
+                        Toast.makeText(mApplicationContext, "Create cluster failed", Toast.LENGTH_SHORT).show();
+                        //System.out.println("createFail");
+                        callback.onSuccess("error");
+                    }
+                }
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("X-Auth-Token", token);
+                return headers;
+
+            }
+        };
+        NetworkController.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
+
     }
 
 
