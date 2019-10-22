@@ -1,4 +1,4 @@
-package com.zhijiaAndpengcheng.nectar.controller;
+package com.jianqingc.nectar.controller;
 
 /**
  * Created by HuangMengxue on 17/5/3.

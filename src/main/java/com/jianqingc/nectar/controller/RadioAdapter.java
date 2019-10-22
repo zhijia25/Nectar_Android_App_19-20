@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import java.util.ArrayList;
+import com.jianqingc.nectar.controller.ChoiceListItemView;
 import java.util.List;
 
 public class RadioAdapter extends BaseAdapter {
