@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:17:1-24:12
@@ -13,6 +13,7 @@ MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\yaopc\.
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\f276756cfe37970661eae38731bfece7\AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2dafb1b5b357d221b3ca80f8263f4784\AndroidManifest.xml:17:1-31:12
 MERGED from [com.github.amigold.fundapter:library:1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\library-1.0.aar\362428f594c6b196ee440319bce84c26\AndroidManifest.xml:1:1-9:12
+MERGED from [io.reactivex:rxandroid:1.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\rxandroid-1.1.0.aar\6f84618da44450d2bf908cace68ad277\AndroidManifest.xml:15:1-21:12
 MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\a2808ad6c954908fde0d2bf25b5c1964\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\04fbe1205266ad7d187161a8fe2bd5de\AndroidManifest.xml:17:1-25:12
 MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\e0f8345c226a9088b3f9466564f631bb\AndroidManifest.xml:17:1-22:12
@@ -22,22 +23,22 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yaopc\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4f0ecc0c394a87f772d4d9350311be1e\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\769d39ab195f8622116c806094b23907\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e8bd1fd67d5c88603d416141c2f153f\AndroidManifest.xml:17:1-30:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 	package
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:4:5-35
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-47:12
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 		INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:11-69
@@ -50,7 +51,7 @@ ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:7:
 	android:name
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:7:22-78
 application
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:9:5-45:19
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:9:5-47:19
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:25:5-20
@@ -98,42 +99,50 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:14:9-40
 	tools:replace
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:15:9-37
-activity#com.jianqingc.nectar.activity.GuideActivity
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:16:9-23:20
+activity#com.jianqingc.nectar.activity.WelcomeActivity
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:17:9-25:20
+	android:screenOrientation
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:19:13-49
 	android:theme
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:18:13-56
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:20:13-46
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:17:13-51
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:18:13-53
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:19:13-22:29
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:21:13-24:29
 action#android.intent.action.MAIN
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:20:17-69
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:22:17-69
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:20:25-66
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:22:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:21:17-77
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:23:17-77
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:21:27-74
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:23:27-74
+activity#com.jianqingc.nectar.activity.GuideActivity
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:27:9-30:20
+	android:theme
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:29:13-56
+	android:name
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:28:13-51
 activity#com.jianqingc.nectar.activity.LoginActivity
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:24:9-32:20
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:32:9-35:20
 	android:theme
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:26:13-56
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:34:13-56
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:25:13-51
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:33:13-51
 activity#com.jianqingc.nectar.activity.MainActivity
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:33:9-35:68
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:37:9-40:20
 	android:theme
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:35:13-56
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:39:13-56
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:34:13-50
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:38:13-50
 meta-data#com.google.android.gms.version
-ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:40:9-42:69
+ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:42:9-44:69
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\f276756cfe37970661eae38731bfece7\AndroidManifest.xml:23:9-25:69
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\f276756cfe37970661eae38731bfece7\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:42:13-66
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:44:13-66
 	android:name
-		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:41:13-58
+		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:43:13-58
 uses-sdk
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
@@ -156,6 +165,8 @@ MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yaopc\.gradle\cache
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2dafb1b5b357d221b3ca80f8263f4784\AndroidManifest.xml:21:5-23:54
 MERGED from [com.github.amigold.fundapter:library:1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\library-1.0.aar\362428f594c6b196ee440319bce84c26\AndroidManifest.xml:3:5-72
 MERGED from [com.github.amigold.fundapter:library:1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\library-1.0.aar\362428f594c6b196ee440319bce84c26\AndroidManifest.xml:3:5-72
+MERGED from [io.reactivex:rxandroid:1.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\rxandroid-1.1.0.aar\6f84618da44450d2bf908cace68ad277\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex:rxandroid:1.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\rxandroid-1.1.0.aar\6f84618da44450d2bf908cace68ad277\AndroidManifest.xml:19:5-43
 MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\a2808ad6c954908fde0d2bf25b5c1964\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\a2808ad6c954908fde0d2bf25b5c1964\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\04fbe1205266ad7d187161a8fe2bd5de\AndroidManifest.xml:21:5-43

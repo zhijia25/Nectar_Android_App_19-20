@@ -1,7 +1,0 @@
-#Internal package file, do not edit.
-#Wed Sep 25 14:45:52 AEST 2019
-0.baseType=DIRECTORY
-0.base=C\:\\Users\\62463\\AndroidStudioProjects\\Nectar_Android_APP\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-0.path=classes.dex
-0.set=DEX
-count=1
