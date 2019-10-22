@@ -5956,7 +5956,8 @@ public class HttpRequestController {
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
-        JSONObject json2 = new JSONObject();
+//        JSONObject json2 = new JSONObject();
+        ArrayList<String> labels = new ArrayList<String>();
         try {
             json1.put("name", clusterName);
             json1.put("discovery_url", disUrl);
@@ -5966,8 +5967,7 @@ public class HttpRequestController {
             json1.put("create_timeout", createTimeout);
             json1.put("keypair", kytPair);
             json1.put("master_flavor_id", masterFlavorID);
-            json1.put("labels", json2);
-//            json2.put(labels);
+            json1.put("labels", labels);
             json1.put("flavor_id", flavorID);
         } catch (JSONException e) {
             e.printStackTrace();
