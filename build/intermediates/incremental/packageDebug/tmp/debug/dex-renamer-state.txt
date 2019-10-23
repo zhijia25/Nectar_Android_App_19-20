@@ -1,4 +1,4 @@
-#Wed Sep 25 14:45:52 AEST 2019
-base.0=C\:\\Users\\62463\\AndroidStudioProjects\\Nectar_Android_APP\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Tue Oct 22 21:57:32 AEDT 2019
+base.0=C\:\\Users\\62463\\AndroidStudioProjects\\Nectar_final\\Nectar_Android_App_19-20\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

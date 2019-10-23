@@ -38,18 +38,19 @@ public class ResponseParser {
         String dnsServiceURL = null;
         String computeServiceURL = null;
         String networkServiceURL = null;
-        String volumeV2ServiceURL = null;
+        String volumeV3ServiceURL = null;
         String s3ServiceURL = null;
         String alarmingServiceURL = null;
         String imageServiceURL = null;
         String meteringServiceURL = null;
         String cloudformationServiceURL = null;
         String applicationCatalogServiceURL = null;
-        String volumeV1ServiceURL = null;
+        String volumeV2ServiceURL = null;
         String ec2ServiceURL = null;
         String orchestrationServiceURL = null;
         String objectStorageServiceURL = null;
         String databaseServiceURL = null;
+        String containerInfraURL = null;
         try {
             tokenId = loinHeader.getString("X-Subject-Token");
             JSONObject tokenInfo= loginBody.getJSONObject("token");
@@ -65,7 +66,7 @@ public class ResponseParser {
             dnsServiceURL = serviceCatalog.getJSONObject(18).getJSONArray("endpoints").getJSONObject(2).getString("url");
             computeServiceURL = serviceCatalog.getJSONObject(15).getJSONArray("endpoints").getJSONObject(2).getString("url");
             networkServiceURL = serviceCatalog.getJSONObject(10).getJSONArray("endpoints").getJSONObject(2).getString("url");
-            volumeV2ServiceURL = serviceCatalog.getJSONObject(1).getJSONArray("endpoints").getJSONObject(2).getString("url");
+            volumeV3ServiceURL = serviceCatalog.getJSONObject(1).getJSONArray("endpoints").getJSONObject(2).getString("url");
             s3ServiceURL = serviceCatalog.getJSONObject(2).getJSONArray("endpoints").getJSONObject(2).getString("url");
             alarmingServiceURL = serviceCatalog.getJSONObject(13).getJSONArray("endpoints").getJSONObject(2).getString("url");
             imageServiceURL = serviceCatalog.getJSONObject(6).getJSONArray("endpoints").getJSONObject(2).getString("url");
@@ -73,10 +74,11 @@ public class ResponseParser {
             meteringServiceURL = serviceCatalog.getJSONObject(8).getJSONArray("endpoints").getJSONObject(2).getString("url");
             cloudformationServiceURL = serviceCatalog.getJSONObject(3).getJSONArray("endpoints").getJSONObject(2).getString("url");
             applicationCatalogServiceURL = serviceCatalog.getJSONObject(0).getJSONArray("endpoints").getJSONObject(2).getString("url");
-            volumeV1ServiceURL = serviceCatalog.getJSONObject(4).getJSONArray("endpoints").getJSONObject(2).getString("url");
+            volumeV2ServiceURL = serviceCatalog.getJSONObject(4).getJSONArray("endpoints").getJSONObject(2).getString("url");
             ec2ServiceURL = serviceCatalog.getJSONObject(7).getJSONArray("endpoints").getJSONObject(2).getString("url");
             orchestrationServiceURL = serviceCatalog.getJSONObject(12).getJSONArray("endpoints").getJSONObject(2).getString("url");
             databaseServiceURL = serviceCatalog.getJSONObject(20).getJSONArray("endpoints").getJSONObject(2).getString("url");
+            containerInfraURL = serviceCatalog.getJSONObject(5).getJSONArray("endpoints").getJSONObject(2).getString("url");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -92,18 +94,19 @@ public class ResponseParser {
         editor.putString("dnsServiceURL", dnsServiceURL);
         editor.putString("computeServiceURL", computeServiceURL);
         editor.putString("networkServiceURL", networkServiceURL);
-        editor.putString("volumeV2ServiceURL", volumeV2ServiceURL);
+        editor.putString("volumeV3ServiceURL", volumeV3ServiceURL);
         editor.putString("s3ServiceURL", s3ServiceURL);
         editor.putString("alarmingServiceURL", alarmingServiceURL);
         editor.putString("imageServiceURL", imageServiceURL);
         editor.putString("meteringServiceURL", meteringServiceURL);
         editor.putString("cloudformationServiceURL", cloudformationServiceURL);
         editor.putString("applicationCatalogServiceURL", applicationCatalogServiceURL);
-        editor.putString("volumeV1ServiceURL", volumeV1ServiceURL);
+        editor.putString("volumeV2ServiceURL", volumeV2ServiceURL);
         editor.putString("ec2ServiceURL", ec2ServiceURL);
         editor.putString("orchestrationServiceURL", orchestrationServiceURL);
         editor.putString("objectStorageServiceURL", objectStorageServiceURL);
         editor.putString("databaseServiceURL", databaseServiceURL);
+        editor.putString("containerInfraURL", containerInfraURL);
         editor.apply();
         }
 
