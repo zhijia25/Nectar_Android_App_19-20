@@ -715,6 +715,7 @@ drawable abc_vector_test
 drawable about
 drawable back_icon
 drawable background
+drawable button_shape
 drawable circle
 drawable circle_2
 drawable common_full_open_on_phone
@@ -739,6 +740,7 @@ drawable common_google_signin_btn_text_light_normal_background
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_snackbar_background
+drawable dot_selector
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable guide1
@@ -773,6 +775,8 @@ drawable refresh_icon
 drawable round
 drawable round_2
 drawable side_nav_bar
+drawable welcome
+drawable welcomimg_bg
 id AttachVLV
 id AttachVLV1
 id ConfigGroupDatastore
@@ -785,6 +789,10 @@ id DatabaseBackupDescription1
 id DatabaseBackupInstance
 id DatabaseBackupInstance1
 id DatabaseBackupbuttonbuttom
+id DiscoveryURL
+id DiscoveryURL1
+id DockerVolumeSize
+id DockerVolumeSize1
 id FloatingAddressLI
 id FloatingAddressLI1
 id FloatingDescriptionLI
@@ -993,6 +1001,7 @@ id bootableV1
 id bootableVD
 id bootableVD1
 id bottom
+id btn_enter
 id buttonPanel
 id buttonbuttom
 id buttonbuttom2
@@ -1002,6 +1011,8 @@ id center
 id center_horizontal
 id center_vertical
 id checkbox
+id chooseClusterTemplate
+id chooseClusterTemplate1
 id chronometer
 id clip_horizontal
 id clip_vertical
@@ -1314,6 +1325,7 @@ id intent_data_id
 id intent_extra_data
 id italic
 id item_touch_helper_previous_elevation
+id iv_entry
 id keyPairNI
 id keyPairNI1
 id key_pairs
@@ -1368,10 +1380,13 @@ id listViewVolume
 id listViewVolumeSnapshot
 id listViewcontainer
 id list_item
+id ll
 id localityCV
 id localityCV1
 id mainLayout
 id manageRuleSGD
+id masterCount
+id masterCount1
 id match_global_nicknames
 id media_actions
 id middle
@@ -1424,6 +1439,8 @@ id newAvailabilityCV
 id newAvailabilityCV1
 id newCIDRSG
 id newCIDRSG1
+id newClusterName
+id newClusterName1
 id newConfigGroupName
 id newConfigGroupName1
 id newContainerName
@@ -1474,6 +1491,8 @@ id newToPort
 id newToPort1
 id newVolumeSizeCV
 id newVolumeSizeCV1
+id nodeCount
+id nodeCount1
 id none
 id normal
 id notification_background
@@ -1728,6 +1747,8 @@ id thing_proto
 id thresholdValue
 id thresholdValue1
 id time
+id timeOut
+id timeOut1
 id title
 id title_template
 id toolbar
@@ -1784,6 +1805,7 @@ id volumeSnapshot_button2
 id volumeStatusTV
 id volume_button1
 id volume_button2
+id vp_guide
 id wide
 id withText
 id wrap_content
@@ -1826,8 +1848,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout activity_guide
+layout activity_guide1
 layout activity_login
 layout activity_main
+layout activity_welcome
 layout alarm_list_pattern
 layout app_bar_main
 layout attach_configuration_group
@@ -1866,6 +1890,7 @@ layout fragment_configuration_group_instance
 layout fragment_container
 layout fragment_copy_container
 layout fragment_create_alarm
+layout fragment_create_cluster
 layout fragment_create_configuration_group
 layout fragment_create_container
 layout fragment_create_database_backup
@@ -1912,6 +1937,9 @@ layout fragment_volume
 layout fragment_volume_detail
 layout fragment_volume_snapshot
 layout fragment_volume_snapshot_detail
+layout guide_view1
+layout guide_view2
+layout guide_view3
 layout image_list_pattern
 layout import_kp
 layout instance_list_pattern
@@ -1978,6 +2006,8 @@ layout volume_snapshot_list_pattern
 menu activity_main_drawer
 menu main
 mipmap ic_launcher
+mipmap point1
+mipmap point2
 string abc_action_bar_home_description
 string abc_action_bar_home_description_format
 string abc_action_bar_home_subtitle_description_format
@@ -2032,6 +2062,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string entry
 string hello_blank_fragment
 string navigation_drawer_close
 string navigation_drawer_open
@@ -2050,6 +2081,7 @@ style AppTheme
 style AppTheme_AppBarOverlay
 style AppTheme_NoActionBar
 style AppTheme_PopupOverlay
+style Appwelcome
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
