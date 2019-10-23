@@ -23,8 +23,18 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:gravity="center"
-        android:text="By Zhijia and Pengcheng"
-        android:textColor="@android:color/white"
-        android:textSize="23sp"/>
+        android:text="Copyright® 2019:"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="The University of Melbourne"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
 
 </RelativeLayout>
