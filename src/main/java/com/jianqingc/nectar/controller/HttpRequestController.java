@@ -44,7 +44,6 @@ public class HttpRequestController {
 
     public interface VolleyCallback {
         void onSuccess(String result);
-
     }
 
     public static HttpRequestController getInstance(Context context) {
@@ -69,7 +68,7 @@ public class HttpRequestController {
 
     public void loginHttp(String tenantName, String username, String password, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
+        final String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
 
         /**
          * Assemble Json Object According to NeCTAR API documentation
@@ -86,18 +85,14 @@ public class HttpRequestController {
         JSONArray jsa = new JSONArray();
         jsa.put("password");
 
-
         try {
             identityDomain.put("id","default");
             user.put("password", password);
             user.put("name", username);
-
             user.put("domain", identityDomain);
             passwordOuter.put("user", user);
             identity.put("password", passwordOuter);
-
             identity.put("methods", jsa);
-
             scopeId.put("id","default");
             project.put("name",tenantName);
             project.put("domain", scopeId);
@@ -137,7 +132,6 @@ public class HttpRequestController {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("code status", Integer.toString(error.networkResponse.statusCode));
                         if (error.networkResponse.statusCode == 401) {
 
                             Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
@@ -168,15 +162,14 @@ public class HttpRequestController {
     public void listOverview(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/limits";
+        String partURL = "/limits";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         callback.onSuccess(response);
-                        // Display the first 500 characters of the response string.
-                        //Toast.makeText(mApplicationContext, "Listing limits Succeed", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -194,8 +187,6 @@ public class HttpRequestController {
                 } else {
                     Toast.makeText(mApplicationContext, "Listing limits Failed", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         }) {
             /**
@@ -222,9 +213,8 @@ public class HttpRequestController {
     public void listInstance(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/detail";
-        System.out.println("hahaha");
-        System.out.println(sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL"));
+        String partURL = "/servers/detail";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -268,7 +258,8 @@ public class HttpRequestController {
     public void listFlavor(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/flavors";
+        String partURL = "/flavors";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -311,10 +302,9 @@ public class HttpRequestController {
     public void listKeyPair(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        System.out.println(computeServiceURL);
-        String fullURL = computeServiceURL + "/os-keypairs";
+        String partURL = "/os-keypairs";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println(token);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -358,7 +348,8 @@ public class HttpRequestController {
     public void showKeyPairDetail(final VolleyCallback callback, final Context context, String kpName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/os-keypairs/" + kpName;
+        String partURL = "/os-keypairs/";
+        String fullURL = computeServiceURL + partURL + kpName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -405,7 +396,8 @@ public class HttpRequestController {
     public void deleteKeyPair(final VolleyCallback callback, String kpName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/os-keypairs/" + kpName;
+        String partURL = "/os-keypairs/";
+        String fullURL = computeServiceURL + partURL + kpName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -458,7 +450,8 @@ public class HttpRequestController {
     public void listAvailabilityZone(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = "https://nova.rc.nectar.org.au:8774/v2.1/abb64025bf354c8da099da4f5666dda3" + "/os-availability-zone";
+        String partURL = "/os-availability-zone";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -473,12 +466,13 @@ public class HttpRequestController {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                if(error.networkResponse !=null){
                 if (error.networkResponse.statusCode == 401) {
                     Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mApplicationContext, LoginActivity.class);
                     context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting avability zones Failed", Toast.LENGTH_SHORT).show();
+                } }else {
+                    Toast.makeText(mApplicationContext, "Getting availability zones Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         }) {
@@ -501,8 +495,8 @@ public class HttpRequestController {
     public void listSecurityGroup(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        System.out.println(networkServiceURL);
-        String fullURL = networkServiceURL + "/v2.0/security-groups";
+        String partURL = "/v2.0/security-groups";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -546,9 +540,9 @@ public class HttpRequestController {
     public void deleteSecurityGroup(final VolleyCallback callback, String sgID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-groups/" + sgID;
+        String partURL = "/v2.0/security-groups/";
+        String fullURL = computeServiceURL + partURL + sgID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
                 new Response.Listener<String>() {
 
@@ -599,7 +593,8 @@ public class HttpRequestController {
     public void listManageRuleSG(final VolleyCallback callback, final Context context, String sgId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-groups/" + sgId;
+        String partURL = "/v2.0/security-groups/";
+        String fullURL = computeServiceURL + partURL + sgId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -646,9 +641,9 @@ public class HttpRequestController {
     public void deleteRuleSG(final VolleyCallback callback, String ruleID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-group-rules/" + ruleID;
+        String partURL = "/v2.0/security-group-rules/";
+        String fullURL = computeServiceURL + partURL + ruleID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
                 new Response.Listener<String>() {
 
@@ -697,10 +692,8 @@ public class HttpRequestController {
     public void listAlarmProject(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String alarmingServiceURL = sharedPreferences.getString("alarmingServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = alarmingServiceURL + "/v2/alarms";
-        System.out.println("alarm_full: " + fullURL);
-
+        String partURL = "/v2/alarms";
+        String fullURL = alarmingServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
             @Override
@@ -708,8 +701,6 @@ public class HttpRequestController {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listAlarm(response);
                 String result = resultArray.toString();
-                //System.out.println("result:aaaaa");
-                //System.out.println(result);
                 callback.onSuccess(result);
             }
         }, new Response.ErrorListener() {
@@ -747,21 +738,13 @@ public class HttpRequestController {
     public void listImageProject(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String imageServiceURL = sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-
-
-        //String fullURL = imageServiceURL + "/v2/images?owner="+tenant;
-        // api might be changed, the request is not response
-        String fullURL = imageServiceURL + "/v2/images";
-
-        System.out.println(fullURL);
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/v2/images";
+        String fullURL = imageServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         JSONArray resultArray;
                         resultArray = ResponseParser.getInstance(mApplicationContext).listImage(response);
                         String result = resultArray.toString();
@@ -800,11 +783,9 @@ public class HttpRequestController {
     public void listImageOfficial(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String imageServiceURL = sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL");
-        String owner = "28eadf5ad64b42a4929b2fb7df99275c";
-        String fullURL = imageServiceURL + "/v2/images?owner=" + owner;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/v2/images?owner=";
+        String owner = sharedPreferences.getString("tenantId", "Error Getting Project Id");
+        String fullURL = imageServiceURL + partURL + owner;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -849,10 +830,8 @@ public class HttpRequestController {
     public void showImageDetail(final VolleyCallback callback, final Context context, String id) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String imageServiceURL = sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL");
-        String fullURL = imageServiceURL + "/v2/images/" + id;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/v2/images/";
+        String fullURL = imageServiceURL + partURL + id;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -896,9 +875,9 @@ public class HttpRequestController {
     public void deleteImage(final VolleyCallback callback, String imageID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2/images/" + imageID;
+        String partURL = "/v2/images/";
+        String fullURL = computeServiceURL + partURL + imageID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
                 new Response.Listener<String>() {
 
@@ -950,7 +929,8 @@ public class HttpRequestController {
     public void listSingleInstance(final VolleyCallback callback, final Context context, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId;
+        String partURL= "/servers/";
+        String fullURL = computeServiceURL + partURL + instanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -1043,11 +1023,10 @@ public class HttpRequestController {
      */
     public void listVolumeType(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/types";
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
+        String partURL = "/types";
+        String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println(token);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -1090,8 +1069,9 @@ public class HttpRequestController {
     public void listVolumeSnapshot(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/snapshots/detail";
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
+        String partURL = "/snapshots/detail";
+        String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -1134,9 +1114,9 @@ public class HttpRequestController {
      */
     public void listVolume(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes/detail";
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
+        String partURL = "/volumes/detail";
+        String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -1181,12 +1161,9 @@ public class HttpRequestController {
 
     public void showVolumeSnapshotDetail(final VolleyCallback callback, final Context context, String snapshotid) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/snapshots/" + snapshotid;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
+        String partURL = "/snapshots/";
+        String fullURL = volumeV3ServiceURL + partURL + snapshotid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -1231,12 +1208,9 @@ public class HttpRequestController {
 
     public void showVolumeDetail(final VolleyCallback callback, final Context context, String volumeid) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes/" + volumeid;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
+        String partURL = "/volumes/";
+        String fullURL = volumeV3ServiceURL + partURL + volumeid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -1280,7 +1254,9 @@ public class HttpRequestController {
     public void pause(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1336,7 +1312,9 @@ public class HttpRequestController {
     public void unpause(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1390,7 +1368,9 @@ public class HttpRequestController {
     public void stop(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1444,7 +1424,9 @@ public class HttpRequestController {
     public void start(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1496,7 +1478,9 @@ public class HttpRequestController {
     public void suspend(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1550,7 +1534,9 @@ public class HttpRequestController {
     public void resume(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1603,7 +1589,9 @@ public class HttpRequestController {
     public void reboot(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -1658,7 +1646,9 @@ public class HttpRequestController {
     public void delete(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceId + "/action";
+        String partURL1 = "/servers/";
+        String partURL2 = "/action";
+        String fullURL = computeServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -1779,7 +1769,6 @@ public class HttpRequestController {
         String fullURL = computeServiceURL + "/servers";
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONArray sgArray = new JSONArray();
-        ;
         if (sg.size() != 0) {
             for (int i = 0; i < sg.size(); i++) {
                 JSONObject sgChoose = new JSONObject();
@@ -1814,17 +1803,14 @@ public class HttpRequestController {
         System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Create instance successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -1862,7 +1848,8 @@ public class HttpRequestController {
     public void createSecurityGroup(final VolleyCallback callback, String name, String description) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-groups";
+        String partURL = "/v2.0/security-groups";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -1873,21 +1860,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed2");
-                    //Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -1925,7 +1908,8 @@ public class HttpRequestController {
     public void editSecurityGroup(final VolleyCallback callback, String sgid, String name, String description) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-groups/" + sgid;
+        String partURL = "/v2.0/security-groups/";
+        String fullURL = computeServiceURL + partURL + sgid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -1936,7 +1920,6 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
@@ -1987,7 +1970,8 @@ public class HttpRequestController {
     public void importKeyPair(final VolleyCallback callback, String name, String publicKey) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/os-keypairs";
+        String partURL = "/os-keypairs";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -1998,20 +1982,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Import successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2049,7 +2030,8 @@ public class HttpRequestController {
     public void createKeyPair(final VolleyCallback callback, String name) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/os-keypairs";
+        String partURL = "/os-keypairs";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2059,20 +2041,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2115,9 +2094,9 @@ public class HttpRequestController {
     public void addNewRule(final VolleyCallback callback, String sgID, String protocol, String dir, String minPort, String maxPort, String cidr, String ethertype) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/v2.0/security-group-rules";
+        String partURL = "/v2.0/security-group-rules";
+        String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println(fullURL);
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
         try {
@@ -2133,20 +2112,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Add successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2186,7 +2162,9 @@ public class HttpRequestController {
     public void attachVolume(final VolleyCallback callback, String instanceID, String mountpoint, String volumeid) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String fullURL = computeServiceURL + "/servers/" + instanceID + "/os-volume_attachments";
+        String partURL1 = "/servers/";
+        String partURL2 = "/os-volume_attachments";
+        String fullURL = computeServiceURL + partURL1 + instanceID + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2197,20 +2175,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     //Toast.makeText(mApplicationContext, "Attach successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2251,9 +2226,6 @@ public class HttpRequestController {
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
         String fullURL = computeServiceURL + "/servers/" + serverid + "/os-volume_attachments/" + attachID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        //final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
                 new Response.Listener<String>() {
 
@@ -2305,8 +2277,9 @@ public class HttpRequestController {
      */
     public void editVolume(final VolleyCallback callback, String name, String description, String volumeid) {
         String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes/" + volumeid;
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting volumeV3ServiceURL");
+        String partURL = "/volumes/";
+        String fullURL = volumeV3ServiceURL + partURL + volumeid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2317,20 +2290,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Edit V successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2368,9 +2338,10 @@ public class HttpRequestController {
      */
     public void extendVolume(final VolleyCallback callback, int newSize, String volumeid) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes/" + volumeid + "/action";
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting volumeV3ServiceURL");
+        String partURL1 = "/volumes/";
+        String partURL2 = "/action";
+        String fullURL = volumeV3ServiceURL + partURL1 + volumeid + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2380,21 +2351,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
-                    //Toast.makeText(mApplicationContext, "Extend V successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -2426,13 +2393,13 @@ public class HttpRequestController {
      * Delete volume
      *
      * @param callback
-     * @param volumeID
+     * @param volumeid
      */
-    public void deleteVolume(final VolleyCallback callback, String volumeID) {
+    public void deleteVolume(final VolleyCallback callback, String volumeid) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes/" + volumeID;
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Compute URL");
+        String partURL = "/volumes/";
+        String fullURL = volumeV3ServiceURL + partURL + volumeid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -2484,9 +2451,10 @@ public class HttpRequestController {
      * @param volumeid
      */
     public void createVolumeSnapshot(final VolleyCallback callback, String name, String description, String volumeid) {
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/snapshots";
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Compute URL");
+        String partURL = "/snapshots";
+        String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2498,20 +2466,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "create snapshot successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2551,11 +2516,11 @@ public class HttpRequestController {
      * @param type
      */
     public void createVolume(final VolleyCallback callback, String name, String description, int size, String zone, String type) {
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/volumes";
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting volumeV3ServiceURL");
+        String partURL = "/volumes";
+        String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println(token);
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
         try {
@@ -2566,13 +2531,11 @@ public class HttpRequestController {
             json2.put("volume_type", type);
             JSONObject json3 = new JSONObject();
             json2.put("metadata", json3);
-            json2.put("consistencygroup_id", null);
-
+            json2.put("consistenucygroup_id", null);
             json1.put("volume", json2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
@@ -2622,11 +2585,10 @@ public class HttpRequestController {
      */
     public void deleteVolumeSnapshot(final VolleyCallback callback, String snapshotID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/snapshots/" + snapshotID;
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting volumeV3ServiceURL");
+        String partURL = "/snapshots/";
+        String fullURL = volumeV3ServiceURL + partURL + snapshotID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
                 new Response.Listener<String>() {
 
@@ -2677,9 +2639,10 @@ public class HttpRequestController {
      * @param volumeSnapshotid
      */
     public void editVolumeSnapshot(final VolleyCallback callback, String name, String description, String volumeSnapshotid) {
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String volumeV3ServiceURL = "https://cinder.rc.nectar.org.au:8776/v3/" + tenant;
-        String fullURL = volumeV3ServiceURL + "/snapshots/" + volumeSnapshotid;
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting volumeV3ServiceURL");
+        String partURL = "/snapshots/";
+        String fullURL = volumeV3ServiceURL + partURL + volumeSnapshotid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -2690,20 +2653,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    //System.out.println("dedededededededddededed");
                     Toast.makeText(mApplicationContext, "Edit VS successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
@@ -2731,14 +2691,28 @@ public class HttpRequestController {
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
+    /**
+     * edit an alarm
+     *
+     * @param callback
+     * @param name
+     * @param description
+     * @param type
+     * @param metric
+     * @param threshold
+     * @param operator
+     * @param granularity
+     * @param state
+     * @param severity
+     */
     public void createAlarm(final VolleyCallback callback, String name, String description, String type,
                             String metric, int threshold, String method, String operator, int granularity, String state,
                             String severity) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String alarmServiceURL = sharedPreferences.getString("alarmingServiceURL", "Error Getting alarmServiceURL");
-        String fullURL = alarmServiceURL + "/v2/alarms";
+        String partURL = "/v2/alarms";
+        String fullURL = alarmServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println("alarm_token: " + token);
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
 
@@ -2746,8 +2720,6 @@ public class HttpRequestController {
             json1.put("name", name);
             json1.put("description", description);
             json1.put("type", type);
-
-
             json2.put("metric", metric);
             json2.put("resource_id", "INSTANCE_ID");
             json2.put("resource_type", "instance");
@@ -2756,7 +2728,6 @@ public class HttpRequestController {
             json2.put("comparison_operator", operator);
             json2.put("granularity", granularity);
             json2.put("evaluation_periods", 3);
-
             json1.put("gnocchi_resources_threshold_rule", json2);
             json1.put("state", state);
             json1.put("severity", severity);
@@ -2764,13 +2735,9 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        System.out.println("create alarm: " + json1);
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println("dedededededededddedededaaaaaa");
                 callback.onSuccess("success");
             }
         }, new Response.ErrorListener() {
@@ -2796,7 +2763,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-                //headers.put("Content-Type", "application/json");
                 return headers;
             }
         };
@@ -2809,8 +2775,8 @@ public class HttpRequestController {
     public void deleteAlarm(final VolleyCallback callback, String alarmID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String alarmingServiceURL = sharedPreferences.getString("alarmingServiceURL", "Error Getting Compute URL");
-        String fullURL = alarmingServiceURL + "/v2/alarms/" + alarmID;
-        System.out.println(fullURL);
+        String partURL = "/v2/alarms/";
+        String fullURL = alarmingServiceURL + partURL + alarmID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
@@ -2844,22 +2810,20 @@ public class HttpRequestController {
             }
         };
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
-
     }
 
     public void listContainer(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URL");
-        String fullURL = objectStorageServiceURL + "?format=json";
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "?format=json";
+        String fullURL = objectStorageServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println("container: " + fullURL);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listcontainer(response);
                 String result = resultArray.toString();
-                System.out.println("Con_Result: " + result);
                 callback.onSuccess(result);
             }
         }, new Response.ErrorListener() {
@@ -2890,12 +2854,11 @@ public class HttpRequestController {
     }
 
     public void publicContainer(final VolleyCallback callback, String containerName) {
-
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName;
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -2937,8 +2900,9 @@ public class HttpRequestController {
     public void privateContainer(final VolleyCallback callback, String containerName) {
 
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName;
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
@@ -2982,8 +2946,9 @@ public class HttpRequestController {
     public void deleteContainer(final VolleyCallback callback, String containerName) {
 
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName;
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
@@ -3025,18 +2990,17 @@ public class HttpRequestController {
 
     public void listObject(final VolleyCallback callback, final Context context, String containerName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URL");
-        String fullURL = objectStorageServiceURL + "/" + containerName + "?format=json";
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL1 = "/";
+        String partURL2 = "?format=json";
+        String fullURL = objectStorageServiceURL + partURL1 + containerName + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println("con_token: " + token);
-        System.out.println("container: " + fullURL);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listObject(response);
                 String result = resultArray.toString();
-                System.out.println("Con_Result: " + result);
                 callback.onSuccess(result);
             }
         }, new Response.ErrorListener() {
@@ -3067,10 +3031,10 @@ public class HttpRequestController {
     }
 
     public void deleteObject(final VolleyCallback callback, String containerName, String ObjectName) {
-
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName + "/" + ObjectName;
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
@@ -3092,7 +3056,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Delete object failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("deleteFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -3113,10 +3076,10 @@ public class HttpRequestController {
 
     public void createFolder(final VolleyCallback callback, String containerName, String ObjectName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName + "/" + ObjectName;
+        String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting objectStorageServiceURL");
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -3157,7 +3120,8 @@ public class HttpRequestController {
     public void createContainer(final VolleyCallback callback, String containerName, String access) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName;
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         final String accessValue;
         if (access.equals("Private")) {
@@ -3207,9 +3171,9 @@ public class HttpRequestController {
     public void createObjectFile(final VolleyCallback callback, String containerName, String ObjectName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + containerName + "/" + ObjectName;
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -3250,9 +3214,9 @@ public class HttpRequestController {
     public void copyObject(final VolleyCallback callback, final String preContainer, final String preObjectName, String destionationContainer, String path, String newObjectName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String objectStorageServiceURL = sharedPreferences.getString("objectStorageServiceURL", "Error Getting Compute URl");
-        String fullURL = objectStorageServiceURL + "/" + destionationContainer + "/" + path + newObjectName;
+        String partURL = "/";
+        String fullURL = objectStorageServiceURL + partURL + destionationContainer + partURL + path + newObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -3294,9 +3258,8 @@ public class HttpRequestController {
     public void listFloatingIP(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/floatingips";
-
+        String partURL = "v2.0/floatingips";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
@@ -3334,9 +3297,9 @@ public class HttpRequestController {
     public void deleteFloatingIP(final VolleyCallback callback, String floatingID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
+        String partURL = "v2.0/floatingips/";
+        String fullURL = networkServiceURL + partURL + floatingID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println("floathaha: " + token);
-        String fullURL = networkServiceURL + "v2.0/floatingips/" + floatingID;
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
             @Override
@@ -3377,12 +3340,12 @@ public class HttpRequestController {
     public void createFloatingIP(final VolleyCallback callback, String floating_network_id) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/floatingips";
+        String partURL = "v2.0/floatingips";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
-
 
         try {
             json2.put("floating_network_id", floating_network_id);
@@ -3390,7 +3353,6 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
             @Override
@@ -3432,9 +3394,8 @@ public class HttpRequestController {
     public void listRouter(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/routers";
-
+        String partURL = "v2.0/routers";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
@@ -3572,9 +3533,8 @@ public class HttpRequestController {
     public void listNetwork(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/networks";
-
+        String partURL = "v2.0/networks";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
@@ -3612,9 +3572,8 @@ public class HttpRequestController {
     public void listSubnet(final VolleyCallback callback, final Context context, final String networkID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/subnets";
-
+        String partURL = "v2.0/subnets";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
@@ -3622,7 +3581,6 @@ public class HttpRequestController {
             public void onResponse(String response) {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listSubnet(response, networkID);
-                System.out.println("networkID: " + networkID);
                 String result = resultArray.toString();
                 callback.onSuccess(result);
             }
@@ -3653,9 +3611,9 @@ public class HttpRequestController {
     public void deleteNetwork(final VolleyCallback callback, String networkID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
+        String partURL = "v2.0/networks/";
+        String fullURL = networkServiceURL + partURL + networkID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        String fullURL = networkServiceURL + "v2.0/networks/" + networkID;
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
             @Override
@@ -3696,7 +3654,8 @@ public class HttpRequestController {
     public void createNetwork(final VolleyCallback callback, String networkName, boolean admin_state) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/networks";
+        String partURL = "v2.0/networks";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
@@ -3730,7 +3689,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Network failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -3752,9 +3710,9 @@ public class HttpRequestController {
     public void deleteSubnet(final VolleyCallback callback, String SubnetID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
+        String partURL = "v2.0/subnets/";
+        String fullURL = networkServiceURL + partURL + SubnetID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        String fullURL = networkServiceURL + "v2.0/subnets/" + SubnetID;
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
             @Override
@@ -3795,7 +3753,8 @@ public class HttpRequestController {
     public void createSubnet(final VolleyCallback callback, String subnetName, String networkID, String networkAddress, int version) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/subnets";
+        String partURL = "v2.0/subnets";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
@@ -3831,7 +3790,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -3861,9 +3819,8 @@ public class HttpRequestController {
     public void listPort(final VolleyCallback callback, final Context context, final String networkID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/ports";
-
+        String partURL = "v2.0/ports";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
@@ -3871,7 +3828,6 @@ public class HttpRequestController {
             public void onResponse(String response) {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listPort(response, networkID);
-                System.out.println("networkID: " + networkID);
                 String result = resultArray.toString();
                 callback.onSuccess(result);
             }
@@ -3906,9 +3862,9 @@ public class HttpRequestController {
     public void deletePort(final VolleyCallback callback, String portID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
+        String partURL = "v2.0/ports/";
+        String fullURL = networkServiceURL + partURL + portID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        String fullURL = networkServiceURL + "v2.0/ports/" + portID;
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
             @Override
@@ -3952,7 +3908,8 @@ public class HttpRequestController {
     public void createPort(final VolleyCallback callback, String portName, String networkID, boolean admin_state) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/ports";
+        String partURL = "v2.0/ports";
+        String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
@@ -3986,7 +3943,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Port failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -4011,23 +3967,14 @@ public class HttpRequestController {
     public void showResourceTypesDetail(final VolleyCallback callback, final Context context, String id) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/resource_types/" + id;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/resource_types/";
+        String fullURL = orchestrationServiceURL + partURL + id;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-
-                        System.out.println(response);
-
-                        //////////////////
-                        String path = context.getFilesDir().getPath().toString() ;
-                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
                         JSONObject resultObject;
                         resultObject = ResponseParser.getInstance(mApplicationContext).listResourceTypesDetail(response);
                         String result = resultObject.toString();
@@ -4060,18 +4007,10 @@ public class HttpRequestController {
     //////list resource types
     public void listResourceTypes(final VolleyCallback callback, final Context context)   {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "ERROR");
-        String resourceTypesURL = orchestrationServiceURL;
-        System.out.println("resourcesType "+resourceTypesURL);
-
-        String fullURL = orchestrationServiceURL + "/resource_types";
-
-
-        System.out.println(fullURL);
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/resource_types";
+        String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -4079,18 +4018,8 @@ public class HttpRequestController {
                     public void onResponse(String response) {
 
                         JSONArray resultArray;
-//                        System.out.println(response);
-                        //////////////////
-                        //write json data to txt file
-//                        String path = context.getFilesDir().getPath().toString() ;
-//                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
-                        ////////////////////
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listResourceTypes(response);
-
                         String result = resultArray.toString();
-//                        System.out.print("testoutput" + result);
                         callback.onSuccess(result);
                         // Display the first 500 characters of the response string.
                     }
@@ -4122,37 +4051,18 @@ public class HttpRequestController {
 
     public void listTemplateVersions(final VolleyCallback callback, final Context context)     {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "ERROR");
-        String templateVersionsURL = orchestrationServiceURL;
-        System.out.println("templateVersions "+templateVersionsURL);
-
-        String fullURL = templateVersionsURL + "/template_versions";
-
-
-        System.out.println(fullURL);
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/template_versions";
+        String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         JSONArray resultArray;
-//                        System.out.println(response);
-                        //////////////////
-                        //write json data to txt file
-//                        String path = context.getFilesDir().getPath().toString() ;
-//                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
-                        ////////////////////
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listTemplateVersions(response);
-
                         String result = resultArray.toString();
-//                        System.out.print("testoutput" + result);
                         callback.onSuccess(result);// Display the first 500 characters of the response string.
                     }
                 }, new Response.ErrorListener() {
@@ -4182,31 +4092,18 @@ public class HttpRequestController {
     public void showTemplateVersionDetail(final VolleyCallback callback, final Context context, String id) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/template_versions/" + id + "/functions";
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL1 = "/template_versions/";
+        String partURL2 = "/functions";
+        String fullURL = orchestrationServiceURL + partURL1 + id + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-
-//                        System.out.println(response);
-
-
                         JSONArray resultArray;
-
-                        //////////////////
-                        //write json data to txt file
-//                        String path = context.getFilesDir().getPath().toString() ;
-//                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
-                        ////////////////////
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listTemplateVersionsDetail(response);
-
                         String result = resultArray.toString();
                         callback.onSuccess(result);
                         // Display the first 500 characters of the response string.
@@ -4238,16 +4135,10 @@ public class HttpRequestController {
     //show stacks list
     public void listStacks(final VolleyCallback callback, final Context context)     {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "ERROR");
-
-        String fullURL = orchestrationServiceURL + "/stacks";
-
-
-//        System.out.println(fullURL);
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/stacks";
+        String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
@@ -4255,18 +4146,8 @@ public class HttpRequestController {
                     public void onResponse(String response) {
 
                         JSONArray resultArray;
-//                        System.out.println(response);
-                        //////////////////
-                        //write json data to txt file
-//                        String path = context.getFilesDir().getPath().toString() ;
-//                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
-                        ////////////////////
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listStacks(response);
-
                         String result = resultArray.toString();
-//                        System.out.print("testoutput" + result);
                         callback.onSuccess(result);
                         // Display the first 500 characters of the response string.
                     }
@@ -4298,9 +4179,11 @@ public class HttpRequestController {
     public void listSingleStack(final VolleyCallback callback, final Context context, String stackName, String stackId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/stacks/" + stackName +"/"+stackId;
-        Log.d("FULLURL_stack detail", fullURL);
+        String partURL1 = "/stacks/";
+        String partURL2 = "/";
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -4314,12 +4197,11 @@ public class HttpRequestController {
                             JSONObject result = new JSONObject();
                             String id = resp.getJSONObject("stack").getString("id");
                             String creationTime = resp.getJSONObject("stack").getString("creation_time");
-                            String description = resp.getJSONObject("stack").getString("description");
+                            String description = resp.getJSONObject("s6tack").getString("description");
                             String disable_rollback = resp.getJSONObject("stack").getString("disable_rollback");
                             String name = resp.getJSONObject("stack").getString("stack_name");
                             String status = resp.getJSONObject("stack").getString("stack_status");
                             String statusReason = resp.getJSONObject("stack").getString("stack_status_reason");
-
                             result.put("id", id);
                             result.put("creationTime", creationTime);
                             result.put("description", description);
@@ -4327,9 +4209,6 @@ public class HttpRequestController {
                             result.put("name", name);
                             result.put("status", status);
                             result.put("statusReason", statusReason);
-//                            result.put("key", key);
-//                            result.put("securityg", sg);
-//                            result.put("volNum", vNum);
                             String stringResult = result.toString();
                             callback.onSuccess(stringResult);
                         } catch (JSONException e) {
@@ -4366,18 +4245,19 @@ public class HttpRequestController {
     public void suspendStack(final VolleyCallback callback, String stackName, String stackId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/stacks/" + stackName +"/"+stackId +"/actions";
-        Log.d("FULLURL_stack detail", fullURL);
-//        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+        String partURL1 = "/stacks/";
+        String partURL2 = "/";
+        String partURL3 = "/actions";
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId + partURL3;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         JSONObject json = new JSONObject();
         try {
             json.put("suspend", JSONObject.NULL);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String jsontest = json.toString();
-        Log.d("Json_sent", jsontest);
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
                 new Response.Listener<JSONObject>() {
 
@@ -4406,7 +4286,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -4420,9 +4299,10 @@ public class HttpRequestController {
     public void resumeStack(final VolleyCallback callback, String stackName, String stackId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-//        String fullURL = orchestrationServiceURL + "/servers/" + instanceId + "/action";
-        String fullURL = orchestrationServiceURL + "/stacks/" + stackName +"/"+stackId + "/actions";
-        Log.d("FULLURL_stack detail", fullURL);
+        String partURL1 = "/stacks/";
+        String partlURL2 = "/";
+        String partURL3= "/actions";
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partlURL2 +stackId + partURL3;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -4458,7 +4338,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -4472,8 +4351,10 @@ public class HttpRequestController {
     public void checkStack(final VolleyCallback callback, String stackName, String stackId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/stacks/" + stackName +"/"+stackId + "/actions";
-        Log.d("FULLURL_stack detail", fullURL);
+        String partURL1 = "/stacks/";
+        String partURL2 = "/";
+        String partURL3 = "/actions";
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId + partURL3;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -4523,22 +4404,11 @@ public class HttpRequestController {
     public void deleteStack(final VolleyCallback callback, String stackName, String stackId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/stacks/" + stackName +"/"+stackId ;
-        Log.d("FULLURL_stack detail", fullURL);
+        String partURL1 = "/stacks/";
+        String partURL2 = "/";
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId ;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-//        JSONObject json = new JSONObject();
-//        try {
-//            json.put("forceDelete", JSONObject.NULL);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-//                new Response.Listener<JSONObject>() {
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                    }
-//                }, new Response.ErrorListener() {
+
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -4548,7 +4418,6 @@ public class HttpRequestController {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-//                    Toast.makeText(mApplicationContext, "Delete Stack successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -4567,7 +4436,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -4582,24 +4450,20 @@ public class HttpRequestController {
     public void createStack(final VolleyCallback callback, String stackName, String templateSource, Integer timeoutMins) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
-        String fullURL = orchestrationServiceURL + "/stacks";
-        Log.d("FULLURL_stack detail", fullURL);
+        String partURL = "/stacks";
+        String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
-        JSONObject json1 = new JSONObject();
-        JSONObject json2 = new JSONObject();
-        JSONObject json3 = new JSONObject();
+        JSONObject json = new JSONObject();
 
         try {
-//            json3.put("network_id", networkID);
-            json2.put("stack_name", stackName);
-            json2.put("template_url", templateSource);
-            json2.put("timeout_mins", timeoutMins);
-//            json1.put("router", json2);
+            json.put("stack_name", stackName);
+            json.put("template_url", templateSource);
+            json.put("timeout_mins", timeoutMins);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json2, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 callback.onSuccess("success");
@@ -4618,7 +4482,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Stack failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         System.out.println(error.networkResponse);
                         callback.onSuccess("error");
                     }
@@ -4630,7 +4493,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
 
             }
@@ -4643,14 +4505,9 @@ public class HttpRequestController {
     // list database instance
     public void listDatabaseInstances(final VolleyCallback callback, final Context context)     {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "ERROR");
-
-        String fullURL = databaseServiceURL + "/instances";
-
-
-        System.out.println(fullURL);
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/instances";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
 
@@ -4658,20 +4515,9 @@ public class HttpRequestController {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         JSONArray resultArray;
-//                        System.out.println(response);
-                        //////////////////
-                        //write json data to txt file
-//                        String path = context.getFilesDir().getPath().toString() ;
-//                        Log.d(TAG, path);
-//                        writeTxtToFile(response,path,"test.txt");
-                        ////////////////////
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseInstances(response);
-//
                         String result = resultArray.toString();
-//                        System.out.print("testoutput" + result);
                         callback.onSuccess(result);
                         // Display the first 500 characters of the response string.
                     }
@@ -4697,15 +4543,14 @@ public class HttpRequestController {
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
-
-    ////////////////////
     // list database instance detail and actions
     public void listSingleDatabaseInstance(final VolleyCallback callback, final Context context, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + instanceId;
+        String partURL = "/instances/";
+        String fullURL = databaseServiceURL + partURL + instanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        System.out.println(fullURL);
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -4715,7 +4560,7 @@ public class HttpRequestController {
                          *  Server ID, AZ,IP address, Name, and Status
                          */
                         try {
-                            JSONObject resp = new JSONObject(response);
+                             JSONObject resp = new JSONObject(response);
                             JSONObject result = new JSONObject();
                             String name = resp.getJSONObject("instance").getString("name");
                             String id = resp.getJSONObject("instance").getString("id");
@@ -4726,31 +4571,6 @@ public class HttpRequestController {
                             String status = resp.getJSONObject("instance").getString("status");
                             Integer volumeInt = resp.getJSONObject("instance").getJSONObject("volume").getInt("size");
                             String volume = volumeInt.toString();
-//                            if (key.equals("null")) {
-//                                key = "None";
-//                            }
-//                            JSONArray sgArray = resp.getJSONObject("server").getJSONArray("security_groups");
-//                            String sg = "";
-//                            if (sgArray.length() == 0) {
-//                                sg = "None";
-//                            } else {
-//                                for (int i = 0; i < sgArray.length(); i++) {
-//                                    JSONObject sgObject = (JSONObject) sgArray.get(i);
-//                                    if (i == 0) {
-//                                        sg = sgObject.getString("name");
-//                                    } else {
-//                                        sg = sg + ", " + sgObject.getString("name");
-//                                    }
-//                                }
-//                            }
-
-//                            JSONArray vArray = resp.getJSONObject("server").getJSONArray("os-extended-volumes:volumes_attached");
-//                            int vNum = vArray.length();
-//                            for (int j = 0; j < vNum; j++) {
-//                                JSONObject vObject = (JSONObject) vArray.get(j);
-//                                String volume = vObject.getString("id");
-//                                result.put("volume" + j, volume);
-//                            }
                             result.put("name", name);
                             result.put("id", id);
                             result.put("datastore", datastore);
@@ -4759,8 +4579,6 @@ public class HttpRequestController {
                             result.put("updated", updated);
                             result.put("status", status);
                             result.put("volume", volume);
-
-
                             String stringResult = result.toString();
                             callback.onSuccess(stringResult);
                         } catch (JSONException e) {
@@ -4797,7 +4615,9 @@ public class HttpRequestController {
     public void databaseInstanceRestart(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + instanceId + "/action";
+        String partURL1 = "/instances/";
+        String partURL2 = "/action";
+        String fullURL = databaseServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         JSONObject json1 = new JSONObject();
@@ -4806,7 +4626,6 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("jsonValue", json.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
                 new Response.Listener<JSONObject>() {
 
@@ -4849,9 +4668,10 @@ public class HttpRequestController {
     * */
     public void resizeDatabaseInstanceVolume(final VolleyCallback callback, int newSize, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + databaseInstanceId + "/action";
+        String partURL1 = "/instances/";
+        String partURL2 = "/action";
+        String fullURL = databaseServiceURL + partURL1 + databaseInstanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -4863,21 +4683,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json3,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
-                    //Toast.makeText(mApplicationContext, "Extend V successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -4896,7 +4712,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -4910,7 +4725,8 @@ public class HttpRequestController {
     public void attachConfigGroup(final VolleyCallback callback, String databaseInstanceId, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + databaseInstanceId;
+        String partToken = "/instances/";
+        String fullURL = databaseServiceURL + partToken + databaseInstanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -4920,21 +4736,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
-                    //Toast.makeText(mApplicationContext, "Attach successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -4953,7 +4765,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -4968,7 +4779,8 @@ public class HttpRequestController {
     public void detachConfigGroup(final VolleyCallback callback, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + databaseInstanceId;
+        String partURL =  "/instances/";
+        String fullURL = databaseServiceURL + partURL + databaseInstanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
@@ -4977,21 +4789,17 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("dedededededededddededed");
                         callback.onSuccess("success");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
-                    //Toast.makeText(mApplicationContext, "Attach successfully", Toast.LENGTH_SHORT).show();
                     callback.onSuccess("success");
                 } else {
                     if (error.networkResponse.statusCode == 401) {
@@ -5010,7 +4818,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -5024,9 +4831,9 @@ public class HttpRequestController {
     * */
     public void deleteDatabaseInstance(final VolleyCallback callback, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + databaseInstanceId;
+        String partURL = "/instances/";
+        String fullURL = databaseServiceURL + partURL + databaseInstanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -5034,7 +4841,6 @@ public class HttpRequestController {
 
                     @Override
                     public void onResponse(String response) {
-
                         callback.onSuccess("success");
 
                     }
@@ -5061,7 +4867,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -5076,7 +4881,8 @@ public class HttpRequestController {
     public void createdatabaseInstance(final VolleyCallback callback, String setName, String availabilityZone, String datastoreVersion, String datastoreType, int volumeSize, String locality, String flavorRef) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances";
+        String partURL = "/instances";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
@@ -5086,7 +4892,6 @@ public class HttpRequestController {
         JSONObject json5 = new JSONObject();
         JSONObject json6 = new JSONObject();
         Integer temp = 1;
-//        String newDatastore = selectDatastoreName.toLowerCase();
 
         try {
             json2.put("name",setName);
@@ -5094,7 +4899,6 @@ public class HttpRequestController {
             json2.put("availability_zone", availabilityZone);
             json4.put("version", datastoreVersion);
             json4.put("type", datastoreType);
-
             json2.put("datastore",json4);
             json1.put("size", volumeSize);
             json2.put("volume",json1);
@@ -5104,10 +4908,6 @@ public class HttpRequestController {
                 json2.put("locality", locality);
             }
             json5.put("instance", json2);
-
-
-            Log.d("createInstance", json5.toString());
-//            json1.put("subnet", json2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5130,7 +4930,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Instance failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -5156,9 +4955,10 @@ public class HttpRequestController {
     public void listConfigGroup(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/configurations";
-
+        String partURL = "/configurations";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5195,9 +4995,9 @@ public class HttpRequestController {
     // delete configuration group
     public void deleteConfigGroup(final VolleyCallback callback, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/configurations/" + configGroupId;
+        String partURL = "/configurations/";
+        String fullURL = databaseServiceURL + partURL + configGroupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -5232,10 +5032,8 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
-
         };
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
@@ -5245,13 +5043,11 @@ public class HttpRequestController {
     // show configuration group detail
     public void showConfigGroupDetail(final VolleyCallback callback, final Context context, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/configurations/" + configGroupId;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/configurations/";
+        String fullURL = databaseServiceURL + partURL + configGroupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5289,10 +5085,12 @@ public class HttpRequestController {
     * */
     public void listConfigGroupInstances(final VolleyCallback callback, final Context context, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/configurations/" + configGroupId + "/instances";
+        String partURL1 = "/configurations/";
+        String partURL2 = "/instances";
+        String fullURL = databaseServiceURL + partURL1 + configGroupId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5339,15 +5137,11 @@ public class HttpRequestController {
         JSONObject json2 = new JSONObject();
         JSONObject json3 = new JSONObject();
         JSONObject json4 = new JSONObject();
-//        JSONObject json5 = new JSONObject();
-//        JSONObject json6 = new JSONObject();
-        Integer temp = 1;
         String newDatastore = selectDatastoreName.toLowerCase();
 
         try {
             json1.put("type", newDatastore);
             json2.put("datastore",json1);
-//            json3.put("sync_binlog",temp);
             json2.put("values", json3);
             json2.put("name",setName);
             if (setDescription != null)
@@ -5357,7 +5151,6 @@ public class HttpRequestController {
             json4.put("configuration",json2);
 
             Log.d("createConfig", json4.toString());
-//            json1.put("subnet", json2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5380,7 +5173,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -5406,15 +5198,15 @@ public class HttpRequestController {
     public void listDatastores(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/datastores";
-
+        String partURL = "/datastores";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         JSONArray resultArray;
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listDatastores(response);
                         String result = resultArray.toString();
                         callback.onSuccess(result);
@@ -5456,7 +5248,6 @@ public class HttpRequestController {
                     @Override
                     public void onResponse(String response) {
                         JSONArray resultArray;
-
                         resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseFlavors(response);
                         String result = resultArray.toString();
                         callback.onSuccess(result);
@@ -5490,9 +5281,10 @@ public class HttpRequestController {
     public void listDatabaseBackup(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/backups";
-
+        String partURL = "/backups";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5530,9 +5322,9 @@ public class HttpRequestController {
     * */
     public void deleteDatabaseBackup(final VolleyCallback callback, String backupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/backups/" + backupId;
+        String partURL = "/backups/";
+        String fullURL = databaseServiceURL + partURL + backupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -5567,7 +5359,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -5580,13 +5371,11 @@ public class HttpRequestController {
     * */
     public void showDatabaseBackupDetail(final VolleyCallback callback, final Context context, String backupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/backups/" + backupId;
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL = "/backups/";
+        String fullURL = databaseServiceURL + partURL + backupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5625,22 +5414,16 @@ public class HttpRequestController {
     public void createInstanceBackup(final VolleyCallback callback, String setName, String selectInstanceId, String setDescription) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/backups";
+        String partURL = "/backups";
+        String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
-        JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
-        JSONObject json3 = new JSONObject();
         JSONObject json4 = new JSONObject();
-//        JSONObject json5 = new JSONObject();
-//        JSONObject json6 = new JSONObject();
         Integer temp = 0;
-//        String newDatastore = selectDatastoreName.toLowerCase();
 
         try {
-//            json1.put("incremental", temp);
             json2.put("incremental",temp);
-//            json3.put("sync_binlog",temp);
             json2.put("instance", selectInstanceId);
             json2.put("name",setName);
             if (setDescription != null)
@@ -5648,9 +5431,6 @@ public class HttpRequestController {
                 json2.put("description", setDescription);
             }
             json4.put("backup",json2);
-
-            Log.d("createBackup", json4.toString());
-//            json1.put("subnet", json2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5673,7 +5453,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -5697,19 +5476,17 @@ public class HttpRequestController {
     * */
     public void showManageRootDetail(final VolleyCallback callback, final Context context, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + databaseInstanceId + "/root";
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL1 = "/instances/";
+        String partURL2 = "/root";
+        String fullURL = databaseServiceURL + partURL1 + databaseInstanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         JSONObject resultObject;
-//                        Log.d("root", response);
                         resultObject = ResponseParser.getInstance(mApplicationContext).showRoot(response);
                         String result = resultObject.toString();
                         callback.onSuccess(result);
@@ -5743,13 +5520,12 @@ public class HttpRequestController {
      * */
     public void enableRoot(final VolleyCallback callback, final Context context, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + instanceId + "/root";
-
-        //System.out.println(sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL"));
-        //System.out.println(sharedPreferences.getString("tenantId", "Error Getting Compute URL"));
+        String partURL1 = "/instances/";
+        String partURL2 = "/root";
+        String fullURL = databaseServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, fullURL,
                 new Response.Listener<String>() {
                     @Override
@@ -5787,9 +5563,10 @@ public class HttpRequestController {
     * */
     public void disableRoot(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
-        String fullURL = databaseServiceURL + "/instances/" + instanceId + "/root";
+        String partURL1 = "/instances/";
+        String partURL2 = "/root";
+        String fullURL = databaseServiceURL + partURL1+ instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
@@ -5824,7 +5601,6 @@ public class HttpRequestController {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
                 return headers;
             }
 
@@ -5838,18 +5614,13 @@ public class HttpRequestController {
     public void editRouter(final VolleyCallback callback, String editRouterName, boolean admin_state, String routerID, String routerName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
-        String fullURL = networkServiceURL + "v2.0/routers/" + routerID;
+        String partURL = "v2.0/routers/";
+        String fullURL = networkServiceURL + partURL + routerID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
-        JSONObject json3 = new JSONObject();
-//        Log.d("editinputedit",editRouterName);
-//        Log.d("editinputROuter", routerName);
 
         try {
-//            json3.put("network_id", networkID);
-//            json2.put("external_gateway_info", json3);
             if (editRouterName.equals("")) {
                 json2.put("name", routerName);
             }
@@ -5861,9 +5632,6 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("editEdit", editRouterName);
-        Log.d("editOri",routerName);
-        Log.d("editROuter", json1.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -5883,7 +5651,6 @@ public class HttpRequestController {
 
                     } else {
                         Toast.makeText(mApplicationContext, "Edit Router failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
@@ -5908,8 +5675,8 @@ public class HttpRequestController {
     public void listCluster(final VolleyCallback callback, final Context context, final String clusterID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
-        String fullURL = containerInfraURL + "v1/clusters";
+        String partURL = "clusters";
+        String fullURL = containerInfraURL + partURL;
 
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
@@ -5918,7 +5685,6 @@ public class HttpRequestController {
             public void onResponse(String response) {
                 JSONArray resultArray;
                 resultArray = ResponseParser.getInstance(mApplicationContext).listCluster(response, clusterID);
-                System.out.println("clusterID: " + clusterID);
                 String result = resultArray.toString();
                 callback.onSuccess(result);
             }
@@ -5952,12 +5718,12 @@ public class HttpRequestController {
     public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String flavorID, String masterFlavorID, final int masterCount, final int nodeCount, final int createTimeout) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
-        String fullURL = containerInfraURL + "v1/clusters";
+        String partURL = "clusters";
+        String fullURL = containerInfraURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
-//        JSONObject json2 = new JSONObject();
-        ArrayList<String> labels = new ArrayList<String>();
+        JSONObject json2 = new JSONObject();
         try {
             json1.put("name", clusterName);
             json1.put("discovery_url", disUrl);
@@ -5967,7 +5733,7 @@ public class HttpRequestController {
             json1.put("create_timeout", createTimeout);
             json1.put("keypair", kytPair);
             json1.put("master_flavor_id", masterFlavorID);
-            json1.put("labels", labels);
+            json1.put("labels", json2);
             json1.put("flavor_id", flavorID);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -5990,7 +5756,6 @@ public class HttpRequestController {
                         mApplicationContext.startActivity(i);
                     } else {
                         Toast.makeText(mApplicationContext, "Create cluster failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
                         callback.onSuccess("error");
                     }
                 }
