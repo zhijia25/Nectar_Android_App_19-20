@@ -201,6 +201,111 @@
                 android:singleLine="true"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/keyPair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/timeOut1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="KeyPair*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/keyPair1"
+                android:layout_below="@+id/keyPair"
+                android:hint="Choose a Keypair"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:enabled="false" />
+
+            <TextView
+            android:id="@+id/masterFlavorID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/keyPair1"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:text="Master Flavor ID*"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/masterFlavorID1"
+                android:layout_below="@+id/masterFlavorID"
+                android:hint="Choose a Flavor for the Master Node"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:enabled="false" />
+
+            <TextView
+                android:id="@+id/nodeFlavorID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/masterFlavorID1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="Node Flavor ID*"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nodeFlavorID1"
+                android:layout_below="@+id/nodeFlavorID"
+                android:hint="Choose a Flavor for the Node Node"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:textSize="14sp"
+                android:enabled="false" />
+
+            <TextView
+                android:id="@+id/labels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nodeFlavorID1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:text="Labels"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/labels1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/labels"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:hint="KEY1=VALUE1, KEY2=VALUE2..."
+                android:singleLine="true"
+                android:textSize="14sp" />
+
         </RelativeLayout>
     </ScrollView>
 
