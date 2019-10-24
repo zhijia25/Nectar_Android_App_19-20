@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\62463\\AndroidStudioProjects\\Nectar_final\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+            "outputFile": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\62463\\AndroidStudioProjects\\Nectar_final\\Nectar_Android_App_19-20\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

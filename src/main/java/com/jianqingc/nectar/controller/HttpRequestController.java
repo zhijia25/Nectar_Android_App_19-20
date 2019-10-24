@@ -5715,7 +5715,7 @@ public class HttpRequestController {
     /*
     Create a new Container Cluster.
     **/
-    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String flavorID, String masterFlavorID, final int masterCount, final int nodeCount, final int createTimeout) {
+    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String nodeFlavorID, String masterFlavorID,final int dockerSize, final int masterCount, final int nodeCount, final int createTimeout, JSONArray labels) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String partURL = "clusters";
@@ -5723,18 +5723,18 @@ public class HttpRequestController {
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
-        JSONObject json2 = new JSONObject();
         try {
             json1.put("name", clusterName);
             json1.put("discovery_url", disUrl);
             json1.put("master_count", masterCount);
             json1.put("cluster_template_id", clusterTemplateID);
             json1.put("node_count", nodeCount);
+            json1.put("docker_volume_size", dockerSize);
             json1.put("create_timeout", createTimeout);
             json1.put("keypair", kytPair);
             json1.put("master_flavor_id", masterFlavorID);
-            json1.put("labels", json2);
-            json1.put("flavor_id", flavorID);
+            json1.put("node_flavor_id", nodeFlavorID);
+            json1.put("labels", labels);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5773,6 +5773,53 @@ public class HttpRequestController {
         NetworkController.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
+
+    /**
+     * List flavor Http Request showing the available cluster Template
+     *
+     * @param callback
+     * @param context
+     */
+
+    public void listTemplate(final VolleyCallback callback, final Context context) {
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
+        String partURL = "/clustertemplates";
+        String fullURL = containerInfraURL + partURL;
+        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONArray resultArray;
+                        resultArray = ResponseParser.getInstance(mApplicationContext).listTemplates(response);
+                        String result = resultArray.toString();
+                        callback.onSuccess(result);
+                        // Display the first 500 characters of the response string.
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse.statusCode == 401) {
+                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
+                    context.startActivity(i);
+                } else {
+                    Toast.makeText(mApplicationContext, "Getting templates Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("X-Auth-Token", token);
+                return headers;
+            }
+        };
+        NetworkController.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
+    }
+
+
 
 
 

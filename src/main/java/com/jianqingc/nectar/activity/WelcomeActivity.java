@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 
@@ -19,6 +20,8 @@ import com.jianqingc.nectar.R;
 import com.jianqingc.nectar.util.SharedPreferencesUtil;
 
 import java.util.concurrent.TimeUnit;
+
+import static android.content.ContentValues.TAG;
 
 
 public class WelcomeActivity extends Activity {
@@ -34,20 +37,24 @@ public class WelcomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!isTaskRoot()
-                && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
-                && getIntent().getAction() != null
-                && getIntent().getAction().equals(Intent.ACTION_MAIN)) {
-            startLoginActivity();
-            finish();
-            return;
-        }
         super.onCreate(savedInstanceState);
+        if (!this.isTaskRoot()) {
+            Intent mainIntent = getIntent();
+            String action = mainIntent.getAction();
+            if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action.equals(Intent.ACTION_MAIN)) {
+                Log.i(TAG,"---------- Not the top of Stack !!!!----------");
+                finish();
+                Log.i(TAG,"---------- Close the Welcome page !!!!----------");
+                return;
+            }
+        }
         // 判断是否是第一次开启应用
         boolean isFirstOpen = SharedPreferencesUtil.getBoolean(this, SharedPreferencesUtil.FIRST_OPEN, true);
         // 如果是第一次启动，则先进入功能引导页
         if (isFirstOpen) {
+            Log.i(TAG,"---------- First time to open the app ----------");
             Intent intent = new Intent(this, GuideActivity.class);
+            Log.i(TAG,"---------- Open the Guide page ----------");
             startActivity(intent);
             finish();
             return;
@@ -89,7 +96,9 @@ public class WelcomeActivity extends Activity {
             {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
+                Log.i(TAG,"---------- Open the Login page ----------");
                 WelcomeActivity.this.finish();
+                Log.i(TAG,"---------- Close the Welcome1 page ----------");
             }
         });
     }

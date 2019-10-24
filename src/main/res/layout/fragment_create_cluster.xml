@@ -309,4 +309,29 @@
         </RelativeLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonbuttom"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        >
+
+        <Button
+            android:id="@+id/createNI"
+            android:layout_width="0dp"
+            android:layout_weight="0.99"
+            android:layout_height="wrap_content"
+            android:text="@string/create_cluster"
+            android:layout_marginLeft="60sp"
+            android:layout_gravity="bottom|end"
+            android:background="#ffcc00"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    </LinearLayout>
+
 </RelativeLayout>

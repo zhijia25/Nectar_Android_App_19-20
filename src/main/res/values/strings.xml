@@ -12,4 +12,8 @@
     <string name="title_activity_guide">GuideActivity</string>
 
     <string name="entry">Get it Start</string>
+    <string name="alarmNameLI1">Alarm Name</string>
+    <string name="create_cluster">Create Cluster</string>
+
+
 </resources>

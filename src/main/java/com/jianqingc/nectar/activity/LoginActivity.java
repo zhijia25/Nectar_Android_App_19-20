@@ -27,8 +27,9 @@ import java.util.TimeZone;
 
 public class LoginActivity extends AppCompatActivity {
 
-   private EditText entertenantName, enterusername, enterpassword;
-   private CheckBox rememberUser;
+    private static final String TAG = "" ;
+    private EditText entertenantName, enterusername, enterpassword;
+    private CheckBox rememberUser;
 
 
     /**
@@ -88,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Log.i(TAG,"---------- Longin Page Opern in LoginActivity ----------");
         findViewById(R.id.mainLayout).setSoundEffectsEnabled(false);
         findViewById(R.id.passwordEditText).setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -131,8 +133,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        this.finish();
+        Log.i(TAG,"---------- Longin Page Stop in LoginActivity ----------");
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Log.i(TAG,"---------- Longin Page Resume in LoginActivity ----------");
+//        this.finish();
+//    }
 
     private void rememberInfo (String tenant, String user, String pwd){
         SharedPreferences.Editor editor = getSharedPreferences("data",0).edit();

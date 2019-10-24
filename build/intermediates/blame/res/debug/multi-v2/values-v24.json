@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\62463\\AndroidStudioProjects\\Nectar_final\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\62463\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\f81c066bb96f9dab4db1b8aeb13f3c4b\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\6a78ec7ecbe4924e0acf6c9977df6e3e\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

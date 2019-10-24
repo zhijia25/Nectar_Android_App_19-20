@@ -5,7 +5,9 @@ INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:17:1-24:12
+MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\ef2ddceb8f7a4a1f7ec5248e426e8f92\AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:17:1-27:12
+MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\cb90ed7b9acd7e47e0b071b627549249\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\638d3e1725a62434d202319d606affb5\AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.firebase:firebase-common:16.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.0.aar\1ddd77caeedea3f2c8c7da6db519be48\AndroidManifest.xml:2:1-16:12
@@ -54,8 +56,12 @@ application
 ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:9:5-47:19
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:22:5-20
+MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\ef2ddceb8f7a4a1f7ec5248e426e8f92\AndroidManifest.xml:10:5-20
+MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\ef2ddceb8f7a4a1f7ec5248e426e8f92\AndroidManifest.xml:10:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:25:5-20
+MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\cb90ed7b9acd7e47e0b071b627549249\AndroidManifest.xml:10:5-20
+MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\cb90ed7b9acd7e47e0b071b627549249\AndroidManifest.xml:10:5-20
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\638d3e1725a62434d202319d606affb5\AndroidManifest.xml:22:5-27:19
@@ -149,8 +155,12 @@ INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\1458bf6321e594c6c9db4e62d8274df0\AndroidManifest.xml:20:5-43
+MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\ef2ddceb8f7a4a1f7ec5248e426e8f92\AndroidManifest.xml:6:5-8:41
+MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\ef2ddceb8f7a4a1f7ec5248e426e8f92\AndroidManifest.xml:6:5-8:41
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\a79bcdbc21c95604dadf5ffc17d26b9e\AndroidManifest.xml:21:5-23:78
+MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\cb90ed7b9acd7e47e0b071b627549249\AndroidManifest.xml:6:5-8:41
+MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\cb90ed7b9acd7e47e0b071b627549249\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\1e04cb5a61b015cead91be65e9d5fe13\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\638d3e1725a62434d202319d606affb5\AndroidManifest.xml:20:5-44
