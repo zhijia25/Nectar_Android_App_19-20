@@ -15,7 +15,7 @@
 
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Alarm Name"
+        android:text="@+string/alarmNameLI1"
         android:id="@+id/alarmNameLI1"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"

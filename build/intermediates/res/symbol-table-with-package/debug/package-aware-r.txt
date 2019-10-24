@@ -1326,6 +1326,8 @@ id intent_extra_data
 id italic
 id item_touch_helper_previous_elevation
 id iv_entry
+id keyPair
+id keyPair1
 id keyPairNI
 id keyPairNI1
 id key_pairs
@@ -1347,6 +1349,8 @@ id kpPublicKDKP
 id kpPublicKDKP1
 id kyLL1
 id kyLL2
+id labels
+id labels1
 id large_icon_uri
 id launchImage
 id launchVolume
@@ -1387,6 +1391,8 @@ id mainLayout
 id manageRuleSGD
 id masterCount
 id masterCount1
+id masterFlavorID
+id masterFlavorID1
 id match_global_nicknames
 id media_actions
 id middle
@@ -1400,6 +1406,8 @@ id nameVD
 id nameVD1
 id nav_about
 id nav_accessAndSecurity
+id nav_cluster
+id nav_cluster_template
 id nav_configuration_group
 id nav_container
 id nav_database_backup
@@ -1493,6 +1501,8 @@ id newVolumeSizeCV
 id newVolumeSizeCV1
 id nodeCount
 id nodeCount1
+id nodeFlavorID
+id nodeFlavorID1
 id none
 id normal
 id notification_background
@@ -2040,6 +2050,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string action_settings
+string alarmNameLI1
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2062,6 +2073,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string create_cluster
 string entry
 string hello_blank_fragment
 string navigation_drawer_close

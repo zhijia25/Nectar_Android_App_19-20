@@ -1103,7 +1103,6 @@ public class ResponseParser {
             resultObject.put("databaseBackupDatabase", configDetail.getString("instance_id"));
             resultObject.put("databaseBackupStatus", configDetail.getString("status"));
 
-
             //Add attaching servers latter
 
         } catch (JSONException e) {
@@ -1187,6 +1186,24 @@ public class ResponseParser {
             e.printStackTrace();
         }
 
+        return resultArray;
+    }
+
+    public JSONArray listTemplates(String response){
+        JSONArray resultArray= new JSONArray();
+        try {
+            JSONObject responseJSON = new JSONObject(response);
+            JSONArray flavorArray= responseJSON.getJSONArray("clustertemplates");
+            for (int i=0;i<flavorArray.length();i++) {
+                JSONObject flavorObject = (JSONObject) flavorArray.get(i);
+                JSONObject resultObject = new JSONObject();
+                resultObject.put("clustertemplateName", flavorObject.getString("name"));
+                resultArray.put(i, resultObject);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return resultArray;
     }
 

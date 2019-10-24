@@ -63,16 +63,16 @@ public final class R {
         public static final int intent_data = 0x7f07021f;
         public static final int intent_data_id = 0x7f070220;
         public static final int intent_extra_data = 0x7f070221;
-        public static final int large_icon_uri = 0x7f07023a;
-        public static final int match_global_nicknames = 0x7f070262;
-        public static final int omnibox_title_section = 0x7f0702d2;
-        public static final int omnibox_url_section = 0x7f0702d3;
-        public static final int plain = 0x7f0702dc;
-        public static final int rfc822 = 0x7f070303;
-        public static final int text1 = 0x7f0703b4;
-        public static final int text2 = 0x7f0703b5;
-        public static final int thing_proto = 0x7f0703c6;
-        public static final int url = 0x7f0703d7;
+        public static final int large_icon_uri = 0x7f07023e;
+        public static final int match_global_nicknames = 0x7f070268;
+        public static final int omnibox_title_section = 0x7f0702dc;
+        public static final int omnibox_url_section = 0x7f0702dd;
+        public static final int plain = 0x7f0702e6;
+        public static final int rfc822 = 0x7f07030d;
+        public static final int text1 = 0x7f0703be;
+        public static final int text2 = 0x7f0703bf;
+        public static final int thing_proto = 0x7f0703d0;
+        public static final int url = 0x7f0703e1;
     }
     public static final class styleable {
         private styleable() {}

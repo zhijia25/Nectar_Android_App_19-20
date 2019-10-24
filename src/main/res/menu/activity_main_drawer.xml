@@ -35,6 +35,20 @@
         </menu>
     </item>
 
+    <item android:title="Container Infra">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_cluster"
+                    android:title="Cluster" />
+                <item
+                    android:id="@+id/nav_cluster_template"
+                    android:title="Cluster Template" />
+
+            </group>
+        </menu>
+    </item>
+
     <item android:title="Network">
         <menu>
             <group android:checkableBehavior="single">
