@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="com.jianqingc.nectar.fragment.SubnetDetailFragment">
+        tools:context="com.jianqingc.nectar.fragment.Network_Fragment.SubnetDetailFragment">
 
         <LinearLayout
             android:id="@+id/PortDetail1"

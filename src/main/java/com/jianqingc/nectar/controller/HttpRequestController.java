@@ -5672,7 +5672,7 @@ public class HttpRequestController {
     /*
     Contariner Service
      **/
-    public void listCluster(final VolleyCallback callback, final Context context, final String clusterID) {
+    public void listCluster(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String partURL = "clusters";
@@ -5684,7 +5684,7 @@ public class HttpRequestController {
             @Override
             public void onResponse(String response) {
                 JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listCluster(response, clusterID);
+                resultArray = ResponseParser.getInstance(mApplicationContext).listCluster(response);
                 String result = resultArray.toString();
                 callback.onSuccess(result);
             }
@@ -5697,7 +5697,7 @@ public class HttpRequestController {
                     Intent i = new Intent(mApplicationContext, LoginActivity.class);
                     context.startActivity(i);
                 } else {
-                    Toast.makeText(mApplicationContext, "Getting Clusters List  Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mApplicationContext, "Getting Clusters List Failed", Toast.LENGTH_SHORT).show();
 
                 }
             }

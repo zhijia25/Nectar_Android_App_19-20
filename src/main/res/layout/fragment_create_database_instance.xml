@@ -24,7 +24,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.jianqingc.nectar.fragment.CreateVolumeFragment">
+            tools:context="com.jianqingc.nectar.fragment.Volume_Fragment.CreateVolumeFragment">
 
             <TextView
                 android:id="@+id/newDatabaseInstanceNameCV1"

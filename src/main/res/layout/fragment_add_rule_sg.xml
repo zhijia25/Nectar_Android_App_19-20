@@ -23,7 +23,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.jianqingc.nectar.fragment.AddRuleSGFragment">
+            tools:context="com.jianqingc.nectar.fragment.Network_Fragment.AddRuleSGFragment">
 
             <TextView
                 android:id="@+id/newRuleSG1"

@@ -1153,7 +1153,7 @@ public class ResponseParser {
     List Clusters
     **/
 
-    public JSONArray listCluster(String response, String clusterID){
+    public JSONArray listCluster(String response){
         JSONArray resultArray = new JSONArray();
 
         try {
