@@ -1894,6 +1894,8 @@ layout fragment_access_and_security
 layout fragment_add_rule_sg
 layout fragment_alarm
 layout fragment_alarm_detail
+layout fragment_cluster
+layout fragment_cluster_detail
 layout fragment_configuration_group
 layout fragment_configuration_group_detail
 layout fragment_configuration_group_instance

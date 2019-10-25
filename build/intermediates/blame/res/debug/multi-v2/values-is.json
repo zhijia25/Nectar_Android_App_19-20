@@ -4,7 +4,7 @@
             "outputFile": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-is\\values-is.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\769d39ab195f8622116c806094b23907\\res\\values-is\\values-is.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\45e5bbf63af4cc5adb4fa4538bedd02a\\res\\values-is\\values-is.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\f276756cfe37970661eae38731bfece7\\res\\values-is\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "187",
-                        "endOffsets": "434"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1237",
-                        "endColumns": "187",
-                        "endOffsets": "1420"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\638d3e1725a62434d202319d606affb5\\res\\values-is\\values.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\495b72220d73373948e520fdeebc69c5\\res\\values-is\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,6 +35,23 @@
                         "startOffsets": "105,213,399,526,637,837,964,1103,1425,1638,1746,1934,2062,2263,2447,2541,2634",
                         "endColumns": "107,185,126,110,199,126,138,133,212,107,187,127,200,183,93,92,107",
                         "endOffsets": "208,394,521,632,832,959,1098,1232,1633,1741,1929,2057,2258,2442,2536,2629,2737"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\d00d7c6ffbd7534e60a24b7d727e04b0\\res\\values-is\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "187",
+                        "endOffsets": "434"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1237",
+                        "endColumns": "187",
+                        "endOffsets": "1420"
                     }
                 }
             ]

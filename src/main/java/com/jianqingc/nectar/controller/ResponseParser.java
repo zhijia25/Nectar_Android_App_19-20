@@ -1165,7 +1165,7 @@ public class ResponseParser {
                 JSONObject clusterObject = clustersArray.getJSONObject(i);
                 JSONObject resultObject = new JSONObject();
                 String cluster_id = clusterObject.getString("cluster_id");
-                if (cluster_id.equals(clusterID)) {
+                if (cluster_id.equals(cluster_id)) {
 
                     resultObject.put("clusterName", clusterObject.getString("name"));
                     resultObject.put("clusterID", clusterObject.getString("id"));

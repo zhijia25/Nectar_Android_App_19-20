@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Nectar_Android_App_19-20" />
+            <option value="$PROJECT_DIR$/easyrecyclerview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

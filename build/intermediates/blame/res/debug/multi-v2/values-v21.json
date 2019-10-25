@@ -4,7 +4,7 @@
             "outputFile": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\a79bcdbc21c95604dadf5ffc17d26b9e\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\1edf4b6c20b26a2659662e386a1e492d\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,107,110,154,157,160,162,164,166,169,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,221,231,241,251,252",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,22 +23,22 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\769d39ab195f8622116c806094b23907\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\design-24.2.1.aar\\d3b4cea612783b023e1776652e7d1b2c\\res\\values-v21\\values-v21.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
-                        "endLines": "2,3,4,5,6,7,8,9,12,17",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "244"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,265,266,273,277,281,284",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,19150,19266,19723,20017,20312,20484",
-                        "endLines": "2,3,4,5,265,266,273,277,283,288",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,19261,19387,19844,20140,20479,20817"
+                        "startLines": "289",
+                        "startColumns": "4",
+                        "startOffsets": "20822",
+                        "endLines": "291",
+                        "endColumns": "12",
+                        "endOffsets": "21011"
                     }
                 },
                 {
@@ -61,7 +61,26 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\6a78ec7ecbe4924e0acf6c9977df6e3e\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\45e5bbf63af4cc5adb4fa4538bedd02a\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
+                        "endLines": "2,3,4,5,6,7,8,9,12,17",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,265,266,273,277,281,284",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,19150,19266,19723,20017,20312,20484",
+                        "endLines": "2,3,4,5,265,266,273,277,283,288",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,19261,19387,19844,20140,20479,20817"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\72efe63a149757e55a6bacabe895697f\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,5,8,11",
                         "startColumns": "4,4,4,4",
@@ -77,25 +96,6 @@
                         "endLines": "269,272,276,280",
                         "endColumns": "12,12,12,12",
                         "endOffsets": "19555,19718,20012,20307"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\design-24.2.1.aar\\1458bf6321e594c6c9db4e62d8274df0\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "244"
-                    },
-                    "to": {
-                        "startLines": "289",
-                        "startColumns": "4",
-                        "startOffsets": "20822",
-                        "endLines": "291",
-                        "endColumns": "12",
-                        "endOffsets": "21011"
                     }
                 }
             ]

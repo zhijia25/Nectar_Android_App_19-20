@@ -653,18 +653,18 @@ public final class R {
         public static final int abc_search_dropdown_item_icons_2line = 0x7f090017;
         public static final int abc_search_view = 0x7f090018;
         public static final int abc_select_dialog_material = 0x7f090019;
-        public static final int notification_media_action = 0x7f090092;
-        public static final int notification_media_cancel_action = 0x7f090093;
-        public static final int notification_template_big_media = 0x7f090094;
-        public static final int notification_template_big_media_narrow = 0x7f090096;
-        public static final int notification_template_lines = 0x7f09009a;
-        public static final int notification_template_media = 0x7f09009c;
-        public static final int notification_template_part_chronometer = 0x7f09009e;
-        public static final int notification_template_part_time = 0x7f09009f;
-        public static final int select_dialog_item_material = 0x7f0900aa;
-        public static final int select_dialog_multichoice_material = 0x7f0900ab;
-        public static final int select_dialog_singlechoice_material = 0x7f0900ac;
-        public static final int support_simple_spinner_dropdown_item = 0x7f0900b0;
+        public static final int notification_media_action = 0x7f090094;
+        public static final int notification_media_cancel_action = 0x7f090095;
+        public static final int notification_template_big_media = 0x7f090096;
+        public static final int notification_template_big_media_narrow = 0x7f090098;
+        public static final int notification_template_lines = 0x7f09009c;
+        public static final int notification_template_media = 0x7f09009e;
+        public static final int notification_template_part_chronometer = 0x7f0900a0;
+        public static final int notification_template_part_time = 0x7f0900a1;
+        public static final int select_dialog_item_material = 0x7f0900ac;
+        public static final int select_dialog_multichoice_material = 0x7f0900ad;
+        public static final int select_dialog_singlechoice_material = 0x7f0900ae;
+        public static final int support_simple_spinner_dropdown_item = 0x7f0900b2;
     }
     public static final class string {
         private string() {}
