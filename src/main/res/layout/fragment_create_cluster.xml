@@ -28,7 +28,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Container Name*"
+                android:text="@string/container_name_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
                 android:layout_below="@+id/newClusterName1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Cluster Name"
+                android:hint="@string/cluster_name"
                 android:singleLine="true"
                 android:textSize="14sp" />
             <requestFocus />
@@ -55,7 +55,7 @@
                 android:layout_below="@+id/newClusterName"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Container Template*"
+                android:text="@string/container_name_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                 android:layout_below="@+id/chooseClusterTemplate1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Master Count*"
+                android:text="@string/master_count_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -93,7 +93,7 @@
                 android:layout_below="@+id/masterCount"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Master Count"
+                android:hint="@string/master_count"
                 android:singleLine="true"
                 android:textSize="14sp" />
 
@@ -106,7 +106,7 @@
                 android:layout_below="@+id/masterCount1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Node Count*"
+                android:text="@string/node_count_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -119,7 +119,7 @@
                 android:layout_below="@+id/nodeCount"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Node Count"
+                android:hint="@string/node_count"
                 android:singleLine="true"
                 android:textSize="14sp" />
 
@@ -132,7 +132,7 @@
                 android:layout_below="@+id/nodeCount1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="DockerVolumeSize*"
+                android:text="@string/docker_volumeSize_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                 android:layout_below="@+id/DockerVolumeSize"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Specify the size in GB for the docker volume"
+                android:hint="@string/docker_volume_specification"
                 android:singleLine="true"
                 android:textSize="14sp" />
 
@@ -158,7 +158,7 @@
                 android:layout_below="@+id/DockerVolumeSize1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="DiscoveryURL"
+                android:text="@string/discovery_url"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -171,7 +171,7 @@
                 android:layout_below="@+id/DiscoveryURL"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Specifies custom discovery url for node discovery"
+                android:hint="@string/discovery_url_specification"
                 android:singleLine="true"
                 android:textSize="14sp" />
 
@@ -184,7 +184,7 @@
                 android:layout_below="@+id/DiscoveryURL1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Timeout"
+                android:text="@string/timeout"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -197,7 +197,7 @@
                 android:layout_below="@+id/timeOut"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:hint="Set to 0 for no timeout. The default is no timeout."
+                android:hint="@string/discovery_url_specification"
                 android:singleLine="true"
                 android:textSize="14sp" />
 

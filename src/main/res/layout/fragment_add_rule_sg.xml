@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 
@@ -34,7 +33,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Rule"
+                android:text="@string/rule"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -61,7 +60,7 @@
                 android:layout_alignStart="@+id/newRuleSG1"
                 android:layout_below="@+id/newRuleSG"
                 android:layout_marginTop="25sp"
-                android:text="Direction"
+                android:text="@string/direction"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -86,7 +85,7 @@
                 android:layout_alignStart="@+id/newRuleSG1"
                 android:layout_below="@+id/newDirectionSG"
                 android:layout_marginTop="25sp"
-                android:text="Open Port (Port or Port Range)"
+                android:text="@string/open_port"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -102,7 +101,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="From Port"
+                    android:text="@string/from_port"
                     android:id="@+id/newFromPort1"
                     android:layout_below="@+id/newOpenPortSG"
                     android:layout_alignParentLeft="true"
@@ -116,7 +115,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="To Port"
+                    android:text="@string/to_port"
                     android:id="@+id/newToPort1"
                     android:layout_below="@+id/newOpenPortSG"
                     android:layout_alignParentLeft="true"
@@ -141,7 +140,7 @@
                 <EditText
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:hint="From 1 To 65535"
+                    android:hint="@string/port_range_hint"
                     android:id="@+id/newFromPort"
                     android:layout_below="@+id/newPort1"
                     android:layout_alignParentLeft="true"
@@ -154,7 +153,7 @@
                 <EditText
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:hint="From 1 To 65535"
+                    android:hint="@string/port_range_hint"
                     android:id="@+id/newToPort"
                     android:layout_below="@+id/newPort1"
                     android:layout_alignParentLeft="true"
@@ -175,7 +174,7 @@
                 android:layout_alignStart="@+id/newRuleSG1"
                 android:layout_below="@+id/newPort2"
                 android:layout_marginTop="25sp"
-                android:text="Remote"
+                android:text="@string/remote"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -187,7 +186,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="10sp"
-                android:hint="CIDR"
+                android:hint="@string/cidr"
                 android:layout_marginTop="10sp"
                 android:textSize="14sp"
                 android:enabled="false"
@@ -202,7 +201,7 @@
                 android:layout_alignStart="@+id/newRuleSG1"
                 android:layout_below="@+id/newRemoteSG"
                 android:layout_marginTop="25sp"
-                android:text="CIDR"
+                android:text="@string/cidr"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -240,7 +239,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.99"
             android:layout_height="wrap_content"
-            android:text="Launch     new     rule"
+            android:text="@string/launch_rule"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="60sp"
             android:background="#ffcc00"

@@ -15,7 +15,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name"
+            android:text="@string/name"
             android:id="@+id/sgNameLSG1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:id="@+id/sgNameLSG"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Description"
+            android:text="@string/description"
             android:id="@+id/sgDescriptionLSG1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text=""
+            android:text="@string/empty_str"
             android:id="@+id/sgDescriptionLSG"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

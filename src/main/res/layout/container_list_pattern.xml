@@ -15,7 +15,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Container Name"
+            android:text="@string/container_name"
             android:id="@+id/containerNameLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:id="@+id/containerNameLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Count"
+            android:text="@string/count"
             android:id="@+id/containerCountLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/containerCountLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -83,7 +83,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="bytes"
+            android:text="@string/bytes"
             android:id="@+id/containerBytesLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -95,7 +95,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/containerBytesLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

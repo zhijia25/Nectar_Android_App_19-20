@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Name"
+                android:text="@string/name"
                 android:id="@+id/kpNameDKP1"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
@@ -38,7 +37,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/kpNameDKP"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -61,7 +60,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Fingerprint"
+                android:text="@string/fingerprint"
                 android:id="@+id/kpFingerprintDLP1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -74,7 +73,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/kpFingerprintDLP"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -98,7 +97,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Create Time"
+                android:text="@string/create_time"
                 android:id="@+id/kpCreateTDKP1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -111,7 +110,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/kpCreateTDKP"
                 android:layout_marginTop="20sp"
                 android:layout_width="0dp"
@@ -125,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/kpDL3"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Public Key"
+            android:text="@string/public_key"
             android:id="@+id/kpPublicKDKP1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -138,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/kpPublicKDKP1"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="---"
+            android:text="@string/three_straight_line"
             android:id="@+id/kpPublicKDKP"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"

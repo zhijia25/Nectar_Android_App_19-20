@@ -15,7 +15,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="IP Address"
+            android:text="@string/ipaddress"
             android:id="@+id/FloatingAddressLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text ="Medium Text"
+            android:text ="@string/medium_text"
             android:id="@+id/FloatingAddressLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance = "?android:attr/textAppearanceSmall"
-            android:text="Resource Pool"
+            android:text="@string/resource_pool"
             android:id="@+id/FloatingPoolLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -61,7 +61,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/FloatingPoolLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -83,7 +83,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text = "State"
+            android:text = "@string/status"
             android:id="@+id/FloatingStateLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -96,7 +96,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/FloatingStateLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -118,7 +118,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text = "Desciption"
+            android:text = "@string/description"
             android:id="@+id/FloatingDescriptionLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -131,7 +131,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/FloatingDescriptionLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

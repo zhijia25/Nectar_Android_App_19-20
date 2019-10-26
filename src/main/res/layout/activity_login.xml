@@ -27,7 +27,7 @@
         android:id="@+id/tenantNameEditText"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:hint="Tenant Name"
+        android:hint="@string/project_name"
         android:layout_marginTop="30sp"
         android:textSize="20sp"
         android:singleLine="true" />
@@ -40,7 +40,7 @@
         android:ems="10"
         android:layout_below="@+id/tenantNameEditText"
         android:layout_centerHorizontal="true"
-        android:hint="Username"
+        android:hint="@string/username"
         android:textSize="20sp"
         android:singleLine="true"/>
 
@@ -52,7 +52,7 @@
         android:id="@+id/passwordEditText"
         android:layout_below="@+id/usernameEditText"
         android:layout_centerHorizontal="true"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textSize="20sp"
         android:singleLine="true" />
 
@@ -64,7 +64,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="108dp"
         android:checked="true"
-        android:text="Remember Usernamen and Password" />
+        android:text="@string/remember_bar" />
 
     <Button
         android:id="@+id/signinButton"
@@ -80,7 +80,7 @@
         android:paddingRight="50sp"
         android:paddingTop="20sp"
         android:singleLine="false"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="@android:color/white" />
 
 

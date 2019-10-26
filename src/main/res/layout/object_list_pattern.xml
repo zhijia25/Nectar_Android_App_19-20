@@ -15,7 +15,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Object Name"
+            android:text="@string/object_name"
             android:id="@+id/ObjectNameLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:id="@+id/ObjectNameLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Modified Time:"
+            android:text="@string/modified_time"
             android:id="@+id/ObjectModifiedTimeLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/ObjectModifiedTimeLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

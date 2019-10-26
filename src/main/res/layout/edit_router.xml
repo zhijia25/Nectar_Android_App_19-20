@@ -12,7 +12,7 @@
         android:layout_marginTop="10sp"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <EditText
         android:id="@+id/editName"
@@ -30,7 +30,7 @@
         android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:textStyle="bold"
-        android:text="Admin State" />
+        android:text="@string/admin_status" />
 
 
     <Spinner

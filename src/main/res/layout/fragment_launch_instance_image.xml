@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
          xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
          android:layout_height="fill_parent"
 
@@ -33,7 +32,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
-                android:text="Instance Name*"
+                android:text="@string/database_instance_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -45,7 +44,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="10sp"
-                android:hint="Instance Name"
+                android:hint="@string/instance_name"
                 android:layout_marginTop="10sp"
                 android:textSize="14sp"
                 android:singleLine="true" />
@@ -59,7 +58,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/newInsName"
                 android:layout_marginTop="25sp"
-                android:text="Flavor*"
+                android:text="@string/flavor_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -96,7 +95,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="10sp"
-                android:hint="1"
+                android:hint="@string/digit_one"
                 android:layout_marginTop="10sp"
                 android:textSize="14sp"
                 android:enabled="false"
@@ -110,7 +109,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/insCount"
                 android:layout_marginTop="25sp"
-                android:text="Instance Boot Source*"
+                android:text="@string/instance_boot_source_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -122,7 +121,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="10sp"
-                android:hint="Boot From Image"
+                android:hint="@string/boot_from_image"
                 android:layout_marginTop="10sp"
                 android:textSize="14sp"
                 android:enabled="false"
@@ -136,7 +135,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/insBootS"
                 android:layout_marginTop="25sp"
-                android:text="Image Name*"
+                android:text="@string/image_name_with_star"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -160,7 +159,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/imageNameNI"
                 android:layout_marginTop="25sp"
-                android:text="Key Pair"
+                android:text="@string/key_pair"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -184,7 +183,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/keyPairNI"
                 android:layout_marginTop="25sp"
-                android:text="Security Groups"
+                android:text="@string/security_groups"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -207,7 +206,7 @@
                 android:layout_alignStart="@+id/newInsName"
                 android:layout_below="@+id/securityGroupNI"
                 android:layout_marginTop="25sp"
-                android:text="Availability Zone"
+                android:text="@string/availability_zone"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -254,7 +253,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.99"
             android:layout_height="wrap_content"
-            android:text="Create Instance"
+            android:text="@string/create_instance"
             android:layout_marginLeft="60sp"
             android:layout_gravity="bottom|end"
             android:background="#ffcc00"

@@ -15,7 +15,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name"
+            android:text="@string/name"
             android:id="@+id/PortNameLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text ="Medium Text"
+            android:text ="@string/medium_text"
             android:id="@+id/PortNameLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -54,14 +54,14 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="MAC Address"
+            android:text="@string/mac_address"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
         <TextView
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/PortMacAddressLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -88,14 +88,14 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Status"
+            android:text="@string/status"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/PortStatusLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -121,14 +121,14 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Admin State"
+            android:text="@string/admin_state"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/PortAdminStateLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

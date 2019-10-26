@@ -43,7 +43,7 @@
         android:weightSum="1">
 
         <Button
-            android:text="Security Groups"
+            android:text="@string/security_groups"
             android:layout_width="0dp"
             android:layout_weight="0.41"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <Button
-            android:text="Key  Pairs"
+            android:text="@string/key_pair"
             android:layout_width="0dp"
             android:layout_weight="0.41"
             android:layout_height="wrap_content"

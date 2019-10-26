@@ -38,7 +38,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageNameID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Type"
+                android:text="@string/type"
                 android:id="@+id/imageTypeID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -74,7 +74,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageTypeID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -98,7 +98,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Status"
+            android:text="@string/status"
             android:id="@+id/imageStatusID1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -111,7 +111,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:id="@+id/imageStatusID"
             android:layout_marginTop="20sp"
             android:textIsSelectable="true"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Public"
+                android:text="@string/publi"
                 android:id="@+id/imagePublicID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -147,7 +147,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imagePublicID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -182,7 +182,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageProtectedID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -204,7 +204,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Format"
+                android:text="@string/format"
                 android:id="@+id/imageFormatID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -217,7 +217,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageFormatID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -239,7 +239,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Size"
+                android:text="@string/size"
                 android:id="@+id/imageSizeID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -252,7 +252,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageSizeID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -287,7 +287,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/imageCTID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"

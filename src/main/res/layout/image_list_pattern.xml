@@ -15,7 +15,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Image Name"
+            android:text="@string/image_name"
             android:id="@+id/imageNameLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:id="@+id/imageNameLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Status"
+            android:text="@string/status"
             android:id="@+id/imageStatusLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/imageStatusLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -83,7 +83,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Size"
+            android:text="@string/size"
             android:id="@+id/imageSizeLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -95,7 +95,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/imageSizeLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -116,7 +116,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Type"
+            android:text="@string/type"
             android:id="@+id/imageTypeLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -128,7 +128,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/imageTypeLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

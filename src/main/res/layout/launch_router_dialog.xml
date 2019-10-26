@@ -11,7 +11,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="View Router Detail"
+        android:text="@string/view_port_detail"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 
@@ -27,7 +27,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Edit Router"
+        android:text="@string/edit_router"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 
@@ -44,7 +44,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Delete Router"
+        android:text="@string/delete_router"
         android:textColor="#FF4040"
         android:textSize="18sp" />
 

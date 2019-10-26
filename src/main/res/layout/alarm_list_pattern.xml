@@ -15,7 +15,7 @@
 
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Alarm Name"
+        android:text="@string/alarm_name"
         android:id="@+id/alarmNameLI1"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
 
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text ="Medium Text"
+        android:text ="@string/medium_text"
         android:id="@+id/alarmNameLI"
         android:layout_marginTop="10sp"
         android:layout_width="0dp"
@@ -49,7 +49,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance = "?android:attr/textAppearanceSmall"
-            android:text="metric"
+            android:text="@string/metric"
             android:id="@+id/alarmMetricLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -61,7 +61,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/alarmMetricLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -83,7 +83,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text = "aggregation_method"
+            android:text = "@string/aggregation_method"
             android:id="@+id/alarmMethodLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -96,7 +96,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/alarmMethodLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -117,7 +117,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Threshold"
+            android:text="@string/threshold"
             android:id="@+id/alarmThresholdLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -129,7 +129,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/alarmThresholdLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

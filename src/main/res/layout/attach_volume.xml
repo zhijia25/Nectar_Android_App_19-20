@@ -11,7 +11,7 @@
         android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:textStyle="bold"
-        android:text="Attach to Instance*" />
+        android:text="@string/instance_attach" />
 
 
     <Spinner

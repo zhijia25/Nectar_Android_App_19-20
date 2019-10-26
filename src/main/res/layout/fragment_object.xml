@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.99"
             android:layout_height="wrap_content"
-            android:text="Create Object"
+            android:text="@string/create_object"
             android:layout_marginLeft="60sp"
             android:layout_gravity="bottom|end"
             android:background="#ffcc00"

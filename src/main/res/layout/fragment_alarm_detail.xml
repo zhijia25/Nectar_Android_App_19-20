@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Alarm Name"
+                android:text="@string/alarm_name"
                 android:id="@+id/alarmNameID1"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
@@ -38,7 +37,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmNameID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -61,7 +60,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Description"
+                android:text="@string/description"
                 android:id="@+id/alarmDescriptionID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -74,7 +73,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmDescriptionID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -97,7 +96,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Type"
+                android:text="@string/datastore_type"
                 android:id="@+id/alarmTypeID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -110,7 +109,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmTypeID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -134,7 +133,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Metric"
+                android:text="@string/metric"
                 android:id="@+id/alarmMetricID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -147,7 +146,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmMetricID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -170,7 +169,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Threshold"
+                android:text="@string/threshold"
                 android:id="@+id/alarmThresholdID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -183,7 +182,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmThresholdID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -205,7 +204,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Aggre_Method"
+                android:text="@string/aggregation_method_short"
                 android:id="@+id/alarmaggMethodID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -218,7 +217,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmaggMethodID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -240,7 +239,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Operator"
+                android:text="@string/operator"
                 android:id="@+id/alarmOperatorID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -253,7 +252,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmOperatorID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -275,7 +274,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Granularity"
+                android:text="@string/granularity"
                 android:id="@+id/alarmGanularityID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -288,7 +287,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmGanularityID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -310,7 +309,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="State"
+                android:text="@string/state"
                 android:id="@+id/alarmStateID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -323,7 +322,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmStateID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -346,7 +345,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Severity"
+                android:text="@string/severity"
                 android:id="@+id/alarmSeverityID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -359,7 +358,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/alarmSeverityID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"

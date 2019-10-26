@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25sp"
-                android:text="Pool"
+                android:text="@string/pool"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.99"
             android:layout_height="wrap_content"
-            android:text="Allocate IP"
+            android:text="@string/allocate_ip"
             android:layout_marginLeft="60sp"
             android:layout_gravity="bottom|end"
             android:background="#ffcc00"

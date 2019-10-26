@@ -15,7 +15,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name"
+            android:text="@string/name"
             android:id="@+id/routerNameLI1"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -29,7 +29,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text ="Medium Text"
+            android:text ="@string/medium_text"
             android:id="@+id/routerNameLI"
             android:layout_marginTop="10sp"
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance = "?android:attr/textAppearanceSmall"
-            android:text="Status"
+            android:text="@string/status"
             android:id="@+id/routerStatusLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -61,7 +61,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/routerStatusLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -83,7 +83,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text = "External Network"
+            android:text = "@string/external_network"
             android:id="@+id/routerExternalLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -96,7 +96,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/routerExternalLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"
@@ -117,7 +117,7 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Adamin State"
+            android:text="@string/admin_state"
             android:id="@+id/routerAdaminStateLI1"
             android:textStyle="bold"
             android:layout_marginLeft="5sp"
@@ -129,7 +129,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="-"
+            android:text="@string/straight_line"
             android:id="@+id/routerAdaminStateLI"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="30sp"

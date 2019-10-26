@@ -12,7 +12,7 @@
         android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:textStyle="bold"
-        android:text="Name*" />
+        android:text="@string/name_with_star" />
 
     <EditText
         android:id="@+id/createSGName"
@@ -33,7 +33,7 @@
         android:layout_marginTop="10sp"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Description" />
+        android:text="@string/description" />
 
     <EditText
         android:id="@+id/createSGDescription"

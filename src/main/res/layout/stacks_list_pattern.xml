@@ -22,7 +22,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="10sp"
             android:layout_weight="0.3"
-            android:text="Stack Name"
+            android:text="@string/stack_name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:layout_weight="0.7"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -55,7 +55,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Status"
+            android:text="@string/status"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/straight_line"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
@@ -88,7 +88,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Creation Time"
+            android:text="@string/create_time"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -99,7 +99,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/straight_line"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>

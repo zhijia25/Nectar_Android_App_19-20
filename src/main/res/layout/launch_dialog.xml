@@ -11,7 +11,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Boot from image"
+        android:text="@string/boot_from_image"
         android:textColor="#0000ff"
         android:textSize="18sp" />
     <View
@@ -25,7 +25,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Boot from volume"
+        android:text="@string/boot_from_volume"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 </LinearLayout>

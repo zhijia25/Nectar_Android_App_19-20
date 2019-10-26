@@ -27,7 +27,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Private Container"
+        android:text="@string/private_container"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 
@@ -43,7 +43,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="View Container Folder"
+        android:text="@string/view_container_folder"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 
@@ -59,7 +59,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Delete Container"
+        android:text="@string/delete_container"
         android:textColor="#FF4040"
         android:textSize="18sp" />
 

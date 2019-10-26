@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Name"
+                android:text="@string/name"
                 android:id="@+id/routerNameID1"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
@@ -38,7 +37,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerNameID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -61,7 +60,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="ID"
+                android:text="@string/id"
                 android:id="@+id/routerID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -74,7 +73,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -97,7 +96,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Project ID"
+                android:text="@string/project_id"
                 android:id="@+id/routerprojectID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -110,7 +109,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerProjectID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -134,7 +133,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Status"
+                android:text="@string/status"
                 android:id="@+id/routerStatusID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -147,7 +146,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerStautsID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -170,7 +169,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Admin State"
+                android:text="@string/admin_state"
                 android:id="@+id/routerAdminStateID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -183,7 +182,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerAdminStateID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -205,7 +204,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Network Name"
+                android:text="@string/network_name"
                 android:id="@+id/routerNetworkNameID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -218,7 +217,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routernetworkNamedID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -240,7 +239,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Network ID"
+                android:text="@string/network_id"
                 android:id="@+id/routerNetworkID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -253,7 +252,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerNetworkID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -275,7 +274,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Subnet ID"
+                android:text="@string/subnet_id"
                 android:id="@+id/routerSubnetID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -288,7 +287,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerSubnetID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -310,7 +309,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="IP Address"
+                android:text="@string/ipaddress"
                 android:id="@+id/routerIPAdressID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -323,7 +322,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerIPAddressID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"
@@ -346,7 +345,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="SNAT"
+                android:text="@string/snat"
                 android:id="@+id/routerSnatID1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -359,7 +358,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
+                android:text="@string/medium_text"
                 android:id="@+id/routerSnatID"
                 android:layout_marginTop="20sp"
                 android:textIsSelectable="true"

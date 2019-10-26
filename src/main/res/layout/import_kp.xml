@@ -12,7 +12,7 @@
         android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:textStyle="bold"
-        android:text="Key Pair Name*" />
+        android:text="@string/key_pair_name_with_star" />
 
     <EditText
         android:id="@+id/importKPName"
@@ -33,7 +33,7 @@
         android:layout_marginTop="10sp"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Public Key*" />
+        android:text="@string/public_key_with_star" />
 
     <EditText
         android:id="@+id/importKPPK"

@@ -22,7 +22,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="10sp"
             android:layout_weight="0.3"
-            android:text="Name"
+            android:text="@string/name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:layout_weight="0.7"
-            android:text="Medium Text"
+            android:text="@string/medium_text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Datastore Type"
+            android:text="@string/datastore_type"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/name_with_star"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
@@ -90,7 +90,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Version"
+            android:text="@string/version"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -101,7 +101,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/straight_line"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
@@ -123,7 +123,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Database"
+            android:text="@string/database"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -134,7 +134,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/straight_line"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -158,7 +158,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.3"
-            android:text="Status"
+            android:text="@string/status"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -169,7 +169,7 @@
             android:layout_marginBottom="30sp"
             android:layout_marginTop="20sp"
             android:layout_weight="0.7"
-            android:text="-"
+            android:text="@string/straight_line"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
 

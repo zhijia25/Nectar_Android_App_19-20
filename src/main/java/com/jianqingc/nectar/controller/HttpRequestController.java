@@ -4515,6 +4515,7 @@ public class HttpRequestController {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("success test", "andy is my son");
                         JSONArray resultArray;
                         resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseInstances(response);
                         String result = resultArray.toString();
@@ -4524,11 +4525,13 @@ public class HttpRequestController {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse!= null){
+                    Log.d("error test", "luke is my son");
                 if (error.networkResponse.statusCode == 401) {
                     Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mApplicationContext, LoginActivity.class);
                     context.startActivity(i);
-                } else {
+                }} else {
                     Toast.makeText(mApplicationContext, "Getting instances Failed", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -5715,7 +5718,7 @@ public class HttpRequestController {
     /*
     Create a new Container Cluster.
     **/
-    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String flavorID, String masterFlavorID, final int masterCount, final int nodeCount, final int createTimeout) {
+    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String[] labels, String flavorID, String masterFlavorID, final int masterCount, final int nodeCount, final int createTimeout) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String partURL = "clusters";
@@ -5723,7 +5726,10 @@ public class HttpRequestController {
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
-        JSONObject json2 = new JSONObject();
+        JSONArray json2 = new JSONArray();
+        for (String str:labels){
+            json2.put(str);
+        }
         try {
             json1.put("name", clusterName);
             json1.put("discovery_url", disUrl);

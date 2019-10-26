@@ -25,7 +25,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Edit Security Group"
+        android:text="@string/edit_security_group"
         android:textColor="#0000ff"
         android:textSize="18sp" />
 
@@ -40,7 +40,7 @@
         android:layout_height="45dp"
         android:layout_margin="2dp"
         android:gravity="center"
-        android:text="Delete Security Group"
+        android:text="@string/delete_security_group"
         android:textColor="#FF4040"
         android:textSize="18sp" />
 
