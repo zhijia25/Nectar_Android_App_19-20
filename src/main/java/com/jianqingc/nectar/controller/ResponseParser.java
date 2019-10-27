@@ -1164,18 +1164,17 @@ public class ResponseParser {
             for (int i = 0; i < clustersArray.length(); i++) {
                 JSONObject clusterObject = clustersArray.getJSONObject(i);
                 JSONObject resultObject = new JSONObject();
-                String cluster_id = clusterObject.getString("cluster_id");
-                if (cluster_id.equals(cluster_id)) {
 
-                    resultObject.put("clusterName", clusterObject.getString("name"));
-                    resultObject.put("clusterID", clusterObject.getString("id"));
-                    resultObject.put("status", clusterObject.getString("status"));
-                    resultObject.put("master_count", clusterObject.getString("master_count"));
-                    resultObject.put("node_count", clusterObject.getString("node_count"));
-                    resultObject.put("keyPair", clusterObject.getString("keyPair"));
-                    resultArray.put(count,resultObject);
-                    count++;
-                }
+
+                resultObject.put("clusterName", clusterObject.getString("name"));
+                resultObject.put("clusterID", clusterObject.getString("uuid"));
+                resultObject.put("status", clusterObject.getString("status"));
+                resultObject.put("master_count", clusterObject.getString("master_count"));
+                resultObject.put("node_count", clusterObject.getString("node_count"));
+                resultObject.put("keyPair", clusterObject.getString("keypair"));
+                resultArray.put( count, resultObject);
+                count++;
+
             }
 
 

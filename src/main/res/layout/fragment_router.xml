@@ -9,6 +9,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         tools:context=".fragment.Network_Fragment.RouterFragment">
 
 
@@ -16,6 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:footerDividersEnabled="true"
+            android:fadingEdge="none"
+            android:fadeScrollbars="true"
             android:id="@+id/listViewRouter"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"

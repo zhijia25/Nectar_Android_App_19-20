@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Nectar_Android_App_19-20.iml" filepath="$PROJECT_DIR$/Nectar_Android_App_19-20.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Nectar_Android_App_19-20/Nectar_Android_App_19-20-Nectar_Android_App_19-20.iml" filepath="$PROJECT_DIR$/Nectar_Android_App_19-20/Nectar_Android_App_19-20-Nectar_Android_App_19-20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circlerefresh/circlerefresh.iml" filepath="$PROJECT_DIR$/circlerefresh/circlerefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/easyrecyclerview/easyrecyclerview.iml" filepath="$PROJECT_DIR$/easyrecyclerview/easyrecyclerview.iml" />
     </modules>
   </component>

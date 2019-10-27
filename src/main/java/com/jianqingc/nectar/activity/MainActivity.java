@@ -29,6 +29,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.jianqingc.nectar.controller.HttpRequestController;
 import com.jianqingc.nectar.fragment.AboutFragment;
+import com.jianqingc.nectar.fragment.Container_Infra_Fragment.ClustersFragment;
 import com.jianqingc.nectar.fragment.Network_Fragment.AddRuleSGFragment;
 import com.jianqingc.nectar.fragment.Database_Fragment.ConfigurationGroupFragment;
 import com.jianqingc.nectar.fragment.Object_Fragment.ContainerFragment;
@@ -437,14 +438,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_accessAndSecurity) {
             AccessAndSecurityFragment accessAndSecurityFragment = new AccessAndSecurityFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, accessAndSecurityFragment, accessAndSecurityFragment.getTag()).commit();
-        }
-//        else if (id == R.id.nav_alarm ) {
-//            AlarmFragment alarmFragment = new AlarmFragment();
-//            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, alarmFragment, alarmFragment.getTag()).commit();
-//        }
-        else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_about) {
             AboutFragment aboutFragment = new AboutFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, aboutFragment, aboutFragment.getTag()).commit();
+        } else if (id == R.id.nav_cluster) {
+            ClustersFragment clustersFragment = new ClustersFragment();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, clustersFragment, clustersFragment.getTag()).commit();
         }else if (id == R.id.nav_container) {
             ContainerFragment containerFragment = new ContainerFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment,containerFragment,containerFragment.getTag()).commit();

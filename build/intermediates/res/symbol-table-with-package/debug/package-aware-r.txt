@@ -18,6 +18,9 @@ anim design_fab_in
 anim design_fab_out
 anim design_snackbar_in
 anim design_snackbar_out
+attr AniBackColor
+attr AniForeColor
+attr CircleSmaller
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -59,6 +62,7 @@ attr alertDialogTheme
 attr allowShortcuts
 attr allowStacking
 attr alpha
+attr anim_duration
 attr arrowHeadLength
 attr arrowShaftLength
 attr autoCompleteTextViewStyle
@@ -89,6 +93,12 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
+attr cardBackgroundColor
+attr cardCornerRadius
+attr cardElevation
+attr cardMaxElevation
+attr cardPreventCornerOverlap
+attr cardUseCompatPadding
 attr checkboxStyle
 attr checkedTextViewStyle
 attr circleCrop
@@ -116,6 +126,11 @@ attr contentInsetLeft
 attr contentInsetRight
 attr contentInsetStart
 attr contentInsetStartWithNavigation
+attr contentPadding
+attr contentPaddingBottom
+attr contentPaddingLeft
+attr contentPaddingRight
+attr contentPaddingTop
 attr contentProviderUri
 attr contentScrim
 attr controlBackground
@@ -186,10 +201,13 @@ attr imageAspectRatioAdjust
 attr imageButtonStyle
 attr indeterminateProgressStyle
 attr indexPrefixes
+attr indicator
+attr indicator_color
 attr initialActivityCount
 attr inputEnabled
 attr insetForeground
 attr isLightTheme
+attr isStickNav
 attr itemBackground
 attr itemIconTint
 attr itemPadding
@@ -296,6 +314,7 @@ attr state_collapsed
 attr state_collapsible
 attr statusBarBackground
 attr statusBarScrim
+attr stickOffset
 attr subMenuArrow
 attr submitBackground
 attr subsectionSeparator
@@ -418,6 +437,10 @@ color bright_foreground_material_dark
 color bright_foreground_material_light
 color button_material_dark
 color button_material_light
+color cardview_dark_background
+color cardview_light_background
+color cardview_shadow_end_color
+color cardview_shadow_start_color
 color colorAccent
 color colorPrimary
 color colorPrimaryDark
@@ -477,6 +500,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color refresh_status_textview_color
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -563,6 +587,9 @@ dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen activity_horizontal_margin
 dimen activity_vertical_margin
+dimen cardview_compat_inset_shadow
+dimen cardview_default_elevation
+dimen cardview_default_radius
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -629,6 +656,7 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen textandiconmargin
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -718,6 +746,7 @@ drawable background
 drawable button_shape
 drawable circle
 drawable circle_2
+drawable clife_refresh_loading
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -748,13 +777,27 @@ drawable guide2
 drawable guide3
 drawable guide4
 drawable ic_launcher
+drawable ic_loading_rotate
 drawable ic_menu_camera
 drawable ic_menu_gallery
 drawable ic_menu_manage
 drawable ic_menu_send
 drawable ic_menu_share
 drawable ic_menu_slideshow
+drawable ic_pulltorefresh_arrow
 drawable ic_search_black_24dp
+drawable loading_01
+drawable loading_02
+drawable loading_03
+drawable loading_04
+drawable loading_05
+drawable loading_06
+drawable loading_07
+drawable loading_08
+drawable loading_09
+drawable loading_10
+drawable loading_11
+drawable loading_12
 drawable navigation_empty_icon
 drawable nectar
 drawable nectar_app_icon
@@ -771,28 +814,57 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable progressbar
+drawable progressloading
 drawable refresh_icon
 drawable round
 drawable round_2
+drawable selector_list_item_bg
 drawable side_nav_bar
 drawable welcome
 drawable welcomimg_bg
 id AttachVLV
 id AttachVLV1
+id BallBeat
+id BallClipRotate
+id BallClipRotateMultiple
+id BallClipRotatePulse
+id BallGridBeat
+id BallGridPulse
+id BallPulse
+id BallPulseRise
+id BallPulseSync
+id BallRotate
+id BallScale
+id BallScaleMultiple
+id BallScaleRipple
+id BallScaleRippleMultiple
+id BallSpinFadeLoader
+id BallTrianglePath
+id BallZigZag
+id BallZigZagDeflect
+id BaseQuickAdapter_dragging_support
+id BaseQuickAdapter_swiping_support
+id BaseQuickAdapter_viewholder_support
+id ClifeIndicator
 id ConfigGroupDatastore
 id ConfigGroupDatastore1
 id ConfigGroupDescription
 id ConfigGroupDescription1
 id ConfigGroupbuttonbuttom
+id CubeTransition
 id DatabaseBackupDescription
 id DatabaseBackupDescription1
 id DatabaseBackupInstance
 id DatabaseBackupInstance1
 id DatabaseBackupbuttonbuttom
+id Delete
+id Detail
 id DiscoveryURL
 id DiscoveryURL1
 id DockerVolumeSize
 id DockerVolumeSize1
+id Edit
 id FloatingAddressLI
 id FloatingAddressLI1
 id FloatingDescriptionLI
@@ -808,6 +880,11 @@ id FloatingPoolLI1
 id FloatingStateLI
 id FloatingStateLI1
 id Floatingbuttonbuttom
+id LineScale
+id LineScaleParty
+id LineScalePulseOut
+id LineScalePulseOutRapid
+id LineSpinFadeLoader
 id NetworkAdminState
 id NetworkAdminState1
 id NetworkAdminStateID
@@ -841,6 +918,7 @@ id ObjectModifiedTimeLI
 id ObjectModifiedTimeLI1
 id ObjectNameLI
 id ObjectNameLI1
+id Pacman
 id PortAdminStateLI
 id PortAdminStateLI1
 id PortDetail1
@@ -867,6 +945,8 @@ id RouterAdminState1
 id RouterExternal
 id RouterExternal1
 id Routerbuttonbuttom
+id SemiCircleSpin
+id SquareSpin
 id StackTemplateSource
 id StackTemplateSource1
 id StackTimeout
@@ -903,6 +983,7 @@ id SubnetNetworkAddressLI1
 id SubnetNetworkID
 id SubnetNetworkID1
 id Subnetbuttonbuttom
+id TriangleSkewSpin
 id action0
 id action_bar
 id action_bar_activity_content
@@ -920,6 +1001,7 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_settings
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1014,8 +1096,48 @@ id checkbox
 id chooseClusterTemplate
 id chooseClusterTemplate1
 id chronometer
+id clife_listview_header_progressbar
 id clip_horizontal
 id clip_vertical
+id clusterCOEID
+id clusterCOEID1
+id clusterCreateTimeID
+id clusterCreateTimeID1
+id clusterDetail1
+id clusterDetail10
+id clusterDetail2
+id clusterDetail3
+id clusterDetail4
+id clusterDetail5
+id clusterDetail6
+id clusterDetail7
+id clusterDetail8
+id clusterDetail9
+id clusterID
+id clusterID1
+id clusterImageID
+id clusterImageID1
+id clusterKeypairID
+id clusterKeypairID1
+id clusterLI1
+id clusterLI2
+id clusterLI3
+id clusterMatserCountID
+id clusterMatserCountID1
+id clusterNameID
+id clusterNameID1
+id clusterNameLI
+id clusterNameLI1
+id clusterNodeCountID
+id clusterNodeCountID1
+id clusterStatusID
+id clusterStatusID1
+id clusterStatusLI
+id clusterStatusLI1
+id clusterUUIDLI
+id clusterUUIDLI1
+id clusterUpgradeTimeID
+id clusterUpgradeTimeID1
 id collapseActionView
 id configGroupCreatedTV
 id configGroupDatastoreTV
@@ -1238,6 +1360,11 @@ id granularity
 id granularity1
 id guide_enter
 id guide_viewPager
+id head_arrowImageView
+id head_contentLayout
+id head_lastUpdatedTextView
+id head_progressBar
+id head_tipsTextView
 id home
 id homeAsUp
 id html
@@ -1251,6 +1378,10 @@ id idVD
 id idVD1
 id idVSL
 id idVSL1
+id id_stickynavlayout_indicator
+id id_stickynavlayout_innerscrollview
+id id_stickynavlayout_topview
+id id_stickynavlayout_viewpager
 id ifRoom
 id image
 id imageCTID
@@ -1352,6 +1483,7 @@ id kyLL2
 id labels
 id labels1
 id large_icon_uri
+id last_refresh_time
 id launchImage
 id launchVolume
 id launch_instance
@@ -1360,6 +1492,7 @@ id light
 id line1
 id line3
 id listMode
+id listView
 id listViewAlarm
 id listViewConfigGroupInstances
 id listViewConfigurationGroup
@@ -1384,6 +1517,12 @@ id listViewVolume
 id listViewVolumeSnapshot
 id listViewcontainer
 id list_item
+id listview_foot_more
+id listview_foot_progress
+id listview_header_arrow
+id listview_header_content
+id listview_header_progressbar
+id listview_header_text
 id ll
 id localityCV
 id localityCV1
@@ -1540,9 +1679,12 @@ id progressBar
 id progress_circular
 id progress_horizontal
 id publicContainer
+id pull_to_refresh_image
 id radio
 id radioNI
 id rebootBtn
+id refresh_layout
+id refresh_status_textview
 id relativelayout_for_fragment
 id rememberUser
 id resourceTypesAttributeID
@@ -1669,6 +1811,8 @@ id sizeVD
 id sizeVD1
 id sizeVSL
 id sizeVSL1
+id smContentView
+id smMenuView
 id snackbar_action
 id snackbar_text
 id snap
@@ -1866,6 +2010,9 @@ layout alarm_list_pattern
 layout app_bar_main
 layout attach_configuration_group
 layout attach_volume
+layout clife_loading_header
+layout clife_loading_header2
+layout cluster_list_pattern
 layout configuration_group_instances_list_pattern
 layout configuration_group_list_pattern
 layout container_list_pattern
@@ -1886,6 +2033,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout dialog
 layout edit_router
 layout edit_volume
 layout floating_list_pattern
@@ -1973,6 +2121,8 @@ layout launch_sg_dialog
 layout launch_sg_mr_dialog
 layout launch_subnet_dialog
 layout launch_volume_dialog
+layout listview_footer
+layout listview_header
 layout loading_dialog
 layout luanch_snapshot_dialog
 layout nav_header_main
@@ -1999,6 +2149,7 @@ layout pager_layout2
 layout pager_layout3
 layout pager_layout4
 layout port_list_pattern
+layout pull_to_refresh_head
 layout resource_types_list_pattern
 layout router_list_pattern
 layout securitygroup_manage_pattern
@@ -2007,6 +2158,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout sercuitygroup_list_pattern
+layout simple_list_view
 layout stacks_list_pattern
 layout subnet_list_pattern
 layout support_simple_spinner_dropdown_item
@@ -2017,7 +2169,12 @@ layout volume_list_pattern
 layout volume_snapshot_list_pattern
 menu activity_main_drawer
 menu main
+menu menu_main
+mipmap back
 mipmap ic_launcher
+mipmap loading_0
+mipmap loading_1
+mipmap loading_2
 mipmap point1
 mipmap point2
 string abc_action_bar_home_description
@@ -2078,8 +2235,16 @@ string common_signin_button_text_long
 string create_cluster
 string entry
 string hello_blank_fragment
+string hello_world
+string listview_header_hint_normal
+string listview_header_hint_release
+string listview_header_last_time
+string listview_loading
 string navigation_drawer_close
 string navigation_drawer_open
+string nomore_loading
+string refresh_done
+string refreshing
 string search_menu_title
 string status_bar_notification_info_overflow
 string title_activity_guide
@@ -2248,6 +2413,9 @@ style Base_Widget_AppCompat_Toolbar
 style Base_Widget_AppCompat_Toolbar_Button_Navigation
 style Base_Widget_Design_AppBarLayout
 style Base_Widget_Design_TabLayout
+style CardView
+style CardView_Dark
+style CardView_Light
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_ThemeOverlay_AppCompat
@@ -2460,6 +2628,7 @@ style Widget_Design_ScrimInsetsFrameLayout
 style Widget_Design_Snackbar
 style Widget_Design_TabLayout
 style Widget_Design_TextInputLayout
+styleable AVLoadingIndicatorView indicator indicator_color
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -2478,6 +2647,8 @@ styleable AppCompatTheme android_windowIsFloating android_windowAnimationStyle a
 styleable AppDataSearch
 styleable BottomSheetBehavior_Layout behavior_hideable behavior_peekHeight behavior_skipCollapsed
 styleable ButtonBarLayout allowStacking
+styleable CardView cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
+styleable CirCleRefreshLayout AniBackColor AniForeColor CircleSmaller
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha
@@ -2516,6 +2687,8 @@ styleable SectionFeature featureType
 styleable SignInButton buttonSize colorScheme scopeUris
 styleable SnackbarLayout android_maxWidth elevation maxActionInlineWidth
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
+styleable StickNavLayout isStickNav stickOffset
+styleable SwipeMenu anim_duration
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable TabItem android_icon android_layout android_text
 styleable TabLayout tabBackground tabContentStart tabGravity tabIndicatorColor tabIndicatorHeight tabMaxWidth tabMinWidth tabMode tabPadding tabPaddingBottom tabPaddingEnd tabPaddingStart tabPaddingTop tabSelectedTextColor tabTextAppearance tabTextColor

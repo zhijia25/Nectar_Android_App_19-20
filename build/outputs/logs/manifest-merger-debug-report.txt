@@ -4,8 +4,10 @@ ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
-MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:17:1-24:12
+MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-13:12
+MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-17:12
 MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:2:1-12:12
+MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:17:1-27:12
 MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:17:1-24:12
@@ -24,6 +26,7 @@ MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yaopc\.gradle
 MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\b790b1dbd0f19189f25c54143b8a8a07\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\aa9b796d25a404e0ecf6dd57ea666126\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\45e5bbf63af4cc5adb4fa4538bedd02a\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\cardview-v7-23.0.1.aar\21892c5cc7161151ac6a34ec37d39bec\AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\2758ebeff77c858b1f69b66c2ca4e8d0\AndroidManifest.xml:17:1-30:12
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
@@ -54,10 +57,14 @@ ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:7:
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:7:22-78
 application
 ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:9:5-47:19
-MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
+MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-20
+MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-20
+MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-15:43
+MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-15:43
 MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:10:5-20
 MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:10:5-20
+MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:25:5-20
 MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:10:5-20
@@ -90,6 +97,8 @@ MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\aa9b796d25a404e0ecf6dd57ea666126\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\45e5bbf63af4cc5adb4fa4538bedd02a\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\45e5bbf63af4cc5adb4fa4538bedd02a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\cardview-v7-23.0.1.aar\21892c5cc7161151ac6a34ec37d39bec\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\cardview-v7-23.0.1.aar\21892c5cc7161151ac6a34ec37d39bec\AndroidManifest.xml:22:5-20
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\2758ebeff77c858b1f69b66c2ca4e8d0\AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\2758ebeff77c858b1f69b66c2ca4e8d0\AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
@@ -98,6 +107,7 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:12:9-41
 	android:icon
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:11:9-49
+		REJECTED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:13:9-43
 		REJECTED from [com.github.amigold.fundapter:library:1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\library-1.0.aar\22af36aa4a2a7c42db3cc24aa57b2131\AndroidManifest.xml:5:45-81
 	android:allowBackup
 		ADDED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:10:9-35
@@ -153,10 +163,14 @@ uses-sdk
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
-MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
+MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
 MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:6:5-8:41
 MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:6:5-8:41
+MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:21:5-23:78
 MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:6:5-8:41
@@ -193,6 +207,8 @@ MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\aa9b796d25a404e0ecf6dd57ea666126\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\45e5bbf63af4cc5adb4fa4538bedd02a\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\45e5bbf63af4cc5adb4fa4538bedd02a\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\cardview-v7-23.0.1.aar\21892c5cc7161151ac6a34ec37d39bec\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\cardview-v7-23.0.1.aar\21892c5cc7161151ac6a34ec37d39bec\AndroidManifest.xml:20:5-43
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\2758ebeff77c858b1f69b66c2ca4e8d0\AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\2758ebeff77c858b1f69b66c2ca4e8d0\AndroidManifest.xml:20:5-22:41
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml

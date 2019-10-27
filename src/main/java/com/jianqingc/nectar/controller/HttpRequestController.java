@@ -5672,10 +5672,10 @@ public class HttpRequestController {
     /*
     Contariner Service
      **/
-    public void listCluster(final VolleyCallback callback, final Context context) {
+    public void listCluster(final VolleyCallback callback, final Context contex) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
-        String partURL = "clusters";
+        String partURL = "/clusters";
         String fullURL = containerInfraURL + partURL;
 
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
@@ -5695,7 +5695,7 @@ public class HttpRequestController {
                 if (error.networkResponse.statusCode == 401) {
                     Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
+                    contex.startActivity(i);
                 } else {
                     Toast.makeText(mApplicationContext, "Getting Clusters List Failed", Toast.LENGTH_SHORT).show();
 

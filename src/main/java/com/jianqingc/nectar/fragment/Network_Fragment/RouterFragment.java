@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +35,7 @@ import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
 import com.jianqingc.nectar.controller.HttpRequestController;
+import com.tuesda.walker.circlerefresh.CircleRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +43,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,7 +72,7 @@ public class RouterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.fragment_router, container , false);
+        myView = inflater.inflate(R.layout.simple_list_view, container , false);
         setHasOptionsMenu(true);
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Router");
@@ -171,7 +176,7 @@ public class RouterFragment extends Fragment {
                     });
 
                     FunDapter adapter = new FunDapter(RouterFragment.this.getActivity(), routerListArray, R.layout.router_list_pattern, dictionary);
-                    ListView routerLV = (ListView) myView.findViewById(R.id.listViewRouter);
+                    ListView routerLV = (ListView) myView.findViewById(R.id.listView);
                     adapter.notifyDataSetChanged();
                     routerLV.setAdapter(adapter);
                     setListViewHeightBasedOnChildren(routerLV);
@@ -275,14 +280,6 @@ public class RouterFragment extends Fragment {
                                                 dialog.dismiss();
                                                 mOverlayDialog.show();
                                                 editRouterName = nameV.getText().toString();
-//                                            if(editRouterName==" "){
-//                                                newEditRouterName = "None";
-//                                            } else
-//                                            {
-//                                                newEditRouterName = editRouterName;
-//                                            }
-//                                            Log.d("editsdsdsdsdsds",newEditRouterName);
-
                                             if(chooseAdminState.equals("UP")){
                                                 admin_state = true;
                                             } else {
@@ -409,6 +406,31 @@ public class RouterFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                /**
+                 * Set refresh/back button.
+                 */
+
+                CircleRefreshLayout mRefreshLayout = (CircleRefreshLayout) getActivity().findViewById(R.id.refresh_layout);
+                mRefreshLayout.setOnRefreshListener(
+                        new CircleRefreshLayout.OnCircleRefreshListener() {
+
+                            @Override
+                            public void refreshing() {
+                                // do something when refresh starts
+                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                RouterFragment vFragment = new RouterFragment();
+                                ft.replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
+                                Log.i(TAG,"Refresh success");
+                            }
+
+                            @Override
+                            public void completeRefresh() {
+                                // do something when refresh complete
+//                                ft.replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
+                            }
+                        });
+
             }
         }, getActivity());
 
