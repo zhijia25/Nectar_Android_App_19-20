@@ -221,7 +221,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.GuideViewPagerAdapter;
+import com.jianqingc.nectar.util.GuideViewPagerAdapter;
 import com.jianqingc.nectar.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;

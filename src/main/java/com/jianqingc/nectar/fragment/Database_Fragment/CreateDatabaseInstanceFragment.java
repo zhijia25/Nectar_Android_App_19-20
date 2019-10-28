@@ -21,7 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,7 +87,7 @@ public class CreateDatabaseInstanceFragment extends Fragment{
 
 
         //List Availability zones
-        HttpRequestController.getInstance(getContext()).listAvailabilityZone(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listAvailabilityZone(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -139,7 +139,7 @@ public class CreateDatabaseInstanceFragment extends Fragment{
 
         /*list database flavor
         * */
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).listDatabaselistDatabaseFlavor(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).listDatabaselistDatabaseFlavor(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 Log.d("databaseFlavor", result);
@@ -165,7 +165,7 @@ public class CreateDatabaseInstanceFragment extends Fragment{
 
 
         //List Databasestore
-        HttpRequestController.getInstance(getContext()).listDatastores(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listDatastores(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -283,7 +283,7 @@ public class CreateDatabaseInstanceFragment extends Fragment{
                     }else{
 
                         mOverlayDialog.show();
-                        HttpRequestController.getInstance(getActivity().getApplicationContext()).createdatabaseInstance(new HttpRequestController.VolleyCallback() {
+                        HttpRequest.getInstance(getActivity().getApplicationContext()).createdatabaseInstance(new HttpRequest.VolleyCallback() {
                             @Override
                             public void onSuccess(String result) {
                                 if (result.equals("success")) {

@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -126,7 +126,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
         mOverlayDialog.setCancelable(false);
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 setView(result);
@@ -148,7 +148,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         setView(result);
@@ -183,14 +183,14 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).databaseInstanceRestart(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).databaseInstanceRestart(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if (result.equals("success")) {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -206,7 +206,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 3000);
                                         } else {
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -251,7 +251,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                     //System.out.println(sizeInt);
                                     dialog.dismiss();
                                     mOverlayDialog.show();
-                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).resizeDatabaseInstanceVolume(new HttpRequestController.VolleyCallback() {
+                                    HttpRequest.getInstance(getActivity().getApplicationContext()).resizeDatabaseInstanceVolume(new HttpRequest.VolleyCallback() {
                                         @Override
                                         public void onSuccess(String result) {
                                             if (result.equals("success")) {
@@ -260,7 +260,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                                 TimerTask task = new TimerTask() {
                                                     @Override
                                                     public void run() {
-                                                        HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                                        HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                             @Override
                                                             public void onSuccess(String result) {
                                                                 setView(result);
@@ -321,7 +321,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                 builderSecurityGroup.setView(textEntryView);
 
                 //List configuration group
-                HttpRequestController.getInstance(getContext()).listConfigGroup(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getContext()).listConfigGroup(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         try {
@@ -393,7 +393,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                         } else {
                             dialog.dismiss();
                             mOverlayDialog.show();
-                            HttpRequestController.getInstance(getActivity().getApplicationContext()).attachConfigGroup(new HttpRequestController.VolleyCallback() {
+                            HttpRequest.getInstance(getActivity().getApplicationContext()).attachConfigGroup(new HttpRequest.VolleyCallback() {
                                 @Override
                                 public void onSuccess(String result) {
                                     if (result.equals("success")) {
@@ -403,7 +403,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                         TimerTask task = new TimerTask() {
                                             @Override
                                             public void run() {
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         setView(result);
@@ -465,7 +465,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).detachConfigGroup(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).detachConfigGroup(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if (result.equals("success")) {
@@ -475,7 +475,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -523,7 +523,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
         /*
         * root enabled
         * */
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).showManageRootDetail(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).showManageRootDetail(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 TextView showRoot = (TextView) myView.findViewById(R.id.databaseInstanceRootEnabledTV);
@@ -551,7 +551,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).enableRoot(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).enableRoot(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
 
@@ -565,7 +565,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                             catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).showManageRootDetail(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).showManageRootDetail(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     TextView showRoot = (TextView) myView.findViewById(R.id.databaseInstanceRootEnabledTV);
@@ -583,7 +583,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -627,7 +627,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).disableRoot(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).disableRoot(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if (result.equals("success")) {
@@ -647,7 +647,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 4000);
                                         } else {
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -702,7 +702,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).deleteDatabaseInstance(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if (result.equals("success")) {
@@ -722,7 +722,7 @@ public class DatabaseInstanceDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 4000);
                                         } else {
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleDatabaseInstance(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);

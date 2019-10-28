@@ -21,8 +21,8 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.controller.RadioAdapter;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
+import com.jianqingc.nectar.util.RadioAdapter;
 
 import java.util.TimerTask;
 
@@ -140,7 +140,7 @@ public class CreateFloatingFragment extends Fragment {
 
                 }
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).createFloatingIP(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).createFloatingIP(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         if(result.equals("success")){

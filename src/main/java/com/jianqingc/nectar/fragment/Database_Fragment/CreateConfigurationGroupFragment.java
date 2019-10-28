@@ -18,8 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.controller.RadioAdapter;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
+import com.jianqingc.nectar.util.RadioAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,7 +93,7 @@ public class CreateConfigurationGroupFragment extends Fragment {
             }
         });
 
-        HttpRequestController.getInstance(getContext()).listDatastores(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listDatastores(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -174,7 +174,7 @@ public class CreateConfigurationGroupFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity()).createConfigGroup(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity()).createConfigGroup(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if(result.equals("success")){

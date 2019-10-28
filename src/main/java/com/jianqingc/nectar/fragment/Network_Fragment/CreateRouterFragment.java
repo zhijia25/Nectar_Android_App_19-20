@@ -23,8 +23,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.controller.RadioAdapter;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
+import com.jianqingc.nectar.util.RadioAdapter;
 
 import java.util.TimerTask;
 
@@ -170,7 +170,7 @@ public class CreateRouterFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).createRouter(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).createRouter(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if(result.equals("success")){

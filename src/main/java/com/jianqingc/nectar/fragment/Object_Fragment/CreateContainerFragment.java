@@ -23,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import java.util.TimerTask;
 
@@ -127,7 +127,7 @@ public class CreateContainerFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).createContainer(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).createContainer(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if (result.equals("success")){

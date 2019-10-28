@@ -33,7 +33,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.fragment.Compute_Fragment.KeyPairFragment;
 
 import org.json.JSONArray;
@@ -79,7 +79,7 @@ public class AccessAndSecurityFragment extends Fragment {
         mOverlayDialog.setCancelable(false);
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
-        HttpRequestController.getInstance(getContext()).listSecurityGroup(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listSecurityGroup(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -180,7 +180,7 @@ public class AccessAndSecurityFragment extends Fragment {
                                                 String description = newsgDescription.getText().toString();
                                                 dialog.dismiss();
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).editSecurityGroup(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).editSecurityGroup(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if(result.equals("success")) {
@@ -225,7 +225,7 @@ public class AccessAndSecurityFragment extends Fragment {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         mOverlayDialog.show();
-                                                        HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteSecurityGroup(new HttpRequestController.VolleyCallback() {
+                                                        HttpRequest.getInstance(getActivity().getApplicationContext()).deleteSecurityGroup(new HttpRequest.VolleyCallback() {
                                                             @Override
                                                             public void onSuccess(String result) {
                                                                 if(result.equals("success")) {

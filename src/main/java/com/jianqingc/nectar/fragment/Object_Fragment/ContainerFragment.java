@@ -29,7 +29,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.fragment.Orchestration_Fragment.ObjectFragment;
 
 import org.json.JSONArray;
@@ -80,7 +80,7 @@ public class ContainerFragment extends Fragment {
         mOverlayDialog.show();
         final DecimalFormat df = new DecimalFormat("######0.00");
 
-        HttpRequestController.getInstance(getContext()).listContainer(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listContainer(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -149,7 +149,7 @@ public class ContainerFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).publicContainer(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).publicContainer(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if(result.equals("success")){
@@ -204,7 +204,7 @@ public class ContainerFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             mOverlayDialog.show();
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).privateContainer(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).privateContainer(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     if(result.equals("success")){
@@ -247,7 +247,7 @@ public class ContainerFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             mOverlayDialog.show();
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteContainer(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).deleteContainer(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     if(result.equals("success")){

@@ -1,18 +1,15 @@
 package com.jianqingc.nectar.fragment.Container_Infra_Fragment;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,11 +21,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,18 +30,13 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.fragment.Compute_Fragment.InstanceDetailFragment;
-import com.jianqingc.nectar.fragment.Compute_Fragment.InstanceFragment;
-import com.jianqingc.nectar.fragment.Network_Fragment.RouterDetailFragment;
-import com.jianqingc.nectar.fragment.Network_Fragment.RouterFragment;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.tuesda.walker.circlerefresh.CircleRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
@@ -60,7 +49,7 @@ public class ClustersFragment extends Fragment {
     private CircleRefreshLayout mRefreshLayout;
     BindDictionary<String[]> dictionary;
     Bundle bundle;
-    String clusterName;
+    String clusterID;
     String status;
     String editClusterName;
     String newEditClusterName;
@@ -85,7 +74,7 @@ public class ClustersFragment extends Fragment {
         mOverlayDialog.show();
 
 
-        HttpRequestController.getInstance(getContext()).listCluster(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listCluster(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -131,6 +120,101 @@ public class ClustersFragment extends Fragment {
                     clusterLV.setAdapter(adapter);
                     setListViewHeightBasedOnChildren(clusterLV);
                     mOverlayDialog.dismiss();
+
+                    AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            bundle = new Bundle();
+                            //final String routerID = routerListArray.get(position)[3];
+                            try {
+                                clusterID = listClusterResultArray.getJSONObject(position).getString("clusterID");
+                                bundle.putString("clusterID" , listClusterResultArray.getJSONObject(position).getString("clusterID"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            final Dialog dialogR = new Dialog(getActivity(),R.style.ActionSheetDialogStyle);
+                            View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.dialog,null);
+                            TextView Detail = (TextView) inflate.findViewById(R.id.Detail);
+                            TextView Delete = (TextView) inflate.findViewById(R.id.Delete);
+
+                            Detail.setOnClickListener(new View.OnClickListener(){
+                                @Override
+                                public void onClick(View view) {
+                                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                    ClusterDetailFragment clusterDetailFragment = new ClusterDetailFragment();
+                                    clusterDetailFragment.setArguments(bundle);
+                                    ft.replace(R.id.relativelayout_for_fragment, clusterDetailFragment, clusterDetailFragment.getTag());
+                                    ft.commit();
+                                    dialogR.dismiss();
+                                }
+                            });
+
+                            /*
+                             * delete
+                             * */
+                            Delete.setOnClickListener(new View.OnClickListener(){
+                                @Override
+                                public void onClick(View view) {
+                                    SharedPreferences sharedPreferences = getContext().getApplicationContext().getSharedPreferences("nectar_android",0);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage("Delete this cluster?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int i) {
+                                            mOverlayDialog.show();
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).deletecluster(new HttpRequest.VolleyCallback() {
+                                                @Override
+                                                public void onSuccess(String result) {
+                                                    if (result.equals("success")){
+                                                        Toast.makeText(getActivity().getApplicationContext(),"Delete the cluster Succeed", Toast.LENGTH_SHORT).show();
+                                                        TimerTask task = new TimerTask(){
+                                                            @Override
+                                                            public void run() {
+                                                                mOverlayDialog.dismiss();
+                                                                FragmentManager manager = getFragmentManager();
+                                                                ClustersFragment clusterFragment = new ClustersFragment();
+                                                                manager.beginTransaction().replace(R.id.relativelayout_for_fragment, clusterFragment, clusterFragment.getTag()).commit();
+
+                                                            }
+                                                        };
+                                                        timer.schedule(task,4000);
+
+                                                    } else {
+                                                        mOverlayDialog.dismiss();
+                                                        Toast.makeText(getActivity().getApplicationContext(),"Fail to delete this Router", Toast.LENGTH_SHORT).show();
+
+                                                    }
+
+                                                }
+                                            },clusterID);
+                                        }
+                                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int i) {
+                                            dialog.dismiss();
+                                        }
+                                    }).show();
+                                    dialogR.dismiss();
+                                }
+
+                            });
+
+                            //set the view to Dialog
+
+                            dialogR.setContentView(inflate);
+                            Window dialogWindow = dialogR.getWindow();
+                            dialogWindow.setGravity(Gravity.BOTTOM);
+                            //get the attributes of the window
+
+                            WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+                            lp.y =20;
+                            dialogWindow.setAttributes(lp);
+                            dialogR.show();
+
+                        }
+                    };
+
+                    clusterLV.setOnItemClickListener(onListClick);
+
 
                     /**
                      * Set refresh/back button.

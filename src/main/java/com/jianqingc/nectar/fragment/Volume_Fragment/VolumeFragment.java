@@ -34,7 +34,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,7 +95,7 @@ public class VolumeFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
         // Inflate the layout for this fragment
-        HttpRequestController.getInstance(getContext()).listVolume(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listVolume(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -242,7 +242,7 @@ public class VolumeFragment extends Fragment {
                                                             //System.out.println(sizeInt);
                                                             dialog.dismiss();
                                                             mOverlayDialog.show();
-                                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).extendVolume(new HttpRequestController.VolleyCallback() {
+                                                            HttpRequest.getInstance(getActivity().getApplicationContext()).extendVolume(new HttpRequest.VolleyCallback() {
                                                                 @Override
                                                                 public void onSuccess(String result) {
                                                                     if(result.equals("success")) {
@@ -335,7 +335,7 @@ public class VolumeFragment extends Fragment {
                                                 String descriptionNew= decriptionV.getText().toString();
                                                 dialog.dismiss();
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).editVolume(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).editVolume(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             if(result.equals("success")) {
@@ -400,7 +400,7 @@ public class VolumeFragment extends Fragment {
                                         builderSecurityGroup.setView(textEntryView);
 
                                         //List flavors
-                                        HttpRequestController.getInstance(getContext()).listInstance(new HttpRequestController.VolleyCallback() {
+                                        HttpRequest.getInstance(getContext()).listInstance(new HttpRequest.VolleyCallback() {
                                             @Override
                                             public void onSuccess(String result) {
                                                 try {
@@ -475,7 +475,7 @@ public class VolumeFragment extends Fragment {
                                                 }else{
                                                     dialog.dismiss();
                                                     mOverlayDialog.show();
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).attachVolume(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).attachVolume(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             if(result.equals("success")) {
@@ -538,7 +538,7 @@ public class VolumeFragment extends Fragment {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         mOverlayDialog.show();
-                                                        HttpRequestController.getInstance(getActivity().getApplicationContext()).detachVolume(new HttpRequestController.VolleyCallback() {
+                                                        HttpRequest.getInstance(getActivity().getApplicationContext()).detachVolume(new HttpRequest.VolleyCallback() {
                                                             @Override
                                                             public void onSuccess(String result) {
                                                                 if(result.equals("success")) {
@@ -614,7 +614,7 @@ public class VolumeFragment extends Fragment {
                                                 String descriptionNew= decriptionV.getText().toString();
                                                 dialog.dismiss();
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).createVolumeSnapshot(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).createVolumeSnapshot(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if(result.equals("success")) {
@@ -676,7 +676,7 @@ public class VolumeFragment extends Fragment {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         mOverlayDialog.show();
-                                                        HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteVolume(new HttpRequestController.VolleyCallback() {
+                                                        HttpRequest.getInstance(getActivity().getApplicationContext()).deleteVolume(new HttpRequest.VolleyCallback() {
                                                             @Override
                                                             public void onSuccess(String result) {
                                                                 if(result.equals("success")) {

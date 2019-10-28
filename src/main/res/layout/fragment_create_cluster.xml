@@ -163,7 +163,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/DiscoveryURL1"
+                android:id="@+id/DiscoveryURLID1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/DiscoveryURL1"
+                android:layout_below="@+id/DiscoveryURLID1"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="10sp"
                 android:text="Timeout"

@@ -28,7 +28,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,7 +91,7 @@ public class SubnetFragment extends Fragment {
         });
 
 
-        HttpRequestController.getInstance(getContext()).listSubnet(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listSubnet(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -190,7 +190,7 @@ public class SubnetFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int i) {
                                             mOverlayDialog.show();
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteSubnet(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).deleteSubnet(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     if (result.equals("success")){

@@ -27,9 +27,10 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.fragment.AboutFragment;
 import com.jianqingc.nectar.fragment.Container_Infra_Fragment.ClustersFragment;
+import com.jianqingc.nectar.fragment.Container_Infra_Fragment.CreateClusterFragment;
 import com.jianqingc.nectar.fragment.Network_Fragment.AddRuleSGFragment;
 import com.jianqingc.nectar.fragment.Database_Fragment.ConfigurationGroupFragment;
 import com.jianqingc.nectar.fragment.Object_Fragment.ContainerFragment;
@@ -125,7 +126,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity
         menu.findItem(R.id.create_configuration_group).setVisible(false);
         menu.findItem(R.id.create_database_instance).setVisible(false);
         menu.findItem(R.id.create_database_backup).setVisible(false);
+        menu.findItem(R.id.create_cluster).setVisible(false);
 
         //return true;
         return true;
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity
                             String description = newsgDescription.getText().toString();
                             dialog.dismiss();
                             mOverlayDialog.show();
-                            HttpRequestController.getInstance(getApplicationContext()).createSecurityGroup(new HttpRequestController.VolleyCallback() {
+                            HttpRequest.getInstance(getApplicationContext()).createSecurityGroup(new HttpRequest.VolleyCallback() {
                                 @Override
                                 public void onSuccess(String result) {
                                     if(result.equals("success")) {
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity
                                 String name=input.getText().toString();
                                 dialog.dismiss();
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getApplicationContext()).createKeyPair(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getApplicationContext()).createKeyPair(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if(result.equals("success")) {
@@ -313,7 +314,7 @@ public class MainActivity extends AppCompatActivity
                     String publicKey = importkpPublicKey.getText().toString();
                     dialog.dismiss();
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getApplicationContext()).importKeyPair(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getApplicationContext()).importKeyPair(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if(result.equals("success")) {
@@ -360,23 +361,14 @@ public class MainActivity extends AppCompatActivity
 
             return true;
         }else if (id == R.id.create_volume_sg) {
-            //Toast.makeText(getApplicationContext(), "Create Volume", Toast.LENGTH_SHORT).show();
-
-
-
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             CreateVolumeFragment cvFragment = new CreateVolumeFragment();
-
             ft.replace(R.id.relativelayout_for_fragment, cvFragment, cvFragment.getTag()).commit();
-
             return true;
         } else if (id == R.id.create_alarm) {
             CreateAlarmFragment caf = new CreateAlarmFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, caf, caf.getTag()).commit();
-
             return true;
-
-
         } else if (id == R.id.create_container) {
             CreateContainerFragment ccf = new CreateContainerFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, ccf, ccf.getTag()).commit();
@@ -407,6 +399,10 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.create_database_backup){
             CreateDatabaseBackupFragment cdb = new CreateDatabaseBackupFragment();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, cdb, cdb.getTag()).commit();
+            return true;
+        } else if (id == R.id.create_cluster){
+            CreateClusterFragment cdb = new CreateClusterFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, cdb, cdb.getTag()).commit();
             return true;
         }

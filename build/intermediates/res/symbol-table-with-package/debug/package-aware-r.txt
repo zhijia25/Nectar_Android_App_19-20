@@ -861,7 +861,7 @@ id DatabaseBackupbuttonbuttom
 id Delete
 id Detail
 id DiscoveryURL
-id DiscoveryURL1
+id DiscoveryURLID1
 id DockerVolumeSize
 id DockerVolumeSize1
 id Edit
@@ -1115,8 +1115,6 @@ id clusterDetail8
 id clusterDetail9
 id clusterID
 id clusterID1
-id clusterImageID
-id clusterImageID1
 id clusterKeypairID
 id clusterKeypairID1
 id clusterLI1
@@ -1199,6 +1197,7 @@ id createVCV
 id createVD
 id createVD1
 id create_alarm
+id create_cluster
 id create_configuration_group
 id create_container
 id create_database_backup
@@ -1325,6 +1324,8 @@ id detailVLV
 id dettachVLV
 id dettachVLV1
 id disableHome
+id discoveryURL
+id discoveryURLID1
 id discriptionVSL
 id discriptionVSL1
 id drawer_layout

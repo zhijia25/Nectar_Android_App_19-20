@@ -23,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,7 +102,7 @@ public class CopyContainerFragment extends Fragment {
             }
         });
 
-        HttpRequestController.getInstance(getContext()).listContainer(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listContainer(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 final List<String> container_list;
@@ -150,7 +150,7 @@ public class CopyContainerFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).copyObject(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).copyObject(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if(result.equals("success")){

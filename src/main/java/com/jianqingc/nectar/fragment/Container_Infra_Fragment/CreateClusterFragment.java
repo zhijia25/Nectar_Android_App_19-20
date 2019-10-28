@@ -19,9 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.controller.RadioAdapter;
-import com.jianqingc.nectar.fragment.Compute_Fragment.InstanceFragment;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
+import com.jianqingc.nectar.util.RadioAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,7 +73,7 @@ public class CreateClusterFragment extends Fragment {
         final EditText size= (EditText) myView.findViewById(R.id.DockerVolumeSize);
         final EditText masterCount= (EditText) myView.findViewById(R.id.masterCount1);
         final EditText nodeCount= (EditText) myView.findViewById(R.id.nodeCount1);
-        final EditText dicoverayURL= (EditText) myView.findViewById(R.id.DiscoveryURL1);
+        final EditText dicoverayURL= (EditText) myView.findViewById(R.id.DiscoveryURLID1);
         final EditText timeOut= (EditText) myView.findViewById(R.id.timeOut1);
 
         final Spinner keyPair= (Spinner) myView.findViewById(R.id.keyPair1);
@@ -85,7 +84,7 @@ public class CreateClusterFragment extends Fragment {
         final Button create = (Button)myView.findViewById(R.id.createNI);
 
         //List flavors
-        HttpRequestController.getInstance(getContext()).listFlavor(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listFlavor(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -158,7 +157,7 @@ public class CreateClusterFragment extends Fragment {
         }, getActivity());
 
         //List available Templates
-        HttpRequestController.getInstance(getContext()).listTemplate(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listTemplate(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -208,7 +207,7 @@ public class CreateClusterFragment extends Fragment {
         }, getActivity());
 
         //List available Key pairs
-        HttpRequestController.getInstance(getContext()).listKeyPair(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listKeyPair(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -280,7 +279,7 @@ public class CreateClusterFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(),"Please fill in necessary information" , Toast.LENGTH_SHORT).show();
                 }else{
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).createCluster(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).createCluster(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if (result.equals("success")) {
@@ -289,13 +288,9 @@ public class CreateClusterFragment extends Fragment {
                                     @Override
                                     public void run() {
                                         mOverlayDialog.dismiss();
-
-
                                         FragmentManager manager = getFragmentManager();
-                                        InstanceFragment instanceFragment = new InstanceFragment();
-                                        manager.beginTransaction().replace(R.id.relativelayout_for_fragment, instanceFragment, instanceFragment.getTag()).commit();
-
-
+                                        ClustersFragment clustersFragment = new ClustersFragment();
+                                        manager.beginTransaction().replace(R.id.relativelayout_for_fragment, clustersFragment, clustersFragment.getTag()).commit();
                                     }
                                 };
                                 /**

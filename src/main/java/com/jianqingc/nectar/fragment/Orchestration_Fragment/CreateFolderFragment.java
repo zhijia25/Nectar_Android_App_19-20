@@ -15,7 +15,7 @@ import android.widget.Toast;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import java.util.TimerTask;
 
@@ -92,7 +92,7 @@ public class CreateFolderFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).createFolder(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).createFolder(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if (result.equals("success")){

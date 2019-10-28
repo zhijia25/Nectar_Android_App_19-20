@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
-import com.jianqingc.nectar.controller.RadioAdapter;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
+import com.jianqingc.nectar.util.RadioAdapter;
 
 import java.util.List;
 import java.util.Timer;
@@ -176,7 +176,7 @@ public class CreateStackFragment extends Fragment {
 
                 } else {
                     mOverlayDialog.show();
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).createStack(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).createStack(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             if(result.equals("success")){

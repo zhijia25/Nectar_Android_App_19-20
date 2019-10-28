@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,7 +64,7 @@ public class ConfigurationGroupDetailFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
 
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).showConfigGroupDetail(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).showConfigGroupDetail(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 setView(result);
@@ -82,7 +82,7 @@ public class ConfigurationGroupDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).showConfigGroupDetail(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).showConfigGroupDetail(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         setView(result);

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -111,7 +111,7 @@ public class StacksDetailFragment extends Fragment {
         mOverlayDialog.setCancelable(false);
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 setView(result);
@@ -133,7 +133,7 @@ public class StacksDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         setView(result);
@@ -168,14 +168,14 @@ public class StacksDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).suspendStack(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).suspendStack(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if(result.equals("success")) {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -191,7 +191,7 @@ public class StacksDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 7000);
                                         } else{
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -223,14 +223,14 @@ public class StacksDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).resumeStack(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).resumeStack(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if(result.equals("success")) {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -246,7 +246,7 @@ public class StacksDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 7000);
                                         } else{
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -277,14 +277,14 @@ public class StacksDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).checkStack(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).checkStack(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if(result.equals("success")) {
                                             TimerTask task = new TimerTask() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             setView(result);
@@ -300,7 +300,7 @@ public class StacksDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 7000);
                                         } else{
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -334,7 +334,7 @@ public class StacksDetailFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mOverlayDialog.show();
-                                HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteStack(new HttpRequestController.VolleyCallback() {
+                                HttpRequest.getInstance(getActivity().getApplicationContext()).deleteStack(new HttpRequest.VolleyCallback() {
                                     @Override
                                     public void onSuccess(String result) {
                                         if(result.equals("success")) {
@@ -354,7 +354,7 @@ public class StacksDetailFragment extends Fragment {
                                              */
                                             timer.schedule(task, 4000);
                                         } else{
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleStack(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     setView(result);
@@ -424,7 +424,7 @@ public class StacksDetailFragment extends Fragment {
             statusReason = JSONResult.getString("statusReason");
 //            key=JSONResult.getString("key");
 //            String imageID=JSONResult.getString("image");
-//            HttpRequestController.getInstance(getActivity().getApplicationContext()).showImageDetail(new HttpRequestController.VolleyCallback() {
+//            HttpRequest.getInstance(getActivity().getApplicationContext()).showImageDetail(new HttpRequest.VolleyCallback() {
 //                @Override
 //                public void onSuccess(String result) {
 //                    try{
@@ -445,7 +445,7 @@ public class StacksDetailFragment extends Fragment {
 //            }else{
 //                for(int i=0; i<vNum;i++){
 //                    String vID=JSONResult.getString("volume"+i);
-//                    HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequestController.VolleyCallback() {
+//                    HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequest.VolleyCallback() {
 //                        @Override
 //                        public void onSuccess(String result) {
 //                            try{

@@ -20,7 +20,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +65,7 @@ public class ResourceTypesFragment extends Fragment {
         mOverlayDialog.show();
         final DecimalFormat df= new DecimalFormat("######0.00");
         //List Images
-        HttpRequestController.getInstance(getContext()).listResourceTypes(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listResourceTypes(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {

@@ -30,7 +30,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +70,7 @@ public class FloatingFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
 
-        HttpRequestController.getInstance(getContext()).listFloatingIP(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listFloatingIP(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -159,7 +159,7 @@ public class FloatingFragment extends Fragment {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
                                                     mOverlayDialog.show();
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteFloatingIP(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).deleteFloatingIP(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             if(result.equals("success")){

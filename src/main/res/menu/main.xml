@@ -8,7 +8,7 @@
         android:orderInCategory="100"
         android:title="Launch Instance"
         app:showAsAction="never"
-       ></item>
+       />
     <item
         android:id="@+id/add_SG"
         android:orderInCategory="100"
@@ -44,11 +44,13 @@
         android:orderInCategory="100"
         android:title="Create Alarm"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/create_container"
         android:orderInCategory="100"
         android:title="Create Container"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/create_floatingIP"
         android:orderInCategory="100"
@@ -60,23 +62,34 @@
         android:orderInCategory="100"
         android:title="Create Router"
         app:showAsAction ="never" />
+
     <item
         android:id="@+id/create_stack"
         android:title="Create Stack" />
+
     <item
         android:id="@+id/create_network"
         android:orderInCategory="100"
         android:title="Create Network"
         app:showAsAction = "never" />
+
     <item
         android:id="@+id/create_database_instance"
         android:title="Create Database Instance" />
+
     <item
         android:id="@+id/create_database_backup"
         android:title="Create Backup" />
+
     <item
         android:id="@+id/create_configuration_group"
         android:title="Create Configuration Group" />
+
+    <item
+        android:id="@+id/create_cluster"
+        android:orderInCategory="100"
+        android:title="Create Cluster"
+        app:showAsAction ="never" />
 
 
 </menu>

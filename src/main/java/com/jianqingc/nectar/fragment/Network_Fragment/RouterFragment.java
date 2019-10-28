@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,7 +33,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.tuesda.walker.circlerefresh.CircleRefreshLayout;
 
 import org.json.JSONArray;
@@ -83,7 +82,7 @@ public class RouterFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
 
-        HttpRequestController.getInstance(getContext()).listRouter(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listRouter(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -285,7 +284,7 @@ public class RouterFragment extends Fragment {
                                             } else {
                                                 admin_state = false;
                                             }
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).editRouter(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).editRouter(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if(result.equals("success")) {
@@ -349,7 +348,7 @@ public class RouterFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int i) {
                                             mOverlayDialog.show();
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteRouter(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).deleteRouter(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     if (result.equals("success")){

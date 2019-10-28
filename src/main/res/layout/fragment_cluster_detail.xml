@@ -15,6 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal"
             android:id="@+id/clusterDetail1"
             android:layout_centerHorizontal="true"
@@ -51,6 +54,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal"
             android:layout_below="@+id/clusterDetail1"
             android:id="@+id/clusterDetail2"
@@ -88,6 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail2"
             android:id="@+id/clusterDetail3"
             android:layout_centerHorizontal="true"
@@ -125,6 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail3"
             android:id="@+id/clusterDetail4"
             android:layout_centerHorizontal="true"
@@ -132,7 +141,7 @@
             android:weightSum="1">
 
             <TextView
-                android:id="@+id/clusterImageID1"
+                android:id="@+id/discoveryURLID1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -140,19 +149,19 @@
                 android:layout_marginLeft="5sp"
                 android:layout_marginTop="20sp"
                 android:layout_weight="0.3"
-                android:text="Image ID"
+                android:text="iscoveryURL"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Medium Text"
-                android:id="@+id/clusterImageID"
-                android:layout_marginTop="20sp"
-                android:textIsSelectable="true"
+                android:id="@+id/discoveryURL"
                 android:layout_width="0dp"
-                android:layout_weight="0.7" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_weight="0.7"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textIsSelectable="true" />
 
 
         </LinearLayout>
@@ -161,6 +170,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail4"
             android:id="@+id/clusterDetail5"
             android:layout_centerHorizontal="true"
@@ -196,6 +207,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail5"
             android:id="@+id/clusterDetail6"
             android:layout_centerHorizontal="true"
@@ -231,6 +244,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail6"
             android:id="@+id/clusterDetail7"
             android:layout_centerHorizontal="true"
@@ -266,6 +281,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail7"
             android:id="@+id/clusterDetail8"
             android:layout_centerHorizontal="true"
@@ -301,6 +318,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail8"
             android:id="@+id/clusterDetail9"
             android:layout_centerHorizontal="true"
@@ -337,6 +356,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/clusterDetail9"
             android:id="@+id/clusterDetail10"
             android:layout_centerHorizontal="true"

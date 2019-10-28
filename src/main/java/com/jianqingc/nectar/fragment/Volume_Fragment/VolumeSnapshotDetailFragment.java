@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +59,7 @@ public class VolumeSnapshotDetailFragment extends Fragment{
         mOverlayDialog.show();
 
 
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeSnapshotDetail(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeSnapshotDetail(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 setView(result);
@@ -77,7 +77,7 @@ public class VolumeSnapshotDetailFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeSnapshotDetail(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeSnapshotDetail(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         setView(result);
@@ -131,7 +131,7 @@ public class VolumeSnapshotDetailFragment extends Fragment{
 
 
 
-            HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequestController.VolleyCallback() {
+            HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             try{

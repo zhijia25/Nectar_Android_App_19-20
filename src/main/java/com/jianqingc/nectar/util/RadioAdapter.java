@@ -1,4 +1,4 @@
-package com.jianqingc.nectar.controller;
+package com.jianqingc.nectar.util;
 
 /**
  * Created by HuangMengxue on 17/5/3.
@@ -8,8 +8,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import java.util.ArrayList;
-import com.jianqingc.nectar.controller.ChoiceListItemView;
+
 import java.util.List;
 
 public class RadioAdapter extends BaseAdapter {

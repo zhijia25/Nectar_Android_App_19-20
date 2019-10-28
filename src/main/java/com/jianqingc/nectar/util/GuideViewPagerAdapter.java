@@ -1,4 +1,4 @@
-package com.jianqingc.nectar.controller;
+package com.jianqingc.nectar.util;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;

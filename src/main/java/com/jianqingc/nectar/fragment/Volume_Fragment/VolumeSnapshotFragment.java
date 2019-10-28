@@ -29,7 +29,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,7 +83,7 @@ public class VolumeSnapshotFragment extends Fragment  {
 
 
         // Inflate the layout for this fragment
-        HttpRequestController.getInstance(getContext()).listVolumeSnapshot(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listVolumeSnapshot(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -211,7 +211,7 @@ public class VolumeSnapshotFragment extends Fragment  {
                                                 String descriptionNew= decriptionV.getText().toString();
                                                 dialog.dismiss();
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).editVolumeSnapshot(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).editVolumeSnapshot(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if(result.equals("success")) {
@@ -272,7 +272,7 @@ public class VolumeSnapshotFragment extends Fragment  {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         mOverlayDialog.show();
-                                                        HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteVolumeSnapshot(new HttpRequestController.VolleyCallback() {
+                                                        HttpRequest.getInstance(getActivity().getApplicationContext()).deleteVolumeSnapshot(new HttpRequest.VolleyCallback() {
                                                             @Override
                                                             public void onSuccess(String result) {
                                                                 if(result.equals("success")) {

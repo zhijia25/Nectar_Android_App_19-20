@@ -29,7 +29,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,7 +95,7 @@ public class ConfigurationGroupFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
         // Inflate the layout for this fragment
-        HttpRequestController.getInstance(getContext()).listConfigGroup(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listConfigGroup(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -224,7 +224,7 @@ public class ConfigurationGroupFragment extends Fragment {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     mOverlayDialog.show();
-                                                    HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteConfigGroup(new HttpRequestController.VolleyCallback() {
+                                                    HttpRequest.getInstance(getActivity().getApplicationContext()).deleteConfigGroup(new HttpRequest.VolleyCallback() {
                                                         @Override
                                                         public void onSuccess(String result) {
                                                             if(result.equals("success")) {

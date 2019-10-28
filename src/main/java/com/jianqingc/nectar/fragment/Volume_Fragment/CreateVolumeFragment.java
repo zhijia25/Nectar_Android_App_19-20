@@ -23,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +70,7 @@ public class CreateVolumeFragment extends Fragment{
 
 
         //List Availability zones
-        HttpRequestController.getInstance(getContext()).listAvailabilityZone(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listAvailabilityZone(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -122,7 +122,7 @@ public class CreateVolumeFragment extends Fragment{
 
 
         //List Availability zones
-        HttpRequestController.getInstance(getContext()).listVolumeType(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listVolumeType(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -198,7 +198,7 @@ public class CreateVolumeFragment extends Fragment{
 
 
                         mOverlayDialog.show();
-                        HttpRequestController.getInstance(getActivity().getApplicationContext()).createVolume(new HttpRequestController.VolleyCallback() {
+                        HttpRequest.getInstance(getActivity().getApplicationContext()).createVolume(new HttpRequest.VolleyCallback() {
                             @Override
                             public void onSuccess(String result) {
                                 if (result.equals("success")) {

@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,13 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickSignInButton(View view) {
-
-
-
-//        remtenantname = (EditText) findViewById(R.id.tenantNameEditText);
-//        remusername = (EditText) findViewById(R.id.usernameEditText);
-//        rempassword = (EditText) findViewById(R.id.passwordEditText);
-
 
         rememberUser = (CheckBox) findViewById(R.id.rememberUser);
         entertenantName = ((EditText) findViewById(R.id.tenantNameEditText));
@@ -77,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         Log.i("username: ", username);
         Log.i("password: ", password);
         /**
-         * Call LoginHttp Function defined in controller/HttpRequestController
+         * Call LoginHttp Function defined in controller/HttpRequest
          */
-        HttpRequestController.getInstance(this).loginHttp(tenantName,username,password,this);
+        HttpRequest.getInstance(this).loginHttp(tenantName,username,password,this);
     }
 
 

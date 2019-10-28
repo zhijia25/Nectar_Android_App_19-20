@@ -25,7 +25,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.fragment.Object_Fragment.ContainerFragment;
 
 import org.json.JSONArray;
@@ -89,7 +89,7 @@ public class ObjectFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
 
-        HttpRequestController.getInstance(getContext()).listObject(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listObject(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -190,7 +190,7 @@ public class ObjectFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             mOverlayDialog.show();
-                                            HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteObject(new HttpRequestController.VolleyCallback() {
+                                            HttpRequest.getInstance(getActivity().getApplicationContext()).deleteObject(new HttpRequest.VolleyCallback() {
                                                 @Override
                                                 public void onSuccess(String result) {
                                                     if (result.equals("success")) {

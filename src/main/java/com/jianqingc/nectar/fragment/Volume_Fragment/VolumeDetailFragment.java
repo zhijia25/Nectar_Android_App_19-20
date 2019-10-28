@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +59,7 @@ public class VolumeDetailFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
 
-        HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 setView(result);
@@ -77,7 +77,7 @@ public class VolumeDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mOverlayDialog.show();
-                HttpRequestController.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequestController.VolleyCallback() {
+                HttpRequest.getInstance(getActivity().getApplicationContext()).showVolumeDetail(new HttpRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
                         setView(result);
@@ -142,7 +142,7 @@ public class VolumeDetailFragment extends Fragment {
                 for(int i=0; i<iNum;i++){
                     String sID=JSONResult.getString("server"+i);
                     final String device=JSONResult.getString("device"+i);
-                    HttpRequestController.getInstance(getActivity().getApplicationContext()).listSingleInstance(new HttpRequestController.VolleyCallback() {
+                    HttpRequest.getInstance(getActivity().getApplicationContext()).listSingleInstance(new HttpRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
                             try{

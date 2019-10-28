@@ -30,7 +30,7 @@ import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.jianqingc.nectar.R;
-import com.jianqingc.nectar.controller.HttpRequestController;
+import com.jianqingc.nectar.httpRequest.HttpRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,7 +79,7 @@ public class AlarmFragment extends Fragment {
         //final DecimalFormat df = new DecimalFormat("######0.00");
 
         //List Alarm
-        HttpRequestController.getInstance(getContext()).listAlarmProject(new HttpRequestController.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listAlarmProject(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try{
@@ -249,7 +249,7 @@ public class AlarmFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface dialog, int i) {
                                                 mOverlayDialog.show();
-                                                HttpRequestController.getInstance(getActivity().getApplicationContext()).deleteAlarm(new HttpRequestController.VolleyCallback() {
+                                                HttpRequest.getInstance(getActivity().getApplicationContext()).deleteAlarm(new HttpRequest.VolleyCallback() {
                                                     @Override
                                                     public void onSuccess(String result) {
                                                         if (result.equals("success")){
