@@ -1,0 +1,48 @@
+<com.tuesda.walker.circlerefresh.CircleRefreshLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:AniBackColor="#ff8b90af"
+    app:AniForeColor="#ffffffff"
+    app:CircleSmaller="6"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffcc00"
+        android:fillViewport="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            tools:context=".fragment.Network_Fragment.RouterFragment">
+
+
+            <ListView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/listViewClusterTemplate"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="200dp"
+                android:requiresFadingEdge="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:divider="#ffcc00"
+                android:dividerHeight="5dp"
+                android:fadeScrollbars="true"
+                android:footerDividersEnabled="true" />
+
+        </RelativeLayout>
+    </ScrollView>
+</com.tuesda.walker.circlerefresh.CircleRefreshLayout>

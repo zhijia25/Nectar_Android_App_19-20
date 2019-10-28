@@ -50,10 +50,6 @@ public class ClustersFragment extends Fragment {
     BindDictionary<String[]> dictionary;
     Bundle bundle;
     String clusterID;
-    String status;
-    String editClusterName;
-    String newEditClusterName;
-
 
     public ClustersFragment() {
 
@@ -292,7 +288,7 @@ public class ClustersFragment extends Fragment {
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.findItem(R.id.create_router).setVisible(true);
+        menu.findItem(R.id.create_cluster).setVisible(true);
 
     }
 }

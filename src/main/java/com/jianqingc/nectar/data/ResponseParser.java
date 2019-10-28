@@ -1209,15 +1209,21 @@ public class ResponseParser {
         return resultObject;
     }
 
-    public JSONArray listTemplates(String response){
+    public JSONArray listClusterTemplate(String response){
         JSONArray resultArray= new JSONArray();
         try {
             JSONObject responseJSON = new JSONObject(response);
-            JSONArray flavorArray= responseJSON.getJSONArray("clustertemplates");
-            for (int i=0;i<flavorArray.length();i++) {
-                JSONObject flavorObject = (JSONObject) flavorArray.get(i);
+            JSONArray TemplateArray= responseJSON.getJSONArray("clustertemplates");
+            for (int i=0;i<TemplateArray.length();i++) {
+                JSONObject TemplateObject = (JSONObject) TemplateArray.get(i);
                 JSONObject resultObject = new JSONObject();
-                resultObject.put("clustertemplateName", flavorObject.getString("name"));
+                resultObject.put("name",TemplateObject.getString("name"));
+                resultObject.put("uuid",TemplateObject.getString("uuid"));
+                resultObject.put("keypair_id",TemplateObject.getString("keypair_id"));
+                resultObject.put("image_id",TemplateObject.getString("image_id"));
+                resultObject.put("coe",TemplateObject.getString("coe"));
+                resultObject.put("created_at",TemplateObject.getString("created_at"));
+                resultObject.put("dns_nameserver",TemplateObject.getString("dns_nameserver"));
                 resultArray.put(i, resultObject);
             }
 
@@ -1227,7 +1233,25 @@ public class ResponseParser {
         return resultArray;
     }
 
+    public JSONObject listClusterTemplateDetail(String response){
+        JSONObject resultObject = new JSONObject();
+        try {
+            JSONObject responseJSON = new JSONObject(response);
+            resultObject.put("name",responseJSON.getString("name"));
+            resultObject.put("uuid",responseJSON.getString("uuid"));
+            resultObject.put("keypair_id",responseJSON.getString("keypair_id"));
+            resultObject.put("image_id",responseJSON.getString("image_id"));
+            resultObject.put("coe",responseJSON.getString("coe"));
+            resultObject.put("created_at",responseJSON.getString("created_at"));
+            resultObject.put("dns_nameserver",responseJSON.getString("dns_nameserver"));
 
+            //Add attaching servers latter
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return resultObject;
+    }
 
 
 }

@@ -36,12 +36,12 @@
         "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\1edf4b6c20b26a2659662e386a1e492d\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
-        "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_attach_volume.xml.flat",
-        "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\attach_volume.xml"
-    },
-    {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_edit_router.xml.flat",
         "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\edit_router.xml"
+    },
+    {
+        "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_attach_volume.xml.flat",
+        "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\attach_volume.xml"
     },
     {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_light.xml.flat",
@@ -106,6 +106,10 @@
     {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark.xml.flat",
         "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\495b72220d73373948e520fdeebc69c5\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cluster_template.xml.flat",
+        "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\fragment_cluster_template.xml"
     },
     {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_default.xml.flat",
@@ -508,6 +512,10 @@
         "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\1edf4b6c20b26a2659662e386a1e492d\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
+        "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_cluster_template_list_pattern.xml.flat",
+        "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\cluster_template_list_pattern.xml"
+    },
+    {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\1edf4b6c20b26a2659662e386a1e492d\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
@@ -810,6 +818,10 @@
     {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\yaopc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-24.2.1.aar\\1edf4b6c20b26a2659662e386a1e492d\\res\\drawable-mdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cluster_template_detail.xml.flat",
+        "source": "D:\\File\\Code\\Nectar_Android_App_19-20\\src\\main\\res\\layout\\fragment_cluster_template_detail.xml"
     },
     {
         "merged": "D:\\File\\Code\\Nectar_Android_App_19-20\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",

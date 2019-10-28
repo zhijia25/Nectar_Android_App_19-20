@@ -59,6 +59,92 @@ public class HttpRequest {
      * @param context
      */
 
+//    public void loginHttp(String tenantName, String username, String password, final Context context) {
+//        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+//        final String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
+//
+//        /**
+//         * Assemble Json Object According to NeCTAR API documentation
+//         */
+//        JSONObject identityDomain = new JSONObject();
+//        JSONObject user = new JSONObject();
+//        JSONObject passwordOuter = new JSONObject();
+//        JSONObject identity = new JSONObject();
+//        JSONObject scopeId = new JSONObject();
+//        JSONObject project = new JSONObject();
+//        JSONObject scope = new JSONObject();
+//        JSONObject auth = new JSONObject();
+//        JSONObject send = new JSONObject();
+//        JSONArray jsa = new JSONArray();
+//        jsa.put("password");
+//
+//        try {
+//            identityDomain.put("id","default");
+//            user.put("password", password);
+//            user.put("name", username);
+//            user.put("domain", identityDomain);
+//            passwordOuter.put("user", user);
+//            identity.put("password", passwordOuter);
+//            identity.put("methods", jsa);
+//            scopeId.put("id","default");
+//            project.put("name",tenantName);
+//            project.put("domain", scopeId);
+//            scope.put("project",project);
+//            auth.put("identity", identity);
+//            auth.put("scope", scope);
+//            send.put("auth", auth);
+//
+//
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        JsonRequest request = new JsonRequest
+//                (Request.Method.POST, loginUri, send, new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try {
+//                            JSONObject body= response.getJSONObject("body");
+//                            JSONObject header = response.getJSONObject("header");
+//                            ResponseParser.getInstance(mApplicationContext).loginParser(header,body);
+//                            Intent i = new Intent(mApplicationContext, MainActivity.class);
+//                            SharedPreferences sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            /**
+//                             * Enable auto-login function
+//                             */
+//                            editor.putBoolean("isSignedOut", false);
+//                            editor.apply();
+//                            context.startActivity(i);
+//                            Toast.makeText(mApplicationContext, "Login Succeed", Toast.LENGTH_SHORT).show();
+//                        } catch (JSONException e) {
+////                            Log.e(LOG_TAG, Log.getStackTraceString(e));
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        if (error.networkResponse.statusCode == 401) {
+//
+//                            Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
+//                            Intent i = new Intent(mApplicationContext, LoginActivity.class);
+//                            context.startActivity(i);
+//                        }
+//                        Log.i("error", "onErrorResponse: ");
+//                        Toast.makeText(mApplicationContext, "              Login Failed\nPlease check the required fields", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//
+//        {
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json";
+//            }
+//        };
+//        Network.getInstance(mApplicationContext).addToRequestQueue(request);
+//    }
+
     public void loginHttp(String tenantName, String username, String password, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         final String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
@@ -94,54 +180,12 @@ public class HttpRequest {
             auth.put("scope", scope);
             send.put("auth", auth);
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonRequest request = new JsonRequest
-                (Request.Method.POST, loginUri, send, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject body= response.getJSONObject("body");
-                            JSONObject header = response.getJSONObject("header");
-                            ResponseParser.getInstance(mApplicationContext).loginParser(header,body);
-                            Intent i = new Intent(mApplicationContext, MainActivity.class);
-                            SharedPreferences sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            /**
-                             * Enable auto-login function
-                             */
-                            editor.putBoolean("isSignedOut", false);
-                            editor.apply();
-                            context.startActivity(i);
-                            Toast.makeText(mApplicationContext, "Login Succeed", Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-//                            Log.e(LOG_TAG, Log.getStackTraceString(e));
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        LoginModel loginModel = new LoginModel(loginUri, send, context, mApplicationContext);
+        JsonRequest request = loginModel.loginRequest();
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error.networkResponse.statusCode == 401) {
-
-                            Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                            context.startActivity(i);
-                        }
-                        Log.i("error", "onErrorResponse: ");
-                        Toast.makeText(mApplicationContext, "              Login Failed\nPlease check the required fields", Toast.LENGTH_SHORT).show();
-                    }
-                })
-
-        {
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
         Network.getInstance(mApplicationContext).addToRequestQueue(request);
     }
 
@@ -5865,7 +5909,7 @@ public class HttpRequest {
      * @param context
      */
 
-    public void listTemplate(final VolleyCallback callback, final Context context) {
+    public void listClusterTemplate(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String partURL = "/clustertemplates";
@@ -5876,7 +5920,7 @@ public class HttpRequest {
                     @Override
                     public void onResponse(String response) {
                         JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listTemplates(response);
+                        resultArray = ResponseParser.getInstance(mApplicationContext).listClusterTemplate(response);
                         String result = resultArray.toString();
                         callback.onSuccess(result);
                         // Display the first 500 characters of the response string.
@@ -5890,6 +5934,52 @@ public class HttpRequest {
                     context.startActivity(i);
                 } else {
                     Toast.makeText(mApplicationContext, "Getting templates Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("X-Auth-Token", token);
+                return headers;
+            }
+        };
+        Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
+    }
+
+    /**
+     * Get the detailed info of a specific volume
+     *
+     * @param callback
+     * @param context
+     * @param uuid
+     */
+
+    public void showClusterTemplateDetail(final VolleyCallback callback, final Context context, String uuid) {
+        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
+        String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Volume URL v3");
+        String partURL = "/clustertemplates/";
+        String fullURL = containerInfraURL + partURL + uuid;
+        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject resultObject;
+                        resultObject = ResponseParser.getInstance(mApplicationContext).listClusterTemplateDetail(response);
+                        String result = resultObject.toString();
+                        callback.onSuccess(result);
+                        // Display the first 500 characters of the response string.
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse == null || error.networkResponse.statusCode == 401) {
+                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
+                    context.startActivity(i);
+                } else {
+                    Toast.makeText(mApplicationContext, "Getting cluster detail Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         }) {

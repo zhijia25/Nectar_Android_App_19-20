@@ -14,6 +14,15 @@
     <string name="entry">Get it Start</string>
     <string name="alarmNameLI1">Alarm Name</string>
     <string name="create_cluster">Create Cluster</string>
+    <string name="name">Name</string>
+    <string name="id">ID</string>
+    <string name="coe">COE</string>
+    <string name="image">Image</string>
+    <string name="dns">DNS</string>
+    <string name="keypair">Keypair</string>
+    <string name="create_time">Create Time</string>
+    <string name="upgrade_time">Upgrade Time</string>
+    <string name="status">Status</string>
 
 
 </resources>

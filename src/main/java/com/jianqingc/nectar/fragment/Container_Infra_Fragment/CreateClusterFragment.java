@@ -157,7 +157,7 @@ public class CreateClusterFragment extends Fragment {
         }, getActivity());
 
         //List available Templates
-        HttpRequest.getInstance(getContext()).listTemplate(new HttpRequest.VolleyCallback() {
+        HttpRequest.getInstance(getContext()).listClusterTemplate(new HttpRequest.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
@@ -172,7 +172,7 @@ public class CreateClusterFragment extends Fragment {
 
                     templateList = new JSONArray(result);
                     for (int i = 0; i < templateList.length(); i++) {
-                        templates_list.add(templateList.getJSONObject(i).getString("Name"));
+                        templates_list.add(templateList.getJSONObject(i).getString("name"));
                     }
 
                     //New an Adapter

@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.jianqingc.nectar.fragment.Container_Infra_Fragment.ClusterTemplateFragment;
 import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.fragment.AboutFragment;
 import com.jianqingc.nectar.fragment.Container_Infra_Fragment.ClustersFragment;
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     NavigationView navigationView;
-
-
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -440,7 +439,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_cluster) {
             ClustersFragment clustersFragment = new ClustersFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment, clustersFragment, clustersFragment.getTag()).commit();
-        }else if (id == R.id.nav_container) {
+        } else if (id == R.id.nav_cluster_template) {
+            ClusterTemplateFragment clusterTemplateFragment = new ClusterTemplateFragment();
+            manager.beginTransaction().replace(R.id.relativelayout_for_fragment, clusterTemplateFragment, clusterTemplateFragment.getTag()).commit();
+        } else if (id == R.id.nav_container) {
             ContainerFragment containerFragment = new ContainerFragment();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment,containerFragment,containerFragment.getTag()).commit();
         } else if (id == R.id.nav_floatingIP) {
@@ -541,6 +543,7 @@ public class MainActivity extends AppCompatActivity
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 
 
 }

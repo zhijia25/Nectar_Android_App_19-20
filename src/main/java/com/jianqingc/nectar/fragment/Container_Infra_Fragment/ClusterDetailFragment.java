@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 public class ClusterDetailFragment extends Fragment {
 
+
+
     Bundle bundle;
     View myView;
     String clusterID;
