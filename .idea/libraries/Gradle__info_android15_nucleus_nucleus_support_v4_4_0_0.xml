@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: info.android15.nucleus:nucleus-support-v4-4.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nucleus-support-v4-4.0.0.aar/5d082171f484e3141329cf0c9d031537/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/nucleus-support-v4-4.0.0.aar/5d082171f484e3141329cf0c9d031537/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.android15.nucleus/nucleus-support-v4/4.0.0/f436afe58f2df7299deb66e124f640a6497c6b66/nucleus-support-v4-4.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
