@@ -17,8 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.jianqingc.nectar.activity.LoginActivity;
-import com.jianqingc.nectar.activity.MainActivity;
 import com.jianqingc.nectar.data.ResponseParser;
+import com.jianqingc.nectar.model.*;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,96 +59,9 @@ public class HttpRequest {
      * @param context
      */
 
-//    public void loginHttp(String tenantName, String username, String password, final Context context) {
-//        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-//        final String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
-//
-//        /**
-//         * Assemble Json Object According to NeCTAR API documentation
-//         */
-//        JSONObject identityDomain = new JSONObject();
-//        JSONObject user = new JSONObject();
-//        JSONObject passwordOuter = new JSONObject();
-//        JSONObject identity = new JSONObject();
-//        JSONObject scopeId = new JSONObject();
-//        JSONObject project = new JSONObject();
-//        JSONObject scope = new JSONObject();
-//        JSONObject auth = new JSONObject();
-//        JSONObject send = new JSONObject();
-//        JSONArray jsa = new JSONArray();
-//        jsa.put("password");
-//
-//        try {
-//            identityDomain.put("id","default");
-//            user.put("password", password);
-//            user.put("name", username);
-//            user.put("domain", identityDomain);
-//            passwordOuter.put("user", user);
-//            identity.put("password", passwordOuter);
-//            identity.put("methods", jsa);
-//            scopeId.put("id","default");
-//            project.put("name",tenantName);
-//            project.put("domain", scopeId);
-//            scope.put("project",project);
-//            auth.put("identity", identity);
-//            auth.put("scope", scope);
-//            send.put("auth", auth);
-//
-//
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JsonRequest request = new JsonRequest
-//                (Request.Method.POST, loginUri, send, new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            JSONObject body= response.getJSONObject("body");
-//                            JSONObject header = response.getJSONObject("header");
-//                            ResponseParser.getInstance(mApplicationContext).loginParser(header,body);
-//                            Intent i = new Intent(mApplicationContext, MainActivity.class);
-//                            SharedPreferences sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-//                            SharedPreferences.Editor editor = sharedPreferences.edit();
-//                            /**
-//                             * Enable auto-login function
-//                             */
-//                            editor.putBoolean("isSignedOut", false);
-//                            editor.apply();
-//                            context.startActivity(i);
-//                            Toast.makeText(mApplicationContext, "Login Succeed", Toast.LENGTH_SHORT).show();
-//                        } catch (JSONException e) {
-////                            Log.e(LOG_TAG, Log.getStackTraceString(e));
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        if (error.networkResponse.statusCode == 401) {
-//
-//                            Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-//                            Intent i = new Intent(mApplicationContext, LoginActivity.class);
-//                            context.startActivity(i);
-//                        }
-//                        Log.i("error", "onErrorResponse: ");
-//                        Toast.makeText(mApplicationContext, "              Login Failed\nPlease check the required fields", Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//
-//        {
-//            @Override
-//            public String getBodyContentType() {
-//                return "application/json";
-//            }
-//        };
-//        Network.getInstance(mApplicationContext).addToRequestQueue(request);
-//    }
-
     public void loginHttp(String tenantName, String username, String password, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         final String loginUri = "https://keystone.rc.nectar.org.au:5000/v3/auth/tokens";
-
         /**
          * Assemble Json Object According to NeCTAR API documentation
          */
@@ -179,13 +92,11 @@ public class HttpRequest {
             auth.put("identity", identity);
             auth.put("scope", scope);
             send.put("auth", auth);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        LoginModel loginModel = new LoginModel(loginUri, send, context, mApplicationContext);
-        JsonRequest request = loginModel.loginRequest();
-
+        LoginModel loginModel = new LoginModel();
+        JsonRequest request = loginModel.loginRequest(loginUri,send, context, mApplicationContext);
         Network.getInstance(mApplicationContext).addToRequestQueue(request);
     }
 
@@ -197,47 +108,8 @@ public class HttpRequest {
      * @param context
      */
     public void listOverview(final VolleyCallback callback, final Context context) {
-        sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
-        String partURL = "/limits";
-        String fullURL = computeServiceURL + partURL;
-        final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        callback.onSuccess(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error){
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    /**
-                     * Enable auto-login function
-                     */
-                    editor.putBoolean("isSignedOut", true);
-                    editor.apply();
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Listing limits Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            /**
-             * Set Token inside  the Http Request Header，，
-             * @return
-             * @throws AuthFailureError
-             */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListOverviewModel listOverviewModel = new ListOverviewModel();
+        StringRequest stringRequest = listOverviewModel.listOverview(callback,context,mApplicationContext,sharedPreferences);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -253,35 +125,8 @@ public class HttpRequest {
         String partURL = "/servers/detail";
         String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listInstance(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Listing Instances Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListInstanceModel listInstanceModel = new ListInstanceModel();
+        StringRequest stringRequest = listInstanceModel.listInstance(fullURL,token, mApplicationContext,callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -298,35 +143,8 @@ public class HttpRequest {
         String partURL = "/flavors";
         String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listFlavor(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting flavor Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListFlavorModel listFlavorModel = new ListFlavorModel();
+        StringRequest stringRequest = listFlavorModel.listFlavor(fullURL,token,mApplicationContext,callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -342,35 +160,8 @@ public class HttpRequest {
         String partURL = "/os-keypairs";
         String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listKeyPair(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting key pairs Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListKeyPairModel listKeyPairModel = new ListKeyPairModel();
+        StringRequest stringRequest = listKeyPairModel.listKeyPair(fullURL,token, mApplicationContext, callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -388,38 +179,8 @@ public class HttpRequest {
         String partURL = "/os-keypairs/";
         String fullURL = computeServiceURL + partURL + kpName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listkeypairDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-
-
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Getting the details of this key pair Failed", Toast.LENGTH_SHORT).show();
-                callback.onSuccess("error");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowKeyPairDetailModel showKeyPairDetailModel = new ShowKeyPairDetailModel();
+        StringRequest stringRequest = showKeyPairDetailModel.showKeyPairDetail(fullURL,token,kpName,mApplicationContext,callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -436,44 +197,8 @@ public class HttpRequest {
         String partURL = "/os-keypairs/";
         String fullURL = computeServiceURL + partURL + kpName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete Key pair failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DeleteKeyPairModel deleteKeyPairModel = new DeleteKeyPairModel();
+        StringRequest stringRequest = deleteKeyPairModel.deleteKeyPair(fullURL,token,kpName, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -490,36 +215,8 @@ public class HttpRequest {
         String partURL = "/os-availability-zone";
         String fullURL = computeServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listAvabilityZone(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if(error.networkResponse !=null){
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } }else {
-                    Toast.makeText(mApplicationContext, "Getting availability zones Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListAvailabilityZoneModel listAvailabilityZoneModel = new ListAvailabilityZoneModel();
+        StringRequest stringRequest = listAvailabilityZoneModel.listavailabilityZone(fullURL,token, mApplicationContext, callback,  context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -535,35 +232,8 @@ public class HttpRequest {
         String partURL = "/v2.0/security-groups";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listSecurityGroup(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting security groups Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListSecurityGroupModel listSecurityGroupModel = new ListSecurityGroupModel();
+        StringRequest stringRequest = listSecurityGroupModel.listSecurityGroup(fullURL, token,  mApplicationContext, callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -580,42 +250,8 @@ public class HttpRequest {
         String partURL = "/v2.0/security-groups/";
         String fullURL = computeServiceURL + partURL + sgID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    //Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DeleteSecurityGroupModel deleteSecurityGroupModel = new DeleteSecurityGroupModel();
+        StringRequest stringRequest = deleteSecurityGroupModel.deleteSecurityGroup(fullURL, token,mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -633,38 +269,8 @@ public class HttpRequest {
         String partURL = "/v2.0/security-groups/";
         String fullURL = computeServiceURL + partURL + sgId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listRulesSG(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-
-
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Getting Rules Failed", Toast.LENGTH_SHORT).show();
-                callback.onSuccess("error");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListManageRuleSGModel listManageRuleSGModel = new ListManageRuleSGModel();
+        StringRequest stringRequest = listManageRuleSGModel.listManageRuleSG(fullURL,token,mApplicationContext,callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -681,42 +287,8 @@ public class HttpRequest {
         String partURL = "/v2.0/security-group-rules/";
         String fullURL = computeServiceURL + partURL + ruleID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DeleteRuleSGModel deleteRuleSGModel = new DeleteRuleSGModel();
+        StringRequest stringRequest = deleteRuleSGModel.deleteRuleSG(fullURL,token, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -732,34 +304,8 @@ public class HttpRequest {
         String partURL = "/v2/alarms";
         String fullURL = alarmingServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listAlarm(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                    // contect extend long time
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Alarms Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListAlarmProjectModel listAlarmProjectModel = new ListAlarmProjectModel();
+        StringRequest stringRequest = listAlarmProjectModel.listAlarmProject(fullURL,token,mApplicationContext, callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -778,35 +324,8 @@ public class HttpRequest {
         String partURL = "/v2/images";
         String fullURL = imageServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listImage(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting images Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListImageProjectModel listImageProjectModel = new ListImageProjectModel();
+        StringRequest stringRequest = listImageProjectModel.listImageProject(fullURL,token, mApplicationContext,callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -824,35 +343,8 @@ public class HttpRequest {
         String owner = sharedPreferences.getString("tenantId", "Error Getting Project Id");
         String fullURL = imageServiceURL + partURL + owner;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listImageOfficial(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting images Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListImageOfficialModel listImageOfficialModel = new ListImageOfficialModel();
+        StringRequest stringRequest = listImageOfficialModel.listImageOfficial(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -870,35 +362,8 @@ public class HttpRequest {
         String partURL = "/v2/images/";
         String fullURL = imageServiceURL + partURL + id;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listImageDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowImageDetailModel showImageDetailModel = new ShowImageDetailModel();
+        StringRequest stringRequest = showImageDetailModel.showImageDetail(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -915,43 +380,8 @@ public class HttpRequest {
         String partURL = "/v2/images/";
         String fullURL = computeServiceURL + partURL + imageID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete image failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DeleteImageModel deleteImageModel = new DeleteImageModel();
+        StringRequest stringRequest = deleteImageModel.deleteImage(fullURL,  token, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -969,86 +399,8 @@ public class HttpRequest {
         String partURL= "/servers/";
         String fullURL = computeServiceURL + partURL + instanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        /**
-                         *  Pass the response of HTTP request to the Fragment
-                         *  Server ID, AZ,IP address, Name, and Status
-                         */
-                        try {
-                            JSONObject resp = new JSONObject(response);
-                            JSONObject result = new JSONObject();
-                            String id = resp.getJSONObject("server").getString("id");
-                            String zone = resp.getJSONObject("server").getString("OS-EXT-AZ:availability_zone");
-                            String address = resp.getJSONObject("server").getString("accessIPv4");
-                            String name = resp.getJSONObject("server").getString("name");
-                            String status = resp.getJSONObject("server").getString("status");
-                            String created = resp.getJSONObject("server").getString("created");
-                            String image = resp.getJSONObject("server").getJSONObject("image").getString("id");
-                            String key = resp.getJSONObject("server").getString("key_name");
-                            if (key.equals("null")) {
-                                key = "None";
-                            }
-                            JSONArray sgArray = resp.getJSONObject("server").getJSONArray("security_groups");
-                            String sg = "";
-                            if (sgArray.length() == 0) {
-                                sg = "None";
-                            } else {
-                                for (int i = 0; i < sgArray.length(); i++) {
-                                    JSONObject sgObject = (JSONObject) sgArray.get(i);
-                                    if (i == 0) {
-                                        sg = sgObject.getString("name");
-                                    } else {
-                                        sg = sg + ", " + sgObject.getString("name");
-                                    }
-                                }
-                            }
-
-                            JSONArray vArray = resp.getJSONObject("server").getJSONArray("os-extended-volumes:volumes_attached");
-                            int vNum = vArray.length();
-                            for (int j = 0; j < vNum; j++) {
-                                JSONObject vObject = (JSONObject) vArray.get(j);
-                                String volume = vObject.getString("id");
-                                result.put("volume" + j, volume);
-                            }
-                            result.put("id", id);
-                            result.put("zone", zone);
-                            result.put("address", address);
-                            result.put("name", name);
-                            result.put("status", status);
-                            result.put("created", created);
-                            result.put("image", image);
-                            result.put("key", key);
-                            result.put("securityg", sg);
-                            result.put("volNum", vNum);
-                            String stringResult = result.toString();
-                            callback.onSuccess(stringResult);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Instances Failed", Toast.LENGTH_SHORT).show();
-                callback.onSuccess("error");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListSingleInstanceModel listSingleInstanceModel = new ListSingleInstanceModel();
+        StringRequest stringRequest = listSingleInstanceModel.listSingleInstance(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1064,35 +416,8 @@ public class HttpRequest {
         String partURL = "/types";
         String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listVolumeType(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Types Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListVolumeTypeModel listVolumeTypeModel = new ListVolumeTypeModel();
+        StringRequest stringRequest = listVolumeTypeModel.listVolumeType(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1105,40 +430,12 @@ public class HttpRequest {
      */
     public void listVolumeSnapshot(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-        String tenant = sharedPreferences.getString("tenantId", "Error Getting Compute URL");
         String volumeV3ServiceURL = sharedPreferences.getString("volumeV3ServiceURL", "Error Getting Volume URL v3");
         String partURL = "/snapshots/detail";
         String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listSnapshot(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Snapshots Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListVolumeSnapshotModel listVolumeSnapshotModel = new ListVolumeSnapshotModel();
+        StringRequest stringRequest = listVolumeSnapshotModel.listVolumeSnapshot(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1155,35 +452,8 @@ public class HttpRequest {
         String partURL = "/volumes/detail";
         String fullURL = volumeV3ServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listVolume(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListVolumeModel listVolumeModel = new ListVolumeModel();
+        StringRequest stringRequest = listVolumeModel.listVolume(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1202,35 +472,8 @@ public class HttpRequest {
         String partURL = "/snapshots/";
         String fullURL = volumeV3ServiceURL + partURL + snapshotid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listVolumeSnapshotDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting snapshot detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowVolumeSnapshotDetailMdoel showVolumeSnapshotDetailMdoel = new ShowVolumeSnapshotDetailMdoel();
+        StringRequest stringRequest = showVolumeSnapshotDetailMdoel.showVolumeSnapshotDetail(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1249,35 +492,8 @@ public class HttpRequest {
         String partURL = "/volumes/";
         String fullURL = volumeV3ServiceURL + partURL + volumeid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listVolumeDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowVolumeDetailModel showVolumeDetailModel = new ShowVolumeDetailModel();
+        StringRequest stringRequest = showVolumeDetailModel.showVolumeDetail(fullURL,  token, mApplicationContext,  callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -1301,42 +517,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                /**
-                 * Successful Response is null so we have to separate it from the real Errors
-                 */
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        PauseModel pauseModel = new PauseModel();
+        JsonObjectRequest jsonObjectRequest = pauseModel.pause(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1359,39 +541,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        UnpauseModel unpauseModel = new UnpauseModel();
+        JsonObjectRequest jsonObjectRequest = unpauseModel.unpause(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1415,39 +566,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        StopModel stopModel = new StopModel();
+        JsonObjectRequest jsonObjectRequest = stopModel.stop(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1471,38 +591,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        StartModel startModel = new StartModel();
+        JsonObjectRequest jsonObjectRequest = startModel.start(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1525,39 +615,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        SuspendModel suspendModel = new SuspendModel();
+        JsonObjectRequest jsonObjectRequest = suspendModel.suspend(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1581,39 +640,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        ResumeModel resumeModel = new ResumeModel();
+        JsonObjectRequest jsonObjectRequest = resumeModel.resume(fullURL,  token, json,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1638,39 +666,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        RebootModel rebootModel = new RebootModel();
+        JsonObjectRequest jsonObjectRequest = rebootModel.reboot(fullURL,  token, json1,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1693,39 +690,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DeleteModel deleteModel = new DeleteModel();
+        JsonObjectRequest jsonObjectRequest = deleteModel.delete(fullURL,  token,json, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1752,40 +718,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        SnapshotModel snapshotModel = new SnapshotModel();
+        JsonObjectRequest jsonObjectRequest = snapshotModel.snapshot(fullURL,  token,  json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1817,7 +751,6 @@ public class HttpRequest {
                 }
             }
         }
-
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
         try {
@@ -1837,41 +770,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(json1);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create instance successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create instance", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        LaunchServerModel launchServerModel = new LaunchServerModel();
+        JsonObjectRequest jsonObjectRequest = launchServerModel.launchServer(fullURL, token,json1, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1897,40 +797,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        CreateSecurityGroupModel createSecurityGroupModel = new CreateSecurityGroupModel();
+        JsonObjectRequest jsonObjectRequest = createSecurityGroupModel.createSecurityGroup(fullURL, token, json1, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -1957,43 +825,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        System.out.println("dedededededededddededed");
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    System.out.println("dedededededededddededed");
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        EditSecurityGroupModel editSecurityGroupModel = new EditSecurityGroupModel();
+        JsonObjectRequest jsonObjectRequest = editSecurityGroupModel.editSecurityGroup(fullURL,token, json1, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2019,41 +852,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Import successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to import", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        ImportKeyPairModel importKeyPairModel = new ImportKeyPairModel();
+        JsonObjectRequest jsonObjectRequest = importKeyPairModel.importKeyPair(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2078,41 +878,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        CreateKeyPairModel createKeyPairModel = new CreateKeyPairModel();
+        JsonObjectRequest jsonObjectRequest = createKeyPairModel.createKeyPair(fullURL,token,  json1,  mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2149,41 +916,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Add successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to add", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        AddNewRuleModel addNewRuleModel = new AddNewRuleModel();
+        JsonObjectRequest jsonObjectRequest = addNewRuleModel.addNewRule(fullURL,token,json1, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2212,41 +946,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    //Toast.makeText(mApplicationContext, "Attach successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to attach", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        AttachVolumeModel attachVolumeModel = new AttachVolumeModel();
+        JsonObjectRequest jsonObjectRequest = attachVolumeModel.attachVolume(fullURL, token, json1,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2263,43 +964,8 @@ public class HttpRequest {
         String computeServiceURL = sharedPreferences.getString("computeServiceURL", "Error Getting Compute URL");
         String fullURL = computeServiceURL + "/servers/" + serverid + "/os-volume_attachments/" + attachID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Detach  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Detach failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DetachVolumeModel detachVolumeModel = new DetachVolumeModel();
+        StringRequest stringRequest = detachVolumeModel.detachVolume(fullURL,token,mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -2327,41 +993,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Edit V successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to edit V", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        EditVolumeModel editVolumeModel = new EditVolumeModel();
+        JsonObjectRequest jsonObjectRequest = editVolumeModel.editVolume(fullURL,token,json1,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2388,40 +1021,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to extend V", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        ExtendVolumeModel extendVolumeModel = new ExtendVolumeModel();
+        JsonObjectRequest jsonObjectRequest = extendVolumeModel.extendVolume(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2438,44 +1039,8 @@ public class HttpRequest {
         String partURL = "/volumes/";
         String fullURL = volumeV3ServiceURL + partURL + volumeid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DeleteVolumeModel deleteVolumeModel = new DeleteVolumeModel();
+        StringRequest stringRequest = deleteVolumeModel.deleteVolume(fullURL, token,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -2503,41 +1068,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "create snapshot successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create snapshot", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        CreateVolumeSnapshotModel createVolumeSnapshotModel = new CreateVolumeSnapshotModel();
+        JsonObjectRequest jsonObjectRequest = createVolumeSnapshotModel.createVolumeSnapshot(fullURL,token, json1, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2573,43 +1105,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to Create", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        CreateVolumeModel createVolumeModel = new CreateVolumeModel();
+        JsonObjectRequest jsonObjectRequest = createVolumeModel.createVolume(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2626,43 +1123,8 @@ public class HttpRequest {
         String partURL = "/snapshots/";
         String fullURL = volumeV3ServiceURL + partURL + snapshotID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DeleteVolumeSnapshotModel deleteVolumeSnapshotModel = new DeleteVolumeSnapshotModel();
+        StringRequest stringRequest = deleteVolumeSnapshotModel.deleteVolumeSnapshot(fullURL, token,mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -2690,41 +1152,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Edit VS successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to edit VS", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        EditVolumeSnapshotModel editVolumeSnapshotModel = new EditVolumeSnapshotModel();
+        JsonObjectRequest jsonObjectRequest = editVolumeSnapshotModel.editVolumeSnapshot(fullURL, token,json1,mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -2772,38 +1201,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-
-                    callback.onSuccess("success");
-
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to create", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-        System.out.println("work here");
+        CreateAlarmModel createAlarmModel = new CreateAlarmModel();
+        JsonObjectRequest jsonObjectRequest = createAlarmModel.createAlarm(fullURL,  token,json1,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
 
@@ -2815,37 +1214,8 @@ public class HttpRequest {
         String partURL = "/v2/alarms/";
         String fullURL = alarmingServiceURL + partURL + alarmID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        DeleteAlarmModel deleteAlarmModel = new DeleteAlarmModel();
+        StringRequest stringRequest = deleteAlarmModel.deleteAlarm(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -2855,38 +1225,8 @@ public class HttpRequest {
         String partURL = "?format=json";
         String fullURL = objectStorageServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listcontainer(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListContainerModel listContainerModel = new ListContainerModel();
+        StringRequest stringRequest = listContainerModel.listContainer(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -2896,39 +1236,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Public successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Public container failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("X-Container-Read", ".r:*");
-                return headers;
-            }
-        };
-
+        PublicContainerModel publicContainerModel = new PublicContainerModel();
+        StringRequest stringRequest = publicContainerModel.publicContainer(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
 
@@ -2941,40 +1250,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Private successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Private container failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("X-Container-Read", "");
-                return headers;
-            }
-        };
-
+        PrivateContainerModel privateContainerModel = new PrivateContainerModel();
+        StringRequest stringRequest = privateContainerModel.privateContainer(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
 
@@ -2987,39 +1264,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete container failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteContainerModel deleteContainerModel = new DeleteContainerModel();
+        StringRequest stringRequest = deleteContainerModel.deleteContainer(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
 
@@ -3032,38 +1278,8 @@ public class HttpRequest {
         String partURL2 = "?format=json";
         String fullURL = objectStorageServiceURL + partURL1 + containerName + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listObject(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "list failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListObjectModel listObjectModel = new ListObjectModel();
+        StringRequest stringRequest = listObjectModel.listObject(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3073,42 +1289,9 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete object failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteObjectModel deleteObjectModel = new DeleteObjectModel();
+        StringRequest stringRequest = deleteObjectModel.deleteObject(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
-
-
     }
 
     public void createFolder(final VolleyCallback callback, String containerName, String ObjectName) {
@@ -3117,39 +1300,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "create object failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        CreateFolderModel createFolderModel = new CreateFolderModel();
+        StringRequest stringRequest = createFolderModel.createFolder(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
     }
@@ -3166,41 +1318,8 @@ public class HttpRequest {
         } else {
             accessValue = ".r:*";
         }
-
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "create object failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("X-Container-Read", accessValue);
-                return headers;
-            }
-        };
-
+        CreateContainerModel createContainerModel = new CreateContainerModel();
+        StringRequest stringRequest = createContainerModel.createContainer(fullURL, token,accessValue,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
     }
@@ -3211,39 +1330,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + containerName + partURL + ObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "create object failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        CreateObjectFileModel createObjectFileModel = new CreateObjectFileModel();
+        StringRequest stringRequest = createObjectFileModel.createObjectFile(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
     }
@@ -3254,40 +1342,8 @@ public class HttpRequest {
         String partURL = "/";
         String fullURL = objectStorageServiceURL + partURL + destionationContainer + partURL + path + newObjectName;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "create object failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                headers.put("X-Copy-From", preContainer + "/" + preObjectName);
-                return headers;
-            }
-        };
-
+        CopyObjectModel copyObjectModel = new CopyObjectModel();
+        StringRequest stringRequest = copyObjectModel.copyObject(fullURL,token,preContainer, preObjectName, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
 
     }
@@ -3298,36 +1354,8 @@ public class HttpRequest {
         String partURL = "v2.0/floatingips";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listFloatingIP(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Floating IP Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListFloatingIPModel listFloatingIPModel = new ListFloatingIPModel();
+        StringRequest stringRequest = listFloatingIPModel.listFloatingIP(fullURL, token,mApplicationContext,callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3337,40 +1365,8 @@ public class HttpRequest {
         String partURL = "v2.0/floatingips/";
         String fullURL = networkServiceURL + partURL + floatingID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Release successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Release Floating IP failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("releaseFail");
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteFloatingIPModel deleteFloatingIPModel = new DeleteFloatingIPModel();
+        StringRequest stringRequest = deleteFloatingIPModel.deleteFloatingIP(fullURL, token,mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3390,41 +1386,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Allocate successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Allocate Floating IP failed", Toast.LENGTH_SHORT).show();
-                        System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateFloatingIPModel createFloatingIPModel = new CreateFloatingIPModel();
+        JsonObjectRequest jsonObjectRequest = createFloatingIPModel.createFloatingIP(fullURL,token,json1, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -3434,36 +1397,8 @@ public class HttpRequest {
         String partURL = "v2.0/routers";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listRouter(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Router  Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListRouterModel listRouterModel = new ListRouterModel();
+        StringRequest stringRequest = listRouterModel.listRouter(fullURL, token,mApplicationContext,callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3474,39 +1409,8 @@ public class HttpRequest {
 
         String fullURL = networkServiceURL + "v2.0/routers/" + routerID;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete Router successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete  failed", Toast.LENGTH_SHORT).show();
-
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteRouterModel deleteRouterModel = new DeleteRouterModel();
+        StringRequest stringRequest = deleteRouterModel.deleteRouter(fullURL,token,mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3529,40 +1433,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Router successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Router failed", Toast.LENGTH_SHORT).show();
-                        //System.out.println("createFail");
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateRouterMdoel createRouterMdoel = new CreateRouterMdoel();
+        JsonObjectRequest jsonObjectRequest = createRouterMdoel.createRouter(fullURL,token, json1, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -3573,36 +1445,8 @@ public class HttpRequest {
         String partURL = "v2.0/networks";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listNetwork(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Network  Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListNetworkModel listNetworkModel = new ListNetworkModel();
+        StringRequest stringRequest = listNetworkModel.listNetwork(fullURL,token,mApplicationContext, callback,context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3612,36 +1456,8 @@ public class HttpRequest {
         String partURL = "v2.0/subnets";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listSubnet(response, networkID);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Subnet  Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListSubnetModel listSubnetModel = new ListSubnetModel();
+        StringRequest stringRequest = listSubnetModel.listSubnet(fullURL, token, networkID, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3651,40 +1467,8 @@ public class HttpRequest {
         String partURL = "v2.0/networks/";
         String fullURL = networkServiceURL + partURL + networkID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete Router failed", Toast.LENGTH_SHORT).show();
-
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteNetworkModel deleteNetworkModel = new DeleteNetworkModel();
+        StringRequest stringRequest = deleteNetworkModel.deleteNetwork(fullURL, token, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3694,11 +1478,8 @@ public class HttpRequest {
         String partURL = "v2.0/networks";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
-
-
         try {
 
             json2.put("name", networkName);
@@ -3707,39 +1488,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Network successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Network failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateNetworkModel createNetworkModel= new CreateNetworkModel();
+        JsonObjectRequest jsonObjectRequest = createNetworkModel.createNetwork(fullURL, token, json1, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -3750,40 +1500,8 @@ public class HttpRequest {
         String partURL = "v2.0/subnets/";
         String fullURL = networkServiceURL + partURL + SubnetID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete Subnet successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete  failed", Toast.LENGTH_SHORT).show();
-
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteSubnetModel deleteSubnetModel = new DeleteSubnetModel();
+        StringRequest stringRequest = deleteSubnetModel.deleteSubnet(fullURL, token, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -3793,11 +1511,8 @@ public class HttpRequest {
         String partURL = "v2.0/subnets";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         JSONObject json1 = new JSONObject();
         JSONObject json2 = new JSONObject();
-
-
         try {
 
             json2.put("name", subnetName);
@@ -3808,39 +1523,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Subnet successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateSubnetModel createSubnetModel = new CreateSubnetModel();
+        JsonObjectRequest jsonObjectRequest = createSubnetModel.createSubnet(fullURL, token, json1, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -3851,97 +1535,38 @@ public class HttpRequest {
 
 
     /*
-    * list ports
-    * */
+     * list ports
+     * */
     public void listPort(final VolleyCallback callback, final Context context, final String networkID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
         String partURL = "v2.0/ports";
         String fullURL = networkServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listPort(response, networkID);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Subnet  Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListPortModel listPortModel = new ListPortModel();
+        StringRequest stringRequest = listPortModel.ListPortModel(fullURL,token, networkID,  mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
 
     /*
-    * delete port
-    * */
+     * delete port
+     * */
     public void deletePort(final VolleyCallback callback, String portID) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
         String partURL = "v2.0/ports/";
         String fullURL = networkServiceURL + partURL + portID;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete Subnet successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete  failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeletePortModel deletePortModel = new DeletePortModel();
+        StringRequest stringRequest = deletePortModel.deletePort(fullURL,token, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
 
     /*
-    * create port
-    * */
+     * create port
+     * */
     public void createPort(final VolleyCallback callback, String portName, String networkID, boolean admin_state) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
@@ -3961,39 +1586,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Port successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Port failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreatePortModel createPortModel = new CreatePortModel();
+        JsonObjectRequest jsonObjectRequest = createPortModel.createPort(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -4007,36 +1601,8 @@ public class HttpRequest {
         String partURL = "/resource_types/";
         String fullURL = orchestrationServiceURL + partURL + id;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listResourceTypesDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowResourceTypesDetailModel showResourceTypesDetailModel = new ShowResourceTypesDetailModel();
+        StringRequest stringRequest = showResourceTypesDetailModel.showResourceTypesDetail(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4048,37 +1614,8 @@ public class HttpRequest {
         String partURL = "/resource_types";
         String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listResourceTypes(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting images Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListResourceTypesModel listResourceTypesModel = new ListResourceTypesModel();
+        StringRequest stringRequest = listResourceTypesModel.listResourceTypes(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4092,35 +1629,8 @@ public class HttpRequest {
         String partURL = "/template_versions";
         String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listTemplateVersions(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);// Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting images Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListTemplateVersionsModel listTemplateVersionsModel = new ListTemplateVersionsModel();
+        StringRequest stringRequest = listTemplateVersionsModel.listTemplateVersions(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4133,37 +1643,8 @@ public class HttpRequest {
         String partURL2 = "/functions";
         String fullURL = orchestrationServiceURL + partURL1 + id + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listTemplateVersionsDetail(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowTemplateVersionDetailModel showTemplateVersionDetailModel = new ShowTemplateVersionDetailModel();
+        StringRequest stringRequest = showTemplateVersionDetailModel.showTemplateVersionDetail(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4176,37 +1657,8 @@ public class HttpRequest {
         String partURL = "/stacks";
         String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listStacks(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting images Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListStacksModel listStacksModel = new ListStacksModel();
+        StringRequest stringRequest = listStacksModel.listStacks(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4220,62 +1672,10 @@ public class HttpRequest {
         String partURL2 = "/";
         String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        /**
-                         *  Pass the response of HTTP request to the Fragment
-                         *  Server ID, AZ,IP address, Name, and Status
-                         */
-                        try {
-                            JSONObject resp = new JSONObject(response);
-                            JSONObject result = new JSONObject();
-                            String id = resp.getJSONObject("stack").getString("id");
-                            String creationTime = resp.getJSONObject("stack").getString("creation_time");
-                            String description = resp.getJSONObject("s6tack").getString("description");
-                            String disable_rollback = resp.getJSONObject("stack").getString("disable_rollback");
-                            String name = resp.getJSONObject("stack").getString("stack_name");
-                            String status = resp.getJSONObject("stack").getString("stack_status");
-                            String statusReason = resp.getJSONObject("stack").getString("stack_status_reason");
-                            result.put("id", id);
-                            result.put("creationTime", creationTime);
-                            result.put("description", description);
-                            result.put("disable_rollback", disable_rollback);
-                            result.put("name", name);
-                            result.put("status", status);
-                            result.put("statusReason", statusReason);
-                            String stringResult = result.toString();
-                            callback.onSuccess(stringResult);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Instances Failed", Toast.LENGTH_SHORT).show();
-                callback.onSuccess("error");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListSingleStackModel listSingleStackModel = new ListSingleStackModel();
+        StringRequest stringRequest = listSingleStackModel.listSingleStack(fullURL,token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
-
-
 
     /////////////////////
     //suspend stack
@@ -4294,39 +1694,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        SuspendStackModel suspendStackModel = new SuspendStackModel();
+        JsonObjectRequest jsonObjectRequest = suspendStackModel.suspendStack(fullURL,token, json,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -4337,9 +1706,9 @@ public class HttpRequest {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String orchestrationServiceURL = sharedPreferences.getString("orchestrationServiceURL", "Error Getting Compute URL");
         String partURL1 = "/stacks/";
-        String partlURL2 = "/";
+        String partURL2 = "/";
         String partURL3= "/actions";
-        String fullURL = orchestrationServiceURL + partURL1 + stackName + partlURL2 +stackId + partURL3;
+        String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId + partURL3;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         JSONObject json = new JSONObject();
         try {
@@ -4347,38 +1716,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        ResumeModel resumeModel = new ResumeModel();
+        JsonObjectRequest jsonObjectRequest = resumeModel.resume(fullURL,token, json,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -4393,45 +1732,8 @@ public class HttpRequest {
         String partURL3 = "/actions";
         String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId + partURL3;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        JSONObject json = new JSONObject();
-        try {
-            json.put("check", JSONObject.NULL);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        CheckStackModel checkStackModel = new CheckStackModel();
+        JsonObjectRequest jsonObjectRequest = checkStackModel.checkStack(fullURL,token,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
@@ -4445,38 +1747,8 @@ public class HttpRequest {
         String partURL2 = "/";
         String fullURL = orchestrationServiceURL + partURL1 + stackName + partURL2 +stackId ;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DeleteStackModel deleteStackModel = new DeleteStackModel();
+        StringRequest stringRequest = deleteStackModel.deleteStack(fullURL,token,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4490,9 +1762,7 @@ public class HttpRequest {
         String partURL = "/stacks";
         String fullURL = orchestrationServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         JSONObject json = new JSONObject();
-
         try {
             json.put("stack_name", stackName);
             json.put("template_url", templateSource);
@@ -4500,40 +1770,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Stack successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Stack failed", Toast.LENGTH_SHORT).show();
-                        System.out.println(error.networkResponse);
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateStackModel createStackModel = new CreateStackModel();
+        JsonObjectRequest jsonObjectRequest = createStackModel.createStack(fullURL,token, json,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -4546,37 +1784,8 @@ public class HttpRequest {
         String partURL = "/instances";
         String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseInstances(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting instances Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListDatabaseInstancesModel listDatabaseInstancesModel = new ListDatabaseInstancesModel();
+        StringRequest stringRequest = listDatabaseInstancesModel.listDatabaseInstances(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4587,61 +1796,8 @@ public class HttpRequest {
         String partURL = "/instances/";
         String fullURL = databaseServiceURL + partURL + instanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        /**
-                         *  Pass the response of HTTP request to the Fragment
-                         *  Server ID, AZ,IP address, Name, and Status
-                         */
-                        try {
-                             JSONObject resp = new JSONObject(response);
-                            JSONObject result = new JSONObject();
-                            String name = resp.getJSONObject("instance").getString("name");
-                            String id = resp.getJSONObject("instance").getString("id");
-                            String datastore = resp.getJSONObject("instance").getJSONObject("datastore").getString("type");
-                            String version = resp.getJSONObject("instance").getJSONObject("datastore").getString("version");
-                            String created = resp.getJSONObject("instance").getString("created");
-                            String updated = resp.getJSONObject("instance").getString("updated");
-                            String status = resp.getJSONObject("instance").getString("status");
-                            Integer volumeInt = resp.getJSONObject("instance").getJSONObject("volume").getInt("size");
-                            String volume = volumeInt.toString();
-                            result.put("name", name);
-                            result.put("id", id);
-                            result.put("datastore", datastore);
-                            result.put("version", version);
-                            result.put("created", created);
-                            result.put("updated", updated);
-                            result.put("status", status);
-                            result.put("volume", volume);
-                            String stringResult = result.toString();
-                            callback.onSuccess(stringResult);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Instances Failed", Toast.LENGTH_SHORT).show();
-                callback.onSuccess("error");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListSingleDatabaseInstanceModel listSingleDatabaseInstanceModel = new ListSingleDatabaseInstanceModel();
+        StringRequest stringRequest = listSingleDatabaseInstanceModel.listSingleDatabaseInstance(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -4663,46 +1819,15 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Network Error", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-//                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-        };
+        DatabaseInstanceRestartModel databaseInstanceRestartModel = new DatabaseInstanceRestartModel();
+        JsonObjectRequest jsonObjectRequest = databaseInstanceRestartModel.databaseInstanceRestart(fullURL,token, json,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
 
     /*
-    * resize database instance volume
-    * */
+     * resize database instance volume
+     * */
     public void resizeDatabaseInstanceVolume(final VolleyCallback callback, int newSize, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -4720,45 +1845,14 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json3,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to extend V", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        ResizeDatabaseInstanceVolumeModel resizeDatabaseInstanceVolumeModel = new ResizeDatabaseInstanceVolumeModel();
+        JsonObjectRequest jsonObjectRequest = resizeDatabaseInstanceVolumeModel.resizeDatabaseInstanceVolume(fullURL,token, json3,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
     /*
-    * attach configuration group to database instance
-    * */
+     * attach configuration group to database instance
+     * */
     public void attachConfigGroup(final VolleyCallback callback, String databaseInstanceId, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -4773,46 +1867,15 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to attach", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        AttachConfigGroupModel attachConfigGroupModel = new AttachConfigGroupModel();
+        JsonObjectRequest jsonObjectRequest = attachConfigGroupModel.attachConfigGroup(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
 
     /*
-    * detach configuration group
-    * */
+     * detach configuration group
+     * */
     public void detachConfigGroup(final VolleyCallback callback, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -4826,95 +1889,30 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        callback.onSuccess("success");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Fail to attach", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DetachConfigGroupModel detachConfigGroupModel = new DetachConfigGroupModel();
+        JsonObjectRequest jsonObjectRequest = detachConfigGroupModel.detachConfigGroup(fullURL,token, json1,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
     }
 
 
     /*
-    * delete database instance
-    * */
+     * delete database instance
+     * */
     public void deleteDatabaseInstance(final VolleyCallback callback, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/instances/";
         String fullURL = databaseServiceURL + partURL + databaseInstanceId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DeleteDatabaseInstanceModel deleteDatabaseInstanceModel = new DeleteDatabaseInstanceModel();
+        StringRequest stringRequest = deleteDatabaseInstanceModel.deleteDatabaseInstance(fullURL,token, mApplicationContext,  callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
 
     /*
-    * create database instance
-    * */
+     * create database instance
+     * */
     public void createdatabaseInstance(final VolleyCallback callback, String setName, String availabilityZone, String datastoreVersion, String datastoreType, int volumeSize, String locality, String flavorRef) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -4948,83 +1946,24 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json5, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create instance successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Instance failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreatedatabaseInstanceModel createdatabaseInstanceModel = new CreatedatabaseInstanceModel();
+        JsonObjectRequest jsonObjectRequest = createdatabaseInstanceModel.createdatabaseInstance(fullURL,token, json5,  mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
 
 
     /*
-    * list configuration group and action
-    * */
+     * list configuration group and action
+     * */
     public void listConfigGroup(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/configurations";
         String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listConfigGroups(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListConfigGroupModel listConfigGroupModel = new ListConfigGroupModel();
+        StringRequest stringRequest = listConfigGroupModel.listConfigGroup(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5072,6 +2011,8 @@ public class HttpRequest {
                 return headers;
             }
         };
+        DeleteConfigGrouModel deleteConfigGrouModel = new DeleteConfigGrouModel();
+        StringRequest stringRequest1 = deleteConfigGrouModel.deleteConfigGrou(fullURL, token, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5084,42 +2025,14 @@ public class HttpRequest {
         String partURL = "/configurations/";
         String fullURL = databaseServiceURL + partURL + configGroupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listConfigGroupDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowConfigGroupDetailModel showConfigGroupDetailModel = new ShowConfigGroupDetailModel();
+        StringRequest stringRequest = showConfigGroupDetailModel.showConfigGroupDetail(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * list configuration group instance
-    * */
+     * list configuration group instance
+     * */
     public void listConfigGroupInstances(final VolleyCallback callback, final Context context, String configGroupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -5127,43 +2040,15 @@ public class HttpRequest {
         String partURL2 = "/instances";
         String fullURL = databaseServiceURL + partURL1 + configGroupId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listConfigGroupInstances(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListConfigGroupInstancesModel listConfigGroupInstancesModel = new ListConfigGroupInstancesModel();
+        StringRequest stringRequest = listConfigGroupInstancesModel.listConfigGroupInstances(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
 
     /*
-    * create configuration group
-    * */
+     * create configuration group
+     * */
     public void createConfigGroup(final VolleyCallback callback, String setName, String selectDatastoreName, String setDescription) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -5191,270 +2076,91 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json4, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Subnet successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateConfigGroupModel createConfigGroupModel = new CreateConfigGroupModel();
+        JsonObjectRequest jsonObjectRequest = createConfigGroupModel.createConfigGroup(fullURL,token,json4, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
 
 
     /*
-    * list data store
-    * */
+     * list data store
+     * */
     public void listDatastores(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/datastores";
         String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listDatastores(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListDatastoresModel listDatastoresModel = new ListDatastoresModel();
+        StringRequest stringRequest = listDatastoresModel.listDatastores(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * list flavor
-    * */
+     * list flavor
+     * */
     public void listDatabaselistDatabaseFlavor(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String fullURL = databaseServiceURL + "/flavors";
-
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseFlavors(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListDatabaselistDatabaseFlavorModel listDatabaselistDatabaseFlavorModel = new ListDatabaselistDatabaseFlavorModel();
+        StringRequest stringRequest = listDatabaselistDatabaseFlavorModel.listDatabaselistDatabaseFlavor(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * list database backup
-    * */
+     * list database backup
+     * */
     public void listDatabaseBackup(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/backups";
         String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listDatabaseBackups(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                }
-                Toast.makeText(mApplicationContext, "Listing Volumes Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListDatabaseBackupModel listDatabaseBackupModel = new ListDatabaseBackupModel();
+        StringRequest stringRequest = listDatabaseBackupModel.listDatabaseBackup(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * delete database backup
-    * */
+     * delete database backup
+     * */
     public void deleteDatabaseBackup(final VolleyCallback callback, String backupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/backups/";
         String fullURL = databaseServiceURL + partURL + backupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DeleteDatabaseBackupModel deleteDatabaseBackupModel = new DeleteDatabaseBackupModel();
+        StringRequest stringRequest = deleteDatabaseBackupModel.deleteDatabaseBackup(fullURL, token, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * show database backup detail
-    * */
+     * show database backup detail
+     * */
     public void showDatabaseBackupDetail(final VolleyCallback callback, final Context context, String backupId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/backups/";
         String fullURL = databaseServiceURL + partURL + backupId;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listDatabaseBackupDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowDatabaseBackupDetailModel showDatabaseBackupDetailModel = new ShowDatabaseBackupDetailModel();
+        StringRequest stringRequest = showDatabaseBackupDetailModel.showDatabaseBackupDetail(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * create instance backup
-    * */
+     * create instance backup
+     * */
     public void createInstanceBackup(final VolleyCallback callback, String setName, String selectInstanceId, String setDescription) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
         String partURL = "/backups";
         String fullURL = databaseServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         JSONObject json2 = new JSONObject();
         JSONObject json4 = new JSONObject();
         Integer temp = 0;
@@ -5471,46 +2177,15 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json4, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create Subnet successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create Subnet failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateInstanceBackupModel createInstanceBackupModel = new CreateInstanceBackupModel();
+        JsonObjectRequest jsonObjectRequest = createInstanceBackupModel.createInstanceBackup(fullURL,token,json4, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
 
     /*
-    * show root manage detail
-    * */
+     * show root manage detail
+     * */
     public void showManageRootDetail(final VolleyCallback callback, final Context context, String databaseInstanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -5518,42 +2193,14 @@ public class HttpRequest {
         String partURL2 = "/root";
         String fullURL = databaseServiceURL + partURL1 + databaseInstanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).showRoot(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowManageRootDetailModel showManageRootDetailModel = new ShowManageRootDetailModel();
+        StringRequest stringRequest = showManageRootDetailModel.showManageRootDetail(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
 
     /*
-    * enable instance root
+     * enable instance root
      * */
     public void enableRoot(final VolleyCallback callback, final Context context, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
@@ -5562,42 +2209,14 @@ public class HttpRequest {
         String partURL2 = "/root";
         String fullURL = databaseServiceURL + partURL1 + instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).enableRoot(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting image detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        EnableRootModel enableRootModel = new EnableRootModel();
+        StringRequest stringRequest = enableRootModel.enableRoot(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * disable instance root
-    * */
+     * disable instance root
+     * */
     public void disableRoot(final VolleyCallback callback, String instanceId) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String databaseServiceURL = sharedPreferences.getString("databaseServiceURL", "Error Getting Compute URL");
@@ -5605,49 +2224,14 @@ public class HttpRequest {
         String partURL2 = "/root";
         String fullURL = databaseServiceURL + partURL1+ instanceId + partURL2;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-
-                        callback.onSuccess("success");
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete  successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Disable Root ", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-
-        };
+        DisableRootModel disableRootModel = new DisableRootModel();
+        StringRequest stringRequest = disableRootModel.disableRoot(fullURL, token, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
     /*
-    * edit router
-    * */
+     * edit router
+     * */
     public void editRouter(final VolleyCallback callback, String editRouterName, boolean admin_state, String routerID, String routerName) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String networkServiceURL = sharedPreferences.getString("networkServiceURL", "Error Getting Compute URL");
@@ -5669,39 +2253,8 @@ public class HttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Edit Router successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Edit Router failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        EditRouterModel editRouterModel = new EditRouterModel();
+        JsonObjectRequest jsonObjectRequest = editRouterModel.editRouter(fullURL, token, json1, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -5709,43 +2262,14 @@ public class HttpRequest {
     /*
     Contariner Service
      **/
-    public void listCluster(final VolleyCallback callback, final Context contex) {
+    public void listCluster(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         String partURL = "/clusters";
         String fullURL = containerInfraURL + partURL;
-
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONArray resultArray;
-                resultArray = ResponseParser.getInstance(mApplicationContext).listCluster(response);
-                String result = resultArray.toString();
-                callback.onSuccess(result);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null || error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    contex.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting Clusters List Failed", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListClusterModel listClusterModel = new ListClusterModel();
+        StringRequest stringRequest = listClusterModel.listCluster(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5763,35 +2287,8 @@ public class HttpRequest {
         String partURL = "/clusters/";
         String fullURL = volumeV3ServiceURL + partURL + clusterid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listClusterDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null || error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting cluster detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowClusterDetailModel showClusterDetailModel = new ShowClusterDetailModel();
+        StringRequest stringRequest = showClusterDetailModel.showClusterDetail(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5799,42 +2296,9 @@ public class HttpRequest {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-
         String fullURL = containerInfraURL + "/clusters/" + clusterID;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, fullURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Delete Router successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-
-                    } else {
-                        Toast.makeText(mApplicationContext, "Delete  failed", Toast.LENGTH_SHORT).show();
-
-                        callback.onSuccess("error");
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
-
+        DeleteclusterModel deleteclusterModel = new DeleteclusterModel();
+        StringRequest stringRequest = deleteclusterModel.deletecluster(fullURL, token, mApplicationContext, callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5843,61 +2307,42 @@ public class HttpRequest {
     /*
     Create a new Container Cluster.
     **/
-    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String clusterTemplateID, String kytPair, String nodeFlavorID, String masterFlavorID,final int dockerSize, final int masterCount, final int nodeCount, final int createTimeout, JSONArray labels) {
+    public void createCluster(final VolleyCallback callback, String clusterName, String disUrl, String keyPair,String clusterTemplateID,  String nodeFlavorID, String masterFlavorID,int dockerSize,int masterCount, int nodeCount, int createTimeout) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String containerInfraURL = sharedPreferences.getString("containerInfraURL", "Error Getting Compute URL");
-        String partURL = "clusters";
+        String partURL = "/clusters";
         String fullURL = containerInfraURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
 
         JSONObject json1 = new JSONObject();
         try {
             json1.put("name", clusterName);
+            System.out.println("name: " + clusterName);
             json1.put("discovery_url", disUrl);
+            System.out.println("discovery_url: " + disUrl);
             json1.put("master_count", masterCount);
+            System.out.println("master_count: " + masterCount);
             json1.put("cluster_template_id", clusterTemplateID);
+            System.out.println("cluster_template_id: " + clusterTemplateID);
             json1.put("node_count", nodeCount);
+            System.out.println("node_count: " + nodeCount);
             json1.put("docker_volume_size", dockerSize);
+            System.out.println("docker_volume_size: " + dockerSize);
             json1.put("create_timeout", createTimeout);
-            json1.put("keypair", kytPair);
+            System.out.println("create_timeout: " + createTimeout);
+            json1.put("keypair", keyPair);
+            System.out.println("keypair: " + keyPair);
             json1.put("master_flavor_id", masterFlavorID);
+            System.out.println("master_flavor_id: " + masterFlavorID);
             json1.put("node_flavor_id", nodeFlavorID);
-            json1.put("labels", labels);
+            System.out.println("node_flavor_id: " + nodeFlavorID);
+            json1.put("labels", null);
+            System.out.println("labels: " + null);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullURL, json1, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                callback.onSuccess("success");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    Toast.makeText(mApplicationContext, "Create instance successfully", Toast.LENGTH_SHORT).show();
-                    callback.onSuccess("success");
-                } else {
-                    if (error.networkResponse.statusCode == 401) {
-                        Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                        mApplicationContext.startActivity(i);
-                    } else {
-                        Toast.makeText(mApplicationContext, "Create cluster failed", Toast.LENGTH_SHORT).show();
-                        callback.onSuccess("error");
-                    }
-                }
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-
-            }
-        };
+        CreateClusterModel createClusterModel = new CreateClusterModel();
+        JsonObjectRequest jsonObjectRequest = createClusterModel.createCluster(fullURL, token, json1, mApplicationContext,callback);
         Network.getInstance(mApplicationContext).addToRequestQueue(jsonObjectRequest);
 
     }
@@ -5915,35 +2360,8 @@ public class HttpRequest {
         String partURL = "/clustertemplates";
         String fullURL = containerInfraURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONArray resultArray;
-                        resultArray = ResponseParser.getInstance(mApplicationContext).listClusterTemplate(response);
-                        String result = resultArray.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting templates Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ListClusterTemplateModel listClusterTemplateModel = new ListClusterTemplateModel();
+        StringRequest stringRequest = listClusterTemplateModel.listClusterTemplate(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
 
@@ -5961,56 +2379,10 @@ public class HttpRequest {
         String partURL = "/clustertemplates/";
         String fullURL = containerInfraURL + partURL + uuid;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject resultObject;
-                        resultObject = ResponseParser.getInstance(mApplicationContext).listClusterTemplateDetail(response);
-                        String result = resultObject.toString();
-                        callback.onSuccess(result);
-                        // Display the first 500 characters of the response string.
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null || error.networkResponse.statusCode == 401) {
-                    Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                    context.startActivity(i);
-                } else {
-                    Toast.makeText(mApplicationContext, "Getting cluster detail Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Auth-Token", token);
-                return headers;
-            }
-        };
+        ShowClusterTemplateDetailModel showClusterTemplateDetailModel = new ShowClusterTemplateDetailModel();
+        StringRequest stringRequest = showClusterTemplateDetailModel.showClusterTemplateDetail(fullURL, token, mApplicationContext, callback, context);
         Network.getInstance(mApplicationContext).addToRequestQueue(stringRequest);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     ///////////////////////////////////////
 // 将字符串写入到文本文件中

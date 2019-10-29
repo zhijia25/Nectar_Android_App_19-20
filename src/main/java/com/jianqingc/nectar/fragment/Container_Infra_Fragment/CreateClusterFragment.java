@@ -33,13 +33,13 @@ public class CreateClusterFragment extends Fragment {
 
     public static CreateClusterFragment instanceLI=null;
 
-    public Integer setDockerSize;
-    public Integer setMcount;
-    public Integer setNcount;
-    public Integer setTimeout;
+    public int setDockerSize;
+    public int setMcount;
+    public int setNcount;
+    public int setTimeout;
 
     public String setName;
-    public String setDiscoveryURL;
+    public String setDiscoveryURL = null;
     JSONArray setLabels = null;
     JSONArray templateList = null;
     public String setClusterTemplate;
@@ -70,7 +70,7 @@ public class CreateClusterFragment extends Fragment {
         mOverlayDialog.setContentView(R.layout.loading_dialog);
 
         final EditText name= (EditText) myView.findViewById(R.id.newClusterName);
-        final EditText size= (EditText) myView.findViewById(R.id.DockerVolumeSize);
+        final EditText size= (EditText) myView.findViewById(R.id.DockerVolumeSize1);
         final EditText masterCount= (EditText) myView.findViewById(R.id.masterCount1);
         final EditText nodeCount= (EditText) myView.findViewById(R.id.nodeCount1);
         final EditText dicoverayURL= (EditText) myView.findViewById(R.id.DiscoveryURLID1);
@@ -111,16 +111,16 @@ public class CreateClusterFragment extends Fragment {
                     arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     //set the adapter
                     masterFlavor.setAdapter(arr_adapter);
-                    nodeFlavor.setAdapter(arr_adapter);
-
                     masterFlavor.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                             String chooseName = data_list.get(arg2);
+                            System.out.println("NodeFlavor: " + chooseName);
                             //Set to show the chosen
                             arg0.setVisibility(View.VISIBLE);
                             for(int i = 0; i < data_list.size(); i++){
-                                if(data_list.get(i)==chooseName){
+                                if(data_list.get(i).equals(chooseName)){
+                                    System.out.println("master"+ id_list.get(i));
                                     instanceLI.setMasterFlavor=id_list.get(i);
                                 }
                             }
@@ -131,6 +131,39 @@ public class CreateClusterFragment extends Fragment {
                         }
                     });
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, getActivity());
+
+        HttpRequest.getInstance(getContext()).listFlavor(new HttpRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    /**
+                     * Display instance Info with the Listview and Fundapter
+                     * You can also use simple ArrayAdapter to replace Fundatper.
+                     */
+                    final List<String> data_list;
+                    data_list = new ArrayList<String>();
+                    ArrayAdapter<String> arr_adapter1;
+                    final List<String> id_list;
+                    id_list= new ArrayList<String>();
+
+                    falvorlist = new JSONArray(result);
+                    System.out.println(falvorlist);
+                    for (int i = 0; i < falvorlist.length(); i++) {
+                        data_list.add(falvorlist.getJSONObject(i).getString("flavorName"));
+                        id_list.add(falvorlist.getJSONObject(i).getString("flavorId"));
+                    }
+
+                    //New an Adapter
+                    arr_adapter1= new ArrayAdapter<String>(CreateClusterFragment.this.getActivity(), android.R.layout.simple_spinner_item, data_list);
+                    //Set the format of the adapter
+                    arr_adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nodeFlavor.setAdapter(arr_adapter1);
                     nodeFlavor.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -138,7 +171,8 @@ public class CreateClusterFragment extends Fragment {
                             //Set to show the chosen
                             arg0.setVisibility(View.VISIBLE);
                             for(int i = 0; i < data_list.size(); i++){
-                                if(data_list.get(i)==chooseName){
+                                if(data_list.get(i).equals(chooseName)){
+                                    System.out.println("node"+ id_list.get(i));
                                     instanceLI.setNodeFlavor=id_list.get(i);
                                 }
                             }
@@ -169,10 +203,13 @@ public class CreateClusterFragment extends Fragment {
                     templates_list = new ArrayList<String>();
                     templates_list.add("Select template please");
                     ArrayAdapter<String> arr_adapter;
+                    final List<String> Templateid_list;
+                    Templateid_list= new ArrayList<String>();
 
                     templateList = new JSONArray(result);
                     for (int i = 0; i < templateList.length(); i++) {
                         templates_list.add(templateList.getJSONObject(i).getString("name"));
+                        Templateid_list.add(templateList.getJSONObject(i).getString("uuid"));
                     }
 
                     //New an Adapter
@@ -186,10 +223,17 @@ public class CreateClusterFragment extends Fragment {
                         @Override
                         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                             String chooseName = templates_list.get(arg2);
+                            System.out.println("Template: " + chooseName);
                             //Set to show the chosen
                             arg0.setVisibility(View.VISIBLE);
                             //String flavorID;
-                            instanceLI.setClusterTemplate=chooseName;
+                            for(int i = 0; i < templates_list.size(); i++){
+                                if(templates_list.get(i).equals(chooseName)){
+                                    System.out.println("Template_id: " + Templateid_list.get(i));
+                                    instanceLI.setClusterTemplate=Templateid_list.get(i);
+                                    System.out.println("get_Template_id: " + setMasterFlavor);
+                                }
+                            }
 
 
                         }
@@ -237,6 +281,7 @@ public class CreateClusterFragment extends Fragment {
                         @Override
                         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                             String chooseName = kp_list.get(arg2);
+                            System.out.println(chooseName);
                             //Set to show the chosen
                             arg0.setVisibility(View.VISIBLE);
                             //String flavorID;
@@ -266,12 +311,12 @@ public class CreateClusterFragment extends Fragment {
                 //Get the name of new instance
                 setName = name.getText().toString();
                 setDiscoveryURL = dicoverayURL.getText().toString();
-                setTimeout = Integer.valueOf(timeOut.getText().toString());
+                setTimeout = Integer.parseInt(timeOut.getText().toString().trim());
                 //Get the size of Docker volume
-                setDockerSize = Integer.valueOf(size.getText().toString());
+                setDockerSize = Integer.parseInt(size.getText().toString().trim());
                 //Get the count of node
-                setMcount = Integer.valueOf(masterCount.getText().toString());
-                setNcount = Integer.valueOf(nodeCount.getText().toString());
+                setMcount = Integer.parseInt(masterCount.getText().toString().trim());
+                setNcount = Integer.parseInt(nodeCount.getText().toString().trim());
 
                 boolean valid = checkInputValid();
                 System.out.println(valid);
@@ -304,7 +349,7 @@ public class CreateClusterFragment extends Fragment {
                             }
                         }
 
-                    }, setName,setDiscoveryURL,chooseKP,setClusterTemplate,setNodeFlavor,setMasterFlavor,setDockerSize,setMcount,setNcount,setTimeout,setLabels);
+                    }, setName,setDiscoveryURL,chooseKP,setClusterTemplate,setNodeFlavor,setMasterFlavor,setDockerSize,setMcount,setNcount,setTimeout);
 
                 }
 

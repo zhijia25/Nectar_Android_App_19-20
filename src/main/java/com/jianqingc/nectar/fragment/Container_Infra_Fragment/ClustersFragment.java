@@ -29,7 +29,10 @@ import android.widget.Toast;
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
+import com.github.ikidou.fragmentBackHandler.BackHandlerHelper;
+import com.github.ikidou.fragmentBackHandler.FragmentBackHandler;
 import com.jianqingc.nectar.R;
+
 import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.tuesda.walker.circlerefresh.CircleRefreshLayout;
 
@@ -37,11 +40,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
 
-public class ClustersFragment extends Fragment {
+public class ClustersFragment extends Fragment implements FragmentBackHandler {
 
     View myView;
     ArrayList<String[]> clusterListArray;
@@ -51,10 +55,27 @@ public class ClustersFragment extends Fragment {
     Bundle bundle;
     String clusterID;
 
+
     public ClustersFragment() {
 
     }
 
+    @Override
+    public boolean onBackPressed() {
+        boolean handleBackPressed = false;
+        if (handleBackPressed) {
+            //外理返回键
+            return true;
+        } else {
+            // 如果不包含子Fragment
+            // 或子Fragment没有外理back需求
+            // 可如直接 return false;
+            // 注：如果Fragment/Activity 中可以使用ViewPager 代替 this
+            //
+            return BackHandlerHelper.handleBackPress(this);
+        }
+    }
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,12 +84,11 @@ public class ClustersFragment extends Fragment {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Cluster");
 
-        final java.util.Timer timer = new java.util.Timer(true);
+        final Timer timer = new Timer(true);
         final Dialog mOverlayDialog = new Dialog(getActivity(), android.R.style.Theme_Panel);
         mOverlayDialog.setCancelable(false);
         mOverlayDialog.setContentView(R.layout.loading_dialog);
         mOverlayDialog.show();
-
 
         HttpRequest.getInstance(getContext()).listCluster(new HttpRequest.VolleyCallback() {
             @Override

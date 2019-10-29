@@ -6,10 +6,8 @@ INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml
 INJECTED from D:\File\Code\Nectar_Android_App_19-20\src\main\AndroidManifest.xml:2:1-49:12
 MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-13:12
 MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-17:12
-MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:17:1-27:12
-MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\495b72220d73373948e520fdeebc69c5\AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.firebase:firebase-common:16.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.0.aar\7d9ab9a6401783948fe823db89a7bd51\AndroidManifest.xml:2:1-16:12
@@ -61,14 +59,10 @@ MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecycl
 MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-20
 MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-15:43
 MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-15:43
-MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:10:5-20
-MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:10:5-20
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:25:5-20
-MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:10:5-20
-MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:10:5-20
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\495b72220d73373948e520fdeebc69c5\AndroidManifest.xml:22:5-27:19
@@ -167,14 +161,10 @@ MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecycl
 MERGED from [:easyrecyclerview] D:\File\Code\Nectar_Android_App_19-20\easyrecyclerview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
 MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
 MERGED from [:circlerefresh] D:\File\Code\Nectar_Android_App_19-20\circlerefresh\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
-MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:6:5-8:41
-MERGED from [info.android15.nucleus:nucleus-support-v7:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v7-4.0.0.aar\50eba4c29fd8dd968a0e65b76822377a\AndroidManifest.xml:6:5-8:41
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\d3b4cea612783b023e1776652e7d1b2c\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\1edf4b6c20b26a2659662e386a1e492d\AndroidManifest.xml:21:5-23:78
-MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:6:5-8:41
-MERGED from [info.android15.nucleus:nucleus-support-v4:4.0.0] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\nucleus-support-v4-4.0.0.aar\5d082171f484e3141329cf0c9d031537\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-appindexing:16.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-16.0.1.aar\694495fb80042dc73d0e2620c4a61c8e\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\yaopc\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\495b72220d73373948e520fdeebc69c5\AndroidManifest.xml:20:5-44

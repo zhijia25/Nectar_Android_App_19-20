@@ -98,9 +98,6 @@ public class VolumeDetailFragment extends Fragment {
                 manager.beginTransaction().replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
             }
         });
-
-
-
         return myView;
     }
 
@@ -161,8 +158,6 @@ public class VolumeDetailFragment extends Fragment {
 
             }
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -192,11 +187,6 @@ public class VolumeDetailFragment extends Fragment {
         String newstat = new StringBuffer(first3).append(rest3).toString();
         statusVD.setText(newstat);
         attachVD.setText(attach);
-
-
-
-
-
         }
 
     @Override
