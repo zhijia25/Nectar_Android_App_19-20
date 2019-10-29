@@ -2334,8 +2334,8 @@ public class HttpRequest {
             System.out.println("keypair: " + keyPair);
             json1.put("master_flavor_id", masterFlavorID);
             System.out.println("master_flavor_id: " + masterFlavorID);
-            json1.put("node_flavor_id", nodeFlavorID);
-            System.out.println("node_flavor_id: " + nodeFlavorID);
+            json1.put("flavor_id", nodeFlavorID);
+            System.out.println("flavor_id: " + nodeFlavorID);
             json1.put("labels", null);
             System.out.println("labels: " + null);
         } catch (JSONException e) {

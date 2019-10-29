@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.jianqingc.nectar.R;
+import com.jianqingc.nectar.bean.CreateClusterBean;
 import com.jianqingc.nectar.httpRequest.HttpRequest;
 import com.jianqingc.nectar.util.RadioAdapter;
 
@@ -38,6 +39,7 @@ public class CreateClusterFragment extends Fragment {
     public int setNcount;
     public int setTimeout;
 
+    public CreateClusterBean clusterBean;
     public String setName;
     public String setDiscoveryURL = null;
     JSONArray setLabels = null;
@@ -121,6 +123,7 @@ public class CreateClusterFragment extends Fragment {
                             for(int i = 0; i < data_list.size(); i++){
                                 if(data_list.get(i).equals(chooseName)){
                                     System.out.println("master"+ id_list.get(i));
+                                    clusterBean.setMaster_flavor_id(id_list.get(i));
                                     instanceLI.setMasterFlavor=id_list.get(i);
                                 }
                             }
@@ -173,6 +176,7 @@ public class CreateClusterFragment extends Fragment {
                             for(int i = 0; i < data_list.size(); i++){
                                 if(data_list.get(i).equals(chooseName)){
                                     System.out.println("node"+ id_list.get(i));
+                                    clusterBean.setFlavor_id(id_list.get(i));
                                     instanceLI.setNodeFlavor=id_list.get(i);
                                 }
                             }
