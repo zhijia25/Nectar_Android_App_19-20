@@ -94,8 +94,6 @@ public class ClusterTemplateDetailFragment extends Fragment {
         return myView;
     }
 
-
-
     public void setView(String result){
         /**
          * Set the textviews and buttons according to the instance status.

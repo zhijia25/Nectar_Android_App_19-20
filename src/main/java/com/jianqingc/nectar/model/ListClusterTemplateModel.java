@@ -33,7 +33,7 @@ public class ListClusterTemplateModel {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
+                if (error.networkResponse == null || error.networkResponse.statusCode == 401) {
                     Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mApplicationContext, LoginActivity.class);
                     context.startActivity(i);

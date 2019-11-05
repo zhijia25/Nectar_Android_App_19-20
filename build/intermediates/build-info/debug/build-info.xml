@@ -1,48 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="24"
-    build-mode="COLD"
-    density="420dpi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="28"
+    build-mode="FULL"
     format="10"
-    ir-eligibility="COMPATIBLE"
     plugin-version="3.2.1"
-    timestamp="1572356437448"
+    timestamp="1572400543453"
     token="3488825792021584097"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="2567" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="8" />
+        duration="0" />
     <task
         name="verifier"
-        duration="3" />
+        duration="0" />
 
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
     <artifact
         location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\instant-run-apk\debug\Nectar_Android_App_19-20-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1572352801858"
+        timestamp="1572400543453"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
         <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -54,13 +85,19 @@
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\dep\dependencies.apk"
-            type="SPLIT" />
-        <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
+            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -68,33 +105,6 @@
         <artifact
             location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\instant-run-apk\debug\Nectar_Android_App_19-20-debug.apk"
             type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1572354524648"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1572355180820"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1572356437448"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="D:\File\Code\Nectar_Android_App_19-20\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
     </build>
 
 </instant-run>

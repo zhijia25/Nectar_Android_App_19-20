@@ -243,18 +243,26 @@ public class ClustersFragment extends Fragment implements FragmentBackHandler {
                                 @Override
                                 public void refreshing() {
                                     // do something when refresh starts
-                                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                    ClustersFragment vFragment = new ClustersFragment();
-                                    ft.replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
                                     Log.i(TAG,"Refresh success");
+                                    timer.schedule(new TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            System.out.println("hahaha");
+                                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                            ClustersFragment vFragment = new ClustersFragment();
+                                            ft.replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
+                                        }
+                                    },2000);
                                 }
-
                                 @Override
                                 public void completeRefresh() {
+
+
                                     // do something when refresh complete
                                     //                                ft.replace(R.id.relativelayout_for_fragment, vFragment, vFragment.getTag()).commit();
                                 }
                             });
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

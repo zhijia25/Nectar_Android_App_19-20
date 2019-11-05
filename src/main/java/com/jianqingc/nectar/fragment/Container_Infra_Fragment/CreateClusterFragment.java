@@ -123,7 +123,7 @@ public class CreateClusterFragment extends Fragment {
                             for(int i = 0; i < data_list.size(); i++){
                                 if(data_list.get(i).equals(chooseName)){
                                     System.out.println("master"+ id_list.get(i));
-                                    clusterBean.setMaster_flavor_id(id_list.get(i));
+//                                    clusterBean.setMaster_flavor_id(id_list.get(i));
                                     instanceLI.setMasterFlavor=id_list.get(i);
                                 }
                             }
@@ -176,7 +176,7 @@ public class CreateClusterFragment extends Fragment {
                             for(int i = 0; i < data_list.size(); i++){
                                 if(data_list.get(i).equals(chooseName)){
                                     System.out.println("node"+ id_list.get(i));
-                                    clusterBean.setFlavor_id(id_list.get(i));
+//                                    clusterBean.setFlavor_id(id_list.get(i));
                                     instanceLI.setNodeFlavor=id_list.get(i);
                                 }
                             }

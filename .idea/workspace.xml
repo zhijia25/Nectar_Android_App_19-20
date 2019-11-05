@@ -6,12 +6,128 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d825a14-9cb9-4eff-b085-0d32e469e149" name="Default" comment="demo update">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="2d825a14-9cb9-4eff-b085-0d32e469e149" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Nectar_Android_App_19-20.iml" afterPath="$PROJECT_DIR$/Nectar_Android_App_19-20.iml" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi-v2/debug.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi-v2/debug.json" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/debug.json" afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/debug.json" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/build-info/debug/build-info.xml" afterPath="$PROJECT_DIR$/build/intermediates/build-info/debug/build-info.xml" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/httpRequest/HttpRequest.class" afterPath="$PROJECT_DIR$/build/intermediates/incremental-verifier/debug/com/jianqingc/nectar/httpRequest/HttpRequest.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterPath="$PROJECT_DIR$/build/intermediates/incremental/debug-mergeJavaRes/merge-state" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_dep/debug/package_dependencies/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_dep/debug/package_dependencies/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_0/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_0/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_1/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_1/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_2/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_2/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_3/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_3/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_4/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_4/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_5/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_5/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_6/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_6/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_7/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_7/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_8/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_8/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_9/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/ir_slices/debug/package_slice_9/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/ajyvRro_2m_kXbVc4JYLgXuLOYI=" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/packageInstantRunResourcesDebug/tmp/debug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageInstantRunResourcesDebug/tmp/debug/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/incremental/packageInstantRunResourcesDebug/tmp/debug/zip-cache/ajyvRro_2m_kXbVc4JYLgXuLOYI=" afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageInstantRunResourcesDebug/tmp/debug/zip-cache/ajyvRro_2m_kXbVc4JYLgXuLOYI=" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/instant-run-apk/debug/Nectar_Android_App_19-20-debug.apk" afterPath="$PROJECT_DIR$/build/intermediates/instant-run-apk/debug/Nectar_Android_App_19-20-debug.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/instant-run-resources/resources-debug.ir.ap_" afterPath="$PROJECT_DIR$/build/intermediates/instant-run-resources/resources-debug.ir.ap_" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/httpRequest/HttpRequest.class" afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/jianqingc/nectar/httpRequest/HttpRequest.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterPath="$PROJECT_DIR$/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_0.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_0.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_1.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_1.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_2.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_2.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_3.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_3.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_4.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_4.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_5.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_5.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_6.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_6.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_7.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_7.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_8.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_8.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_9.apk" afterPath="$PROJECT_DIR$/build/intermediates/split-apk/debug/slices/slice_9.apk" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/0/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/1/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/1/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/2/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/2/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/3/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/3/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/4/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/4/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/5/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/5/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/7/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/7/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/9/classes.dex" afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/9/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/GuideActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/GuideActivity.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/LoginActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/LoginActivity.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/MainActivity.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/WelcomeActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/WelcomeActivity$2.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/WelcomeActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/activity/WelcomeActivity.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1$5.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$2.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$3.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4$1.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment$4.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/httpRequest/HttpRequest.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/httpRequest/HttpRequest.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/util/ChoiceListItemView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/util/ChoiceListItemView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/util/RadioAdapter.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/jianqingc/nectar/util/RadioAdapter.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/tuesda/walker/circlerefresh/AnimationView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/tuesda/walker/circlerefresh/AnimationView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/tuesda/walker/circlerefresh/CircleRefreshLayout.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/tuesda/walker/circlerefresh/CircleRefreshLayout.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/XRecyclerView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/XRecyclerView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/progressindicator/AVLoadingIndicatorView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/progressindicator/AVLoadingIndicatorView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/ArrowRefreshHeader.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/ArrowRefreshHeader.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/BaseMoreFooter.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/BaseMoreFooter.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/BaseRefreshHeader.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/BaseRefreshHeader.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/LoadingMoreFooter.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/LoadingMoreFooter.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/SimpleViewSwitcher.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/refresh/SimpleViewSwitcher.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/sticky/StickyNavLayout.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/sticky/StickyNavLayout.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/sticky/StickyNestedScrollView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/sticky/StickyNestedScrollView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/swipemenu/SwipeMenuLayout.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/swipemenu/SwipeMenuLayout.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/swipemenu/SwipeMenuRecyclerView.class" afterPath="$PROJECT_DIR$/build/intermediates/transforms/instantRun/debug/0/com/zhouyou/recyclerview/swipemenu/SwipeMenuRecyclerView.class" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterPath="$PROJECT_DIR$/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,114 +150,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="900">
-      <file leaf-file-name="CreateClusterFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateClusterFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15094">
-              <caret line="311" column="34" lean-forward="true" selection-start-line="311" selection-start-column="34" selection-end-line="311" selection-end-column="34" />
-              <folding>
-                <element signature="e#14332#17267#0" expanded="true" />
-                <element signature="e#15450#16959#0" expanded="true" />
-                <element signature="e#16958#16959#0" expanded="true" />
-                <element signature="e#17266#17267#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateClusterModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/CreateClusterModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-438">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="1230">
+              <caret line="67" column="54" lean-forward="false" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListClusterTemplateModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java">
+      <file leaf-file-name="ClustersFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1533">
-              <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
+            <state relative-caret-position="1447">
+              <caret line="270" column="26" lean-forward="false" selection-start-line="270" selection-start-column="26" selection-end-line="270" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListClusterModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java">
+      <file leaf-file-name="CircleRefreshLayout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/circlerefresh/src/main/java/com/tuesda/walker/circlerefresh/CircleRefreshLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
+            <state relative-caret-position="7500">
+              <caret line="268" column="0" lean-forward="false" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResponseParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/data/ResponseParser.java">
+      <file leaf-file-name="ClusterTemplateFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2044">
-              <caret line="1166" column="43" lean-forward="false" selection-start-line="1166" selection-start-column="34" selection-end-line="1166" selection-end-column="43" />
+            <state relative-caret-position="750">
+              <caret line="62" column="73" lean-forward="false" selection-start-line="62" selection-start-column="73" selection-end-line="62" selection-end-column="73" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1222">
-              <caret line="2340" column="35" lean-forward="true" selection-start-line="2340" selection-start-column="35" selection-end-line="2340" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateClusterBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1679">
-              <caret line="104" column="45" lean-forward="true" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
-              <folding>
-                <element signature="e#718#719#0" expanded="true" />
-                <element signature="e#745#746#0" expanded="true" />
-                <element signature="e#785#786#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#857#858#0" expanded="true" />
-                <element signature="e#893#894#0" expanded="true" />
-                <element signature="e#951#952#0" expanded="true" />
-                <element signature="e#1001#1002#0" expanded="true" />
-                <element signature="e#1037#1038#0" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-                <element signature="e#1125#1126#0" expanded="true" />
-                <element signature="e#1173#1174#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1261#1262#0" expanded="true" />
-                <element signature="e#1427#1428#0" expanded="true" />
-                <element signature="e#1460#1461#0" expanded="true" />
-                <element signature="e#1509#1510#0" expanded="true" />
-                <element signature="e#1553#1554#0" expanded="true" />
-                <element signature="e#1591#1592#0" expanded="true" />
-                <element signature="e#1628#1629#0" expanded="true" />
-                <element signature="e#1685#1686#0" expanded="true" />
-                <element signature="e#1737#1738#0" expanded="true" />
-                <element signature="e#1771#1772#0" expanded="true" />
-                <element signature="e#1801#1802#0" expanded="true" />
-                <element signature="e#1847#1848#0" expanded="true" />
-                <element signature="e#1885#1886#0" expanded="true" />
-                <element signature="e#1928#1929#0" expanded="true" />
-                <element signature="e#1968#1969#0" expanded="true" />
-                <element signature="e#2125#2126#0" expanded="true" />
-                <element signature="e#2154#2155#0" expanded="true" />
-                <element signature="e#2202#2203#0" expanded="true" />
-                <element signature="e#2238#2239#0" expanded="true" />
-                <element signature="e#2274#2275#0" expanded="true" />
-                <element signature="e#2306#2307#0" expanded="true" />
-                <element signature="e#2356#2357#0" expanded="true" />
-                <element signature="e#2398#2399#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -153,6 +197,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -3554,7 +3599,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_cluster_detail.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_cluster_template.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/cluster_template_list_pattern.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/data/ResponseParser.java" />
@@ -3562,11 +3606,9 @@
         <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterDetailFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/LoginModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateFragment.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_cluster.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/simple_list_view.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Volume_Fragment/VolumeDetailFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/clusterBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/clusterResultBean.java" />
@@ -3577,7 +3619,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/RxJavaCallAdapterFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/http/ClusterAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/base/BaseHttpResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/AddNewRuleModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/BasRequestHttp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ShowClusterTemplateDetailModel.java" />
@@ -3598,19 +3639,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/LoginModel.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_create_cluster.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/CreateClusterModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_instance.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/simple_list_view.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/test111.xml" />
+        <option value="$PROJECT_DIR$/circlerefresh/src/main/java/com/tuesda/walker/circlerefresh/CircleRefreshLayout.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="118" />
-    <option name="y" value="12" />
-    <option name="width" value="1948" />
-    <option name="height" value="2074" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -3791,38 +3838,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
-            <path>
-              <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Nectar_Android_App_19-20" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Nectar_Android_App_19-20" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Nectar_Android_App_19-20" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Nectar_Android_App_19-20" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="nectar" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Nectar_Android_App_19-20" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="nectar" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="Nectar_Android_App_19-20" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -3831,8 +3850,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3842,7 +3862,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../AndroidStudio Projects/Retrofit2Rxjava2Demo" />
     <property name="android.project.structure.last.selected" value="Nectar_Android_App_19-20" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="Nexus_5X_API_24" />
+    <property name="device.picker.selection" value="2d70d4a6" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -4088,7 +4108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572356924513</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="demo update">
+      <created>1572387882371</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1572387882371</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -4101,8 +4128,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964474" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -4119,7 +4145,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22923408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22986037" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -4152,55 +4178,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/CreateFloatingIPModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/DeleteSubnetModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/EditRouterModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ShowConfigGroupDetailModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2701">
-          <caret line="53" column="5" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="55" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/AddNewRuleModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3066">
-          <caret line="57" column="5" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="57" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/DeleteVolumeSnapshotModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/DetachVolumeModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/BasRequestHttp.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListTemplateModel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -4266,27 +4243,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="54" column="83" lean-forward="false" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1679">
-          <caret line="58" column="31" lean-forward="false" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4307">
-          <caret line="105" column="74" lean-forward="false" selection-start-line="105" selection-start-column="74" selection-end-line="105" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/activity/WelcomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="730">
@@ -4316,29 +4272,22 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/data/res/layout/simple_spinner_item.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/data/res/layout/simple_spinner_dropdown_item.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Compute_Fragment/InstanceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -4371,121 +4320,155 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_create_cluster.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="9198">
           <caret line="126" column="50" lean-forward="false" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Database_Fragment/CreateConfigurationGroupFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1447">
           <caret line="95" column="61" lean-forward="false" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="61" />
-          <folding>
-            <element signature="e#3701#7030#0" expanded="false" />
-            <element signature="e#7029#7030#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1533">
-          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1679">
-          <caret line="104" column="45" lean-forward="true" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
-          <folding>
-            <element signature="e#718#719#0" expanded="true" />
-            <element signature="e#745#746#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#857#858#0" expanded="true" />
-            <element signature="e#893#894#0" expanded="true" />
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1219#1220#0" expanded="true" />
-            <element signature="e#1261#1262#0" expanded="true" />
-            <element signature="e#1427#1428#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-            <element signature="e#1553#1554#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#1628#1629#0" expanded="true" />
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-            <element signature="e#1771#1772#0" expanded="true" />
-            <element signature="e#1801#1802#0" expanded="true" />
-            <element signature="e#1847#1848#0" expanded="true" />
-            <element signature="e#1885#1886#0" expanded="true" />
-            <element signature="e#1928#1929#0" expanded="true" />
-            <element signature="e#1968#1969#0" expanded="true" />
-            <element signature="e#2125#2126#0" expanded="true" />
-            <element signature="e#2154#2155#0" expanded="true" />
-            <element signature="e#2202#2203#0" expanded="true" />
-            <element signature="e#2238#2239#0" expanded="true" />
-            <element signature="e#2274#2275#0" expanded="true" />
-            <element signature="e#2306#2307#0" expanded="true" />
-            <element signature="e#2356#2357#0" expanded="true" />
-            <element signature="e#2398#2399#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/data/ResponseParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2044">
+        <state relative-caret-position="84753">
           <caret line="1166" column="43" lean-forward="false" selection-start-line="1166" selection-start-column="34" selection-end-line="1166" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/httpRequest/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1222">
-          <caret line="2340" column="35" lean-forward="true" selection-start-line="2340" selection-start-column="35" selection-end-line="2340" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="168995">
+          <caret line="2340" column="35" lean-forward="false" selection-start-line="2340" selection-start-column="35" selection-end-line="2340" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/bean/CreateClusterBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4234">
+          <caret line="85" column="33" lean-forward="false" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2391">
+          <caret line="68" column="36" lean-forward="false" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterTemplateModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="38" column="45" lean-forward="false" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/CreateClusterModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-438">
+        <state relative-caret-position="73">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_cluster.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/test111.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/model/ListClusterModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/simple_list_view.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_instance.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Compute_Fragment/InstanceFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="47" column="53" lean-forward="false" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/app_bar_main.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2555">
+          <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClusterTemplateFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="62" column="73" lean-forward="false" selection-start-line="62" selection-start-column="73" selection-end-line="62" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2396">
+          <caret line="10364" column="0" lean-forward="false" selection-start-line="10364" selection-start-column="0" selection-end-line="10364" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/circlerefresh/src/main/java/com/tuesda/walker/circlerefresh/CircleRefreshLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7500">
+          <caret line="268" column="0" lean-forward="false" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/CreateClusterFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15094">
-          <caret line="311" column="34" lean-forward="true" selection-start-line="311" selection-start-column="34" selection-end-line="311" selection-end-column="34" />
-          <folding>
-            <element signature="e#14332#17267#0" expanded="true" />
-            <element signature="e#15450#16959#0" expanded="true" />
-            <element signature="e#16958#16959#0" expanded="true" />
-            <element signature="e#17266#17267#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1230">
+          <caret line="67" column="54" lean-forward="false" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jianqingc/nectar/fragment/Container_Infra_Fragment/ClustersFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1447">
+          <caret line="270" column="26" lean-forward="false" selection-start-line="270" selection-start-column="26" selection-end-line="270" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
