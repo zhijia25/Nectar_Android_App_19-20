@@ -249,7 +249,10 @@ public class ResponseParser {
                 resultObject.put("imageDiskFormat", instanceObject.getString("disk_format"));
                 resultObject.put("imageContainerFormat", instanceObject.getString("container_format"));
                 resultObject.put("imageMinDisk", instanceObject.getString("min_disk"));
+                if (instanceObject.has("image_type"))
                 resultObject.put("imageType", instanceObject.getString("image_type"));
+                else
+                resultObject.put("imageType", "");
                 resultArray.put(i,resultObject);
             }
             return resultArray;

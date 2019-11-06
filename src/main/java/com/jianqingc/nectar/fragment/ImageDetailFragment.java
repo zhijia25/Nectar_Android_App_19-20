@@ -184,7 +184,7 @@ public class ImageDetailFragment extends Fragment{
         protectedTV.setText(bool2);
         formatTV.setText(format.toUpperCase());
         DecimalFormat df= new DecimalFormat("######0.00");
-        Double sizeM= Integer.parseInt(size)/1024.0/1024.0;
+        Double sizeM= Double.parseDouble(size);
         sizeTV.setText(df.format(sizeM)+" M");
         createTTV.setText(createTime);
 

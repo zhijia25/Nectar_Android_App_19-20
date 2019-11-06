@@ -93,11 +93,13 @@ public class ImageFragment extends Fragment {
                         String rest = status.substring(1, status.length());
                         String newStatus = new StringBuffer(first).append(rest).toString();
                         String type=listImageResultArrayP.getJSONObject(i).getString("imageType");
+                        String newType = "";
+                        if(!type.equals("")){
                         String first2 = type.substring(0, 1).toUpperCase();
                         String rest2 = type.substring(1, type.length());
-                        String newType = new StringBuffer(first2).append(rest2).toString();
+                        newType = new StringBuffer(first2).append(rest2).toString();}
 
-                        Double size=Integer.parseInt(listImageResultArrayP.getJSONObject(i).getString("imageSize"))/1024.0/1024.0;
+                        Double size=Double.parseDouble(listImageResultArrayP.getJSONObject(i).getString("imageSize"));
 
                         String[] instanceList = {
                                 listImageResultArrayP.getJSONObject(i).getString("imageName"),

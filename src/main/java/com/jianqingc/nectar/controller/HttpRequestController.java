@@ -106,51 +106,12 @@ public class HttpRequestController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonRequest request = new JsonRequest
-                (Request.Method.POST, loginUri, send, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject body= response.getJSONObject("body");
-                            JSONObject header = response.getJSONObject("header");
-                            ResponseParser.getInstance(mApplicationContext).loginParser(header,body);
-                            Intent i = new Intent(mApplicationContext, MainActivity.class);
-                            SharedPreferences sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            /**
-                             * Enable auto-login function
-                             */
-                            editor.putBoolean("isSignedOut", false);
-                            editor.apply();
-                            context.startActivity(i);
-                            Toast.makeText(mApplicationContext, "Login Succeed", Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-//                            Log.e(LOG_TAG, Log.getStackTraceString(e));
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        LoginModel loginModel = new LoginModel(loginUri, send, context, mApplicationContext);
+        JsonRequest request = loginModel.loginRequest();
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error.networkResponse.statusCode == 401) {
-
-                            Toast.makeText(mApplicationContext, "Expired token. Please login again", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(mApplicationContext, LoginActivity.class);
-                            context.startActivity(i);
-                        }
-                        Log.i("error", "onErrorResponse: ");
-                        Toast.makeText(mApplicationContext, "              Login Failed\nPlease check the required fields", Toast.LENGTH_SHORT).show();
-                    }
-                })
-
-        {
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        NetworkController.getInstance(mApplicationContext).addToRequestQueue(request);
+        Network.getInstance(mApplicationContext).addToRequestQueue(request);
     }
+
 
     /**
      * List Overview Http Request
@@ -738,7 +699,7 @@ public class HttpRequestController {
     public void listImageProject(final VolleyCallback callback, final Context context) {
         sharedPreferences = mApplicationContext.getSharedPreferences("nectar_android", 0);
         String imageServiceURL = sharedPreferences.getString("imageServiceURL", "Error Getting Compute URL");
-        String partURL = "/v2/images";
+        String partURL = "v2/images";
         String fullURL = imageServiceURL + partURL;
         final String token = sharedPreferences.getString("tokenId", "Error Getting Token");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fullURL,
@@ -4197,7 +4158,7 @@ public class HttpRequestController {
                             JSONObject result = new JSONObject();
                             String id = resp.getJSONObject("stack").getString("id");
                             String creationTime = resp.getJSONObject("stack").getString("creation_time");
-                            String description = resp.getJSONObject("s6tack").getString("description");
+                            String description = resp.getJSONObject("stack").getString("description");
                             String disable_rollback = resp.getJSONObject("stack").getString("disable_rollback");
                             String name = resp.getJSONObject("stack").getString("stack_name");
                             String status = resp.getJSONObject("stack").getString("stack_status");
